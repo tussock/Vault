@@ -20,7 +20,7 @@ from server.restore import Restore
 from lib import utils
 from lib.dlg import Notify
 from lib import sendemail
-from store import FolderStore
+from store.folderstore import FolderStore
 
 #    Do this last!
 from lib.logger import Logger
@@ -202,7 +202,7 @@ class Tester():
 
         #    Make sure the store is the right size
         for name in self.config.storage:
-            store = self.config.storage.get(name)
+            store = self.config.storage[name].copy()
             size, used, avail = store.current_usage()
             log.debug("Store", store.name, "size", size, "used", used, "avail", avail)
             if store.auto_manage and used > size:
@@ -245,7 +245,7 @@ class Tester():
 
         #    Make sure the store is the right size
         for name in self.config.storage:
-            store = self.config.storage.get(name)
+            store = self.config.storage[name].copy()
             size, used, avail = store.current_usage()
             log.debug("Store", store.name, "size", size, "used", used)
             if store.auto_manage and used > size:
@@ -351,7 +351,7 @@ class Tester():
             stores = ["teststore1", "teststore2"]
         for name in stores:
             log.info("Cleaning up", name)
-            store = self.config.storage.get(name)
+            store = self.config.storage[name].copy()
             store.connect()
             store.delete_store_data()
             store.disconnect()

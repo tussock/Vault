@@ -63,7 +63,7 @@ class Run():
 
         try:
             #    Get a fresh store (a copy of the config version
-            self.store = self.config.storage.get(self.backup.store)
+            self.store = self.config.storage[self.backup.store].copy()
         except:
             raise Exception(_("Storage definition is missing. Please reconfigure backup."))
 

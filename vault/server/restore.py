@@ -96,7 +96,7 @@ class Restore():
                 run = [run for run in runs if run.run_id == run_id][0]
                 backup = self.config.backups[run.name]
                 #    Get a fresh copy of the store
-                store = self.config.storage.get(run.store)
+                store = self.config.storage[run.store].copy()
                 folder = run.folder
                 log.debug("folder", folder, "run", run, "backup", backup, "store", store)
                 self.prepare_input(folder, run, backup, store)

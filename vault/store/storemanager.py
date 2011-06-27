@@ -6,7 +6,7 @@ Created on Jun 26, 2011
 
 from lib.serializer import Serializer
 
-class StoreManager(Serializer, dict):
+class StoreManagerX(Serializer, dict):
     
     def get(self, name):
         '''

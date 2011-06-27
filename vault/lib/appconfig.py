@@ -18,7 +18,6 @@ import os
 from lib import const
 from lib.backup import Backup
 from store.folderstore import FolderStore
-from store.storemanager import StoreManager
 
 #    Do last!
 from lib.logger import Logger
@@ -38,9 +37,9 @@ def build_config(conf):
                      _("Programs"): ["bin", "dll", "exe", "com", "lib"]
                      }
 
-    conf.storage = StoreManager()
+    conf.storage = {}
     store = FolderStore(_("System Backup Folder"), "", False, os.path.join(const.DataDir, "vault-store"))
-    conf.storage.add(store)
+    conf.storage[store.name] = store
 
     conf.backups = {}
 
@@ -67,7 +66,7 @@ def build_config(conf):
         #    If we are debugging, we create debug store and backup objects
         store = FolderStore("TestStore", "20MB", True,
                         os.path.join(const.RunDir, "store"))
-        conf.storage.add(store)
+        conf.storage[store.name] = store
 
 
         b = Backup("test")

@@ -31,7 +31,7 @@ class Verify():
         '''
         self.config = Config.get_config()
         self.backup = self.config.backups[backup_name]
-        self.store = self.config.storage.get(self.backup.store)
+        self.store = self.config.storage[self.backup.store].copy()
 
         self.db = DB()
 
@@ -72,7 +72,7 @@ class Verify():
         raise Exception(_("Verify failed - Run data is corrupt"))
 
     def test_store(self):
-        store = self.config.storage.get(self.store.name)
+        store = self.config.storage[self.store.name].copy()
         store.connect()
         try:
             store.test()
@@ -80,7 +80,7 @@ class Verify():
             store.disconnect()
 
     def fetch_config(self):
-        store = self.config.storage.get(self.store.name)
+        store = self.config.storage[self.store.name].copy()
         store.connect()
         try:
             encrypted = False

@@ -202,7 +202,7 @@ class RecoveryWindow(recoveryui.RecoveryWindow):
                 pass_file = os.path.join(tmp_dir, "pwd")
                 os.mkfifo(pass_file, 0600)
 
-                cat = Popen('cat data*', shell=True, stdout=PIPE)
+                cat = Popen('find data -type f -print | sort | xargs cat', shell=True, stdout=PIPE)
                 openssl = Popen("/usr/bin/openssl enc -d -aes256 -md sha256 -pass 'file:%s'" % pass_file, shell=True,
                                 stdin=cat.stdout, stdout=PIPE)
                 tar = Popen("/bin/tar -xzf - --directory '%s'" % (destination,), shell=True,
@@ -215,7 +215,7 @@ class RecoveryWindow(recoveryui.RecoveryWindow):
                 tmp_fd.close()
             else:
                 log("Starting tar")
-                cat = Popen('cat data*', shell=True, stdout=PIPE)
+                cat = Popen('find data -type f -print | sort | xargs cat', shell=True, stdout=PIPE)
                 tar = Popen("/bin/tar -xzf - --directory '%s'" % destination, shell=True,
                             stdin=cat.stdout, stdout=PIPE, stderr=PIPE)
 
@@ -236,12 +236,13 @@ class RecoveryWindow(recoveryui.RecoveryWindow):
             #
             ############
             if encrypted:
+                log("starting lof processing")
                 pass_file = os.path.join(tmp_dir, "pwd2")
                 os.mkfifo(pass_file, 0600)
 
                 lof_file = os.path.join(tmp_dir, "lof")
 
-                openssl = Popen("/usr/bin/openssl enc -d -aes256 -pass 'file:%s' -in lof.enc -out '%s'" % (pass_file, lof_file),
+                openssl = Popen("/usr/bin/openssl enc -d -aes256 -md sha256 -pass 'file:%s' -in lof.enc -out '%s'" % (pass_file, lof_file),
                                 shell=True, stdout=PIPE)
                 #    Send the passphrase via a pipe file. 
                 #    It wont appear in the process list (via cmd line arg).

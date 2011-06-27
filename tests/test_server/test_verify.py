@@ -48,7 +48,7 @@ class VerifyTestCase(unittest.TestCase):
         #    Build a store object (dont save config)
         #    Note the careful size selection - we want backups to overflow the FolderStore.
         self.store = FolderStore("teststore", "2MB", True, self.store_folder)
-        self.config.storage.add(self.store)
+        self.config.storage[self.store.name] = self.store
 
         #    Build the backup object (dont save config)
         self.backup = Backup("testbackup")

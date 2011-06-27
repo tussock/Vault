@@ -412,7 +412,7 @@ class BackupPanel(EditPanel, gui.BackupPanel):
         try:
             if delete_offsite_data:
                 wx.Yield()
-                store = self.config.storage.get(backup.store)
+                store = self.config.storage[backup.store].copy()
                 store.delete_backup_data(name)
             wx.Yield()
             self.db.delete_backup(name)

@@ -61,7 +61,7 @@ def wiz_execute(wiz):
             #    we will rely on the user to test the store
 #            store.test()
             config = Config.get_config()
-            config.storage.add(store)
+            config.storage[store.name] = store
             config.save()
         
         dlg.Info(wiz, _("Store successfully created."))

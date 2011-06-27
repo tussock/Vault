@@ -103,12 +103,16 @@ class Config(serializer.Serializer):
     
 
     def post_load(self):
-        self.storage.post_load()
         self.mail_password = decrypt_string_base64(passphrase.passphrase, self.mail_password_c)
+        for store in self.storage.itervalues():
+            if hasattr(store, "post_load"):
+                store.post_load()
         
     def pre_save(self):
-        self.storage.pre_save()    
         self.mail_password_c = encrypt_string_base64(passphrase.passphrase, self.mail_password)
+        for store in self.storage.itervalues():
+            if hasattr(store, "pre_save"):
+                store.pre_save()
 
     def save(self):
         global _appconfig

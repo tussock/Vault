@@ -231,7 +231,7 @@ class RestorePanel(gui.RestorePanel):
         #    Get the backup and store
         bname = self.cboBackup.GetStringSelection()
         backup = self.config.backups[bname]
-        store = self.config.storage.get(backup.store)
+        store = self.config.storage[backup.store].copy()
         #    Figure out the last run
         runs = self.db.runs(bname)
         if len(runs) == 0:
