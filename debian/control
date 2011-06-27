@@ -1,0 +1,34 @@
+Source: vault
+Section: utils
+Priority: optional
+Maintainer: Paul Reddy <paul@kereru.org>
+Build-Depends: debhelper (>=8.0.0~), 
+			   python-support (>= 1.0.9),
+			   python (>= 2.7)
+XS-Python-Version: >=2.7
+Standards-Version: 3.9.1
+
+Package: vault
+Architecture: all
+Homepage: http://kereru.org/vault
+Depends: python-setuptools (>= 0.6.4),
+		 python-wxgtk2.8 (>= 2.8.11),
+		 gettext (>= 0.18.1),
+		 menu (>= 2.1.44),
+		 ${misc:Depends}, 		 
+         ${python:Depends}		 
+Description: Backups For The Rest Of Us
+ The Vault provides a simple set-and-forget backup management system.
+ .
+ It backups up files to a variety of media, and includes support for
+ encryption out of the box, splitting, automatic storage management, 
+ hash validation and more. It also includes a simple to use GUI to get
+ you started right away.
+ .
+ All data is stored in industry standard TAR/GZIP compatible files, 
+ and encrypted with OpenSSL encryption (AES-256). A variety of 
+ disaster recovery systems are available in case the worst happens:
+ - all storage media gets a copy of the recovery program so you can 
+ recover your files to any computer straight from the backups without
+ needing to install the software.
+ - the GUI also includes more powerful restore and recovery software. 

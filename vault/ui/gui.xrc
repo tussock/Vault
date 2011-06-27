@@ -1,0 +1,4468 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+	<object class="wxFrame" name="MainWindow">
+		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
+		<size>743,429</size>
+		<title>The Vault</title>
+		<centered>1</centered>
+		<object class="wxStatusBar" name="statusbar">
+			<style>wxST_SIZEGRIP</style>
+			<font>
+				<family>default</family>
+				<style>normal</style>
+				<weight>normal</weight>
+				<underlined>0</underlined>
+			</font>
+			<fields>1</fields>
+		</object>
+		<object class="wxBoxSizer">
+			<orient>wxHORIZONTAL</orient>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>3</border>
+				<object class="wxButton" name="btnQuit">
+					<label>Quit</label>
+					<default>0</default>
+				</object>
+			</object>
+			<object class="spacer">
+				<option>1</option>
+				<flag>wxEXPAND</flag>
+				<border>5</border>
+				<size>0,0</size>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+				<border>3</border>
+				<object class="wxButton" name="btnAbout">
+					<label>About</label>
+					<default>0</default>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>3</border>
+				<object class="wxButton" name="btnHelp">
+					<label>Show Help</label>
+					<default>0</default>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxDialog" name="OptionDialog">
+		<style>wxDEFAULT_DIALOG_STYLE</style>
+		<size>386,173</size>
+		<title>&lt;title&gt;</title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>10</border>
+				<object class="wxStaticText" name="lblMessage">
+					<label>MyLabel</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>20</border>
+				<object class="wxCheckBox" name="chkOption">
+					<label>Check Me!</label>
+					<checked>0</checked>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>3</border>
+				<object class="wxStdDialogButtonSizer">
+					<object class="button">
+						<flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="wxID_OK">
+							<label>&amp;OK</label>
+						</object>
+					</object>
+					<object class="button">
+						<flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="wxID_CANCEL">
+							<label>&amp;Cancel</label>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxPanel" name="OverviewPanel">
+		<style>wxTAB_TRAVERSAL</style>
+		<size>573,441</size>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>3</border>
+				<object class="wxStaticText" name="m_staticText60">
+					<font>
+						<family>default</family>
+						<style>normal</style>
+						<weight>bold</weight>
+						<underlined>0</underlined>
+					</font>
+					<label>System Overview</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND|wxLEFT</flag>
+				<border>20</border>
+				<object class="wxFlexGridSizer">
+					<rows>2</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<growablecols>1</growablecols>
+					<growablerows>2</growablerows>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticBitmap" name="imgStatus">
+							<bitmap>images/status-ok.png</bitmap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="lblStatus">
+							<font>
+								<family>default</family>
+								<style>normal</style>
+								<weight>bold</weight>
+								<underlined>0</underlined>
+							</font>
+							<label>Status: Healthy</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="spacer">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<size>0,0</size>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="lblMessages">
+							<font>
+								<size>8</size>
+								<family>default</family>
+								<style>normal</style>
+								<weight>normal</weight>
+								<underlined>0</underlined>
+							</font>
+							<label>Messages</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND | wxALL</flag>
+				<border>3</border>
+				<object class="wxStaticLine" name="m_staticline5">
+					<style>wxLI_HORIZONTAL</style>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>3</border>
+				<object class="wxStaticText" name="m_staticText61">
+					<font>
+						<family>default</family>
+						<style>normal</style>
+						<weight>bold</weight>
+						<underlined>0</underlined>
+					</font>
+					<label>Backups Overview</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND|wxLEFT</flag>
+				<border>20</border>
+				<object class="wxBoxSizer">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="AutoWidthListCtrl" name="lstBackups" />
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="lblNoBackups">
+							<font>
+								<size>8</size>
+								<family>default</family>
+								<style>normal</style>
+								<weight>normal</weight>
+								<underlined>0</underlined>
+							</font>
+							<label>No backups have been defined</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND | wxALL</flag>
+				<border>3</border>
+				<object class="wxStaticLine" name="m_staticline8">
+					<style>wxLI_HORIZONTAL</style>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>3</border>
+				<object class="wxStaticText" name="m_staticText62">
+					<font>
+						<family>default</family>
+						<style>normal</style>
+						<weight>bold</weight>
+						<underlined>0</underlined>
+					</font>
+					<label>Storage Overview</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND|wxLEFT</flag>
+				<border>20</border>
+				<object class="wxBoxSizer">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="AutoWidthListCtrl" name="lstStores" />
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="lblNoStores">
+							<font>
+								<size>8</size>
+								<family>default</family>
+								<style>normal</style>
+								<weight>normal</weight>
+								<underlined>0</underlined>
+							</font>
+							<label>No stores have been defined</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND | wxALL</flag>
+				<border>5</border>
+				<object class="wxStaticLine" name="m_staticline81">
+					<style>wxLI_HORIZONTAL</style>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>5</border>
+				<object class="wxStaticText" name="m_staticText621">
+					<font>
+						<family>default</family>
+						<style>normal</style>
+						<weight>bold</weight>
+						<underlined>0</underlined>
+					</font>
+					<label>Actions</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND|wxLEFT</flag>
+				<border>20</border>
+				<object class="wxBoxSizer">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxFlexGridSizer">
+							<rows>2</rows>
+							<cols>2</cols>
+							<vgap>0</vgap>
+							<hgap>0</hgap>
+							<growablecols></growablecols>
+							<growablerows></growablerows>
+							<object class="sizeritem">
+								<option>1</option>
+								<flag>wxEXPAND</flag>
+								<border>3</border>
+								<object class="wxBoxSizer">
+									<orient>wxHORIZONTAL</orient>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnRefresh2">
+											<label>Refresh</label>
+											<default>0</default>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnHistory">
+											<label>View History</label>
+											<default>0</default>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxEXPAND | wxALL</flag>
+										<border>5</border>
+										<object class="wxStaticLine" name="m_staticline13">
+											<style>wxLI_VERTICAL</style>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxStaticText" name="m_staticText115">
+											<label>First Time Wizards:</label>
+											<wrap>-1</wrap>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="m_button32">
+											<label>Setup Storage</label>
+											<default>0</default>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="m_button33">
+											<label>Setup Backup</label>
+											<default>0</default>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxPanel" name="BackupPanel">
+		<style>wxTAB_TRAVERSAL</style>
+		<size>717,457</size>
+		<object class="wxBoxSizer">
+			<orient>wxHORIZONTAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND</flag>
+				<border>3</border>
+				<object class="wxSplitterWindow" name="m_splitter3">
+					<style>wxSP_3D</style>
+					<sashpos>180</sashpos>
+					<gravity>0</gravity>
+					<minsize>180</minsize>
+					<orientation>vertical</orientation>
+					<object class="wxPanel" name="m_panel26">
+						<style>wxTAB_TRAVERSAL</style>
+						<object class="wxBoxSizer">
+							<orient>wxVERTICAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL|wxEXPAND</flag>
+								<border>3</border>
+								<object class="wxStaticText" name="m_staticText24">
+									<font>
+										<family>default</family>
+										<style>normal</style>
+										<weight>bold</weight>
+										<underlined>0</underlined>
+									</font>
+									<label>Backups</label>
+									<wrap>-1</wrap>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL|wxEXPAND</flag>
+								<border>3</border>
+								<object class="wxListBox" name="lstItems">
+									<style>wxLB_SORT</style>
+									<size>-1,150</size>
+									<content />
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxEXPAND</flag>
+								<border>3</border>
+								<object class="wxGridSizer">
+									<rows>2</rows>
+									<cols>2</cols>
+									<vgap>0</vgap>
+									<hgap>0</hgap>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnDelete">
+											<label>Delete</label>
+											<default>0</default>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_RIGHT|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnNew">
+											<label>Add New</label>
+											<default>0</default>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnRun">
+											<label>Run...</label>
+											<default>0</default>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_RIGHT|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnHistory">
+											<label>History</label>
+											<default>0</default>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="wxPanel" name="m_panel27">
+						<style>wxTAB_TRAVERSAL</style>
+						<object class="wxBoxSizer">
+							<orient>wxVERTICAL</orient>
+							<object class="sizeritem">
+								<option>1</option>
+								<flag>wxEXPAND | wxALL</flag>
+								<border>3</border>
+								<object class="wxNotebook" name="nbBackup">
+									<object class="notebookpage">
+										<label>General</label>
+										<selected>0</selected>
+										<object class="wxPanel" name="pnlGeneralTab">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText39">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>General</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxFlexGridSizer">
+														<rows>2</rows>
+														<cols>2</cols>
+														<vgap>0</vgap>
+														<hgap>0</hgap>
+														<growablecols>1</growablecols>
+														<growablerows></growablerows>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText311">
+																<label>Name:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxTextCtrl" name="txtName">
+																		<size>200,-1</size>
+																		<value></value>
+																		<maxlength>0</maxlength>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxStaticText" name="lblName">
+																		<size>200,-1</size>
+																		<label>Static Name</label>
+																		<wrap>-1</wrap>
+																	</object>
+																</object>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText81">
+																<label>Status:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>5</border>
+															<object class="wxCheckBox" name="chkActive">
+																<label>Active/Enabled</label>
+																<checked>0</checked>
+															</object>
+														</object>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText40">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>Backup What Folders</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxFlexGridSizer">
+														<rows>2</rows>
+														<cols>2</cols>
+														<vgap>0</vgap>
+														<hgap>0</hgap>
+														<growablecols>1</growablecols>
+														<growablerows></growablerows>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText32">
+																<label>Folders:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxBoxSizer">
+																<orient>wxVERTICAL</orient>
+																<object class="sizeritem">
+																	<option>1</option>
+																	<flag>wxEXPAND</flag>
+																	<border>3</border>
+																	<object class="wxBoxSizer">
+																		<orient>wxHORIZONTAL</orient>
+																		<object class="sizeritem">
+																			<option>1</option>
+																			<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
+																			<border>3</border>
+																			<object class="wxTextCtrl" name="txtFolders">
+																				<style>wxTE_MULTILINE</style>
+																				<value></value>
+																				<maxlength>0</maxlength>
+																			</object>
+																		</object>
+																		<object class="sizeritem">
+																			<option>0</option>
+																			<flag>wxALL</flag>
+																			<border>5</border>
+																			<object class="wxBitmapButton" name="btnAddFolder">
+																				<style>wxBU_AUTODRAW</style>
+																				<bitmap>images/add.png</bitmap>
+																				<default>0</default>
+																			</object>
+																		</object>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>5</border>
+																	<object class="wxStaticText" name="m_staticText95">
+																		<font>
+																			<size>8</size>
+																			<family>default</family>
+																			<style>italic</style>
+																			<weight>normal</weight>
+																			<underlined>0</underlined>
+																		</font>
+																		<label>Type one folder per line, or click &quot;+&quot; to use a folder selector.</label>
+																		<wrap>-1</wrap>
+																	</object>
+																</object>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText34">
+																<label>Packages:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxCheckBox" name="chkPackages">
+																<label>Include list of installed packages</label>
+																<checked>0</checked>
+															</object>
+														</object>
+														<object class="spacer">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>3</border>
+															<size>0,0</size>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="notebookpage">
+										<label>Exclude</label>
+										<selected>1</selected>
+										<object class="wxPanel" name="pnlExcludeTab">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText41">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>Exclude File Types</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxBoxSizer">
+														<orient>wxVERTICAL</orient>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxCheckListBox" name="lstExcludeTypes">
+																<style>wxLB_SORT</style>
+																<size>250,-1</size>
+																<content>
+																	<item>Images</item>
+																	<item>Videos</item>
+																	<item>Programs</item>
+																</content>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="lblDestDetails112">
+																<font>
+																	<size>8</size>
+																	<family>swiss</family>
+																	<style>italic</style>
+																	<weight>normal</weight>
+																	<underlined>0</underlined>
+																	<face>Sans</face>
+																</font>
+																<label>File types may be adjusted in Configuration | File Types.</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText42">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>Exclude Files/Folder Patterns</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxBoxSizer">
+														<orient>wxVERTICAL</orient>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtExcludePatterns">
+																<style>wxTE_MULTILINE</style>
+																<size>250,-1</size>
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="lblDestDetails11">
+																<font>
+																	<size>8</size>
+																	<family>swiss</family>
+																	<style>italic</style>
+																	<weight>normal</weight>
+																	<underlined>0</underlined>
+																	<face>Sans</face>
+																</font>
+																<label>Enter paths and patterns for files/folders to exclude - one per line.\n* - matches any path\n? - matches any character\n[letters] - matches any one of the letters\n[!letters] = matches any character not in letters.\nExample: */Trash matches the Trash folder, and therefore also excludes all subfolders.</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="notebookpage">
+										<label>Storage</label>
+										<selected>0</selected>
+										<object class="wxPanel" name="pnlStoreTab">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText50">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>Store To:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxBoxSizer">
+														<orient>wxHORIZONTAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxChoice" name="cboStore">
+																<selection>0</selection>
+																<content />
+															</object>
+														</object>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText501">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>Protect Backup Files</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxLEFT</flag>
+													<border>23</border>
+													<object class="wxCheckBox" name="chkEncrypt">
+														<label>Encrypt data</label>
+														<checked>0</checked>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxLEFT</flag>
+													<border>23</border>
+													<object class="wxStaticText" name="lblDestDetails1111">
+														<font>
+															<size>8</size>
+															<family>swiss</family>
+															<style>italic</style>
+															<weight>normal</weight>
+															<underlined>0</underlined>
+															<face>Sans</face>
+														</font>
+														<label>Encryption will use the master password (see the Configuration panel).</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxLEFT</flag>
+													<border>23</border>
+													<object class="wxCheckBox" name="chkVerify">
+														<label>Verify data after backup</label>
+														<checked>0</checked>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxLEFT</flag>
+													<border>23</border>
+													<object class="wxStaticText" name="lblDestDetails111">
+														<font>
+															<size>8</size>
+															<family>swiss</family>
+															<style>italic</style>
+															<weight>normal</weight>
+															<underlined>0</underlined>
+															<face>Sans</face>
+														</font>
+														<label>Note that verification will slow down the backup</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="notebookpage">
+										<label>Schedule</label>
+										<selected>0</selected>
+										<object class="wxPanel" name="pnlScheduleTab">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText1111">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>Simple Backup Schedule</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxBoxSizer">
+														<orient>wxVERTICAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxEXPAND</flag>
+															<border>0</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxRadioButton" name="radSchedDailyWeekly">
+																		<style>wxRB_GROUP</style>
+																		<label>Save changes daily at</label>
+																		<value>0</value>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxChoice" name="cboTime1">
+																		<selection>0</selection>
+																		<content>
+																			<item>7:00pm</item>
+																		</content>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxStaticText" name="m_staticText106">
+																		<label>Save all weekly on</label>
+																		<wrap>-1</wrap>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxChoice" name="cboDay1">
+																		<selection>0</selection>
+																		<content>
+																			<item>Sunday</item>
+																		</content>
+																	</object>
+																</object>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>5</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxRadioButton" name="radSchedDailyMonthly">
+																		<label>Save changes daily at</label>
+																		<value>0</value>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxChoice" name="cboTime2">
+																		<selection>0</selection>
+																		<content>
+																			<item>7:00pm</item>
+																		</content>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxStaticText" name="m_staticText1062">
+																		<label>Save all monthly on</label>
+																		<wrap>-1</wrap>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxChoice" name="cboMonthDay2">
+																		<selection>0</selection>
+																		<content>
+																			<item>1</item>
+																		</content>
+																	</object>
+																</object>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxEXPAND</flag>
+															<border>0</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxRadioButton" name="radSchedHourlyWeekly">
+																		<label>Save changes hourly.  Save all weekly on</label>
+																		<value>0</value>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxChoice" name="cboDay3">
+																		<selection>0</selection>
+																		<content>
+																			<item>Sunday</item>
+																		</content>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxStaticText" name="m_staticText1061">
+																		<label>at</label>
+																		<wrap>-1</wrap>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxChoice" name="cboTime3">
+																		<selection>0</selection>
+																		<content>
+																			<item>7:00pm</item>
+																		</content>
+																	</object>
+																</object>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>5</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxRadioButton" name="radSchedNoneDaily">
+																		<label>Save all daily at</label>
+																		<value>0</value>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxChoice" name="cboTime4">
+																		<selection>0</selection>
+																		<content>
+																			<item>7:00pm</item>
+																		</content>
+																	</object>
+																</object>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>5</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxRadioButton" name="radSchedNoneWeekly">
+																		<label>Save all weekly on</label>
+																		<value>0</value>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxChoice" name="cboDay5">
+																		<selection>0</selection>
+																		<content>
+																			<item>Sunday</item>
+																		</content>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxStaticText" name="m_staticText106111">
+																		<label>at</label>
+																		<wrap>-1</wrap>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxChoice" name="cboTime5">
+																		<selection>0</selection>
+																		<content>
+																			<item>7:00pm</item>
+																		</content>
+																	</object>
+																</object>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxEXPAND | wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticLine" name="m_staticline7">
+																<style>wxLI_HORIZONTAL</style>
+															</object>
+														</object>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText1121">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>Advanced Backup Schedule</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxBoxSizer">
+														<orient>wxVERTICAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxRadioButton" name="radSchedAdvanced">
+																<label>Use Crontab Entries</label>
+																<value>0</value>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxEXPAND|wxLEFT</flag>
+															<border>25</border>
+															<object class="wxPanel" name="pnlAdvanced">
+																<style>wxTAB_TRAVERSAL</style>
+																<object class="wxFlexGridSizer">
+																	<rows>2</rows>
+																	<cols>2</cols>
+																	<vgap>0</vgap>
+																	<hgap>0</hgap>
+																	<growablecols></growablecols>
+																	<growablerows></growablerows>
+																	<object class="sizeritem">
+																		<option>0</option>
+																		<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																		<border>3</border>
+																		<object class="wxStaticText" name="m_staticText111">
+																			<label>Backup Changes:</label>
+																			<wrap>-1</wrap>
+																		</object>
+																	</object>
+																	<object class="sizeritem">
+																		<option>0</option>
+																		<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																		<border>3</border>
+																		<object class="wxTextCtrl" name="txtCronIncr">
+																			<size>200,-1</size>
+																			<value></value>
+																			<maxlength>0</maxlength>
+																		</object>
+																	</object>
+																	<object class="sizeritem">
+																		<option>0</option>
+																		<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																		<border>3</border>
+																		<object class="wxStaticText" name="m_staticText112">
+																			<label>Backup Everything:</label>
+																			<wrap>-1</wrap>
+																		</object>
+																	</object>
+																	<object class="sizeritem">
+																		<option>0</option>
+																		<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																		<border>3</border>
+																		<object class="wxTextCtrl" name="txtCronFull">
+																			<size>200,-1</size>
+																			<value></value>
+																			<maxlength>0</maxlength>
+																		</object>
+																	</object>
+																	<object class="spacer">
+																		<option>1</option>
+																		<flag>wxEXPAND</flag>
+																		<border>5</border>
+																		<size>0,0</size>
+																	</object>
+																	<object class="sizeritem">
+																		<option>0</option>
+																		<flag>wxALL</flag>
+																		<border>5</border>
+																		<object class="wxStaticText" name="m_staticText110">
+																			<font>
+																				<size>8</size>
+																				<family>default</family>
+																				<style>italic</style>
+																				<weight>normal</weight>
+																				<underlined>0</underlined>
+																			</font>
+																			<label>Crontab format is &quot;min hour dayofmonth month dayofweek&quot;\nFor example: &quot;30 5 * * *&quot; runs every day at 5:30 am.\nLeave blank to disable. See help for more details.</label>
+																			<wrap>-1</wrap>
+																		</object>
+																	</object>
+																</object>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="notebookpage">
+										<label>Notification</label>
+										<selected>0</selected>
+										<object class="wxPanel" name="pnlNotification">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText63">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>After The Backup Completes</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxBoxSizer">
+														<orient>wxVERTICAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxCheckBox" name="chkNotifyMsg">
+																<label>Show a system notification</label>
+																<checked>0</checked>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxCheckBox" name="chkNotifyEmail">
+																<label>Send an email</label>
+																<checked>0</checked>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxCheckBox" name="chkShutdown">
+																<label>Shutdown the computer</label>
+																<checked>0</checked>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxEXPAND</flag>
+								<border>0</border>
+								<object class="wxBoxSizer">
+									<orient>wxHORIZONTAL</orient>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_LEFT|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnSave">
+											<label>Apply</label>
+											<default>0</default>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnRevert">
+											<label>Revert</label>
+											<default>0</default>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxFrame" name="RunBackupWindow">
+		<style>wxDEFAULT_FRAME_STYLE|wxRESIZE_BORDER|wxTAB_TRAVERSAL</style>
+		<size>587,501</size>
+		<title>Run Backup Window</title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>5</border>
+				<object class="wxStaticText" name="label1">
+					<font>
+						<family>default</family>
+						<style>normal</style>
+						<weight>bold</weight>
+						<underlined>0</underlined>
+					</font>
+					<label>Backup</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND|wxLEFT</flag>
+				<border>20</border>
+				<object class="wxFlexGridSizer">
+					<rows>2</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<growablecols></growablecols>
+					<growablerows></growablerows>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="m_staticText48">
+							<label>Name:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxChoice" name="cboBackup">
+							<selection>0</selection>
+							<content />
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="m_staticText45">
+							<label>Type:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxBoxSizer">
+							<orient>wxHORIZONTAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+								<border>3</border>
+								<object class="wxRadioButton" name="radFull">
+									<label>Full</label>
+									<value>0</value>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+								<border>3</border>
+								<object class="wxRadioButton" name="radIncr">
+									<label>Changes</label>
+									<value>0</value>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="m_staticText91">
+							<label>After Finished:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<object class="wxBoxSizer">
+							<orient>wxHORIZONTAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+								<border>3</border>
+								<object class="wxCheckBox" name="chkMessage">
+									<label>Show message</label>
+									<checked>0</checked>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+								<border>3</border>
+								<object class="wxCheckBox" name="chkEmail">
+									<label>Send email</label>
+									<checked>0</checked>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+								<border>3</border>
+								<object class="wxCheckBox" name="chkShutdown">
+									<label>Shutdown computer</label>
+									<checked>0</checked>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="m_staticText90">
+							<label>Dry Run:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxCheckBox" name="chkDryRun">
+							<label>Enable</label>
+							<checked>0</checked>
+						</object>
+					</object>
+					<object class="spacer">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<size>0,0</size>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="m_staticText107">
+							<font>
+								<size>8</size>
+								<family>default</family>
+								<style>italic</style>
+								<weight>normal</weight>
+								<underlined>0</underlined>
+							</font>
+							<label>A dry run will execute a backup without actually copying any files\nor changing the system. It shows what *would* happen if this backup ran.</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND | wxALL</flag>
+				<border>0</border>
+				<object class="wxPanel" name="pnlDryRun">
+					<style>wxTAB_TRAVERSAL</style>
+					<object class="wxBoxSizer">
+						<orient>wxVERTICAL</orient>
+						<object class="sizeritem">
+							<option>0</option>
+							<flag>wxALL</flag>
+							<border>5</border>
+							<object class="wxStaticText" name="m_staticText46">
+								<font>
+									<family>default</family>
+									<style>normal</style>
+									<weight>bold</weight>
+									<underlined>0</underlined>
+								</font>
+								<label>List Of Files</label>
+								<wrap>-1</wrap>
+							</object>
+						</object>
+						<object class="sizeritem">
+							<option>1</option>
+							<flag>wxEXPAND|wxLEFT</flag>
+							<border>20</border>
+							<object class="wxBoxSizer">
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxALL|wxEXPAND</flag>
+									<border>3</border>
+									<object class="wxTextCtrl" name="txtFiles">
+										<style>wxTE_MULTILINE|wxTE_READONLY</style>
+										<value></value>
+										<maxlength>0</maxlength>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText99">
+										<font>
+											<size>8</size>
+											<family>default</family>
+											<style>italic</style>
+											<weight>normal</weight>
+											<underlined>0</underlined>
+										</font>
+										<label>D = Directory; F = File; X = Deleted</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxBoxSizer">
+					<orient>wxHORIZONTAL</orient>
+					<object class="spacer">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<size>0,0</size>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>3</border>
+						<object class="wxButton" name="btnStart">
+							<label>Start</label>
+							<default>0</default>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>3</border>
+						<object class="wxButton" name="btnStop">
+							<label>Stop</label>
+							<default>0</default>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>3</border>
+						<object class="wxButton" name="btnClose">
+							<label>Close</label>
+							<default>0</default>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="statusBar">
+			<style>wxST_SIZEGRIP</style>
+			<fields>1</fields>
+		</object>
+	</object>
+	<object class="wxPanel" name="RestorePanel">
+		<style>wxTAB_TRAVERSAL</style>
+		<size>517,367</size>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND | wxALL</flag>
+				<border>3</border>
+				<object class="wxNotebook" name="nb_restore">
+					<object class="notebookpage">
+						<label>Restore Files/Folders</label>
+						<selected>0</selected>
+						<object class="wxPanel" name="m_panel26">
+							<style>wxTAB_TRAVERSAL</style>
+							<object class="wxBoxSizer">
+								<orient>wxHORIZONTAL</orient>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<border>3</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND</flag>
+											<border>3</border>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="lblTreeTitle">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>File System</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="spacer">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<size>0,0</size>
+												</object>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>1</option>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>3</border>
+											<object class="wxTreeCtrl" name="fs_tree">
+												<style>wxTR_DEFAULT_STYLE|wxTR_FULL_ROW_HIGHLIGHT</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND</flag>
+											<border>3</border>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxButton" name="m_button40">
+														<label>Refresh</label>
+														<default>0</default>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxButton" name="btnRestore">
+														<label>Restore File/Folder...</label>
+														<default>0</default>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="lblSelectedFile">
+														<label>&lt;selected file&gt;</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxEXPAND</flag>
+									<border>3</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+											<border>0</border>
+											<object class="wxStaticText" name="date_label">
+												<style>wxALIGN_CENTRE</style>
+												<label>Selected Date</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+											<border>0</border>
+											<object class="wxStaticText" name="time_label">
+												<style>wxALIGN_CENTRE</style>
+												<label>MyLabel</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticLine" name="m_staticline3">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER_HORIZONTAL</flag>
+											<border>3</border>
+											<object class="wxStaticText" name="m_staticText56">
+												<font>
+													<size>8</size>
+													<family>default</family>
+													<style>italic</style>
+													<weight>normal</weight>
+													<underlined>0</underlined>
+												</font>
+												<label>Oldest</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>1</option>
+											<flag>wxALL|wxEXPAND</flag>
+											<border>3</border>
+											<object class="wxSlider" name="date_slider">
+												<style>wxSL_VERTICAL</style>
+												<value>50</value>
+												<min>0</min>
+												<max>100</max>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER_HORIZONTAL</flag>
+											<border>3</border>
+											<object class="wxStaticText" name="m_staticText55">
+												<font>
+													<size>8</size>
+													<family>default</family>
+													<style>italic</style>
+													<weight>normal</weight>
+													<underlined>0</underlined>
+												</font>
+												<label>Latest</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticLine" name="m_staticline4">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>5</border>
+											<object class="wxButton" name="btnRunDetails">
+												<label>Run Details</label>
+												<default>0</default>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="notebookpage">
+						<label>Disaster Recovery</label>
+						<selected>0</selected>
+						<object class="wxPanel" name="m_panel27">
+							<style>wxTAB_TRAVERSAL</style>
+							<object class="wxBoxSizer">
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>3</border>
+									<object class="wxStaticText" name="lblTreeTitle1">
+										<font>
+											<family>default</family>
+											<style>normal</style>
+											<weight>bold</weight>
+											<underlined>0</underlined>
+										</font>
+										<label>Method 1: Rebuild Local Database</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxEXPAND|wxLEFT</flag>
+									<border>20</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>3</border>
+											<object class="wxStaticText" name="m_staticText104">
+												<font>
+													<size>8</size>
+													<family>default</family>
+													<style>italic</style>
+													<weight>normal</weight>
+													<underlined>0</underlined>
+												</font>
+												<label>Step 1: Retrieve a copy of the backup configuration from *any* recently used store.</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>3</border>
+											<object class="wxButton" name="btnReload">
+												<label>Step 1: Fetch Configuration</label>
+												<default>0</default>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>3</border>
+											<object class="wxStaticLine" name="m_staticline9">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>3</border>
+											<object class="wxStaticText" name="m_staticText94">
+												<font>
+													<size>8</size>
+													<family>default</family>
+													<style>italic</style>
+													<weight>normal</weight>
+													<underlined>0</underlined>
+												</font>
+												<label>Step 2: Once the configuration has been fetched, The Vault can rebuild a complete\ncopy of the backup database, which includes information about all backed up files.</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>3</border>
+											<object class="wxButton" name="btnRebuild">
+												<label>Step 2: Rebuild Database</label>
+												<default>0</default>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>3</border>
+											<object class="wxStaticLine" name="m_staticline10">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>3</border>
+											<object class="wxStaticText" name="m_staticText941">
+												<font>
+													<size>8</size>
+													<family>default</family>
+													<style>italic</style>
+													<weight>normal</weight>
+													<underlined>0</underlined>
+												</font>
+												<label>Step 3: Use the &quot;Restore Flies/Folders&quot; tab to recover your files and folders.</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>3</border>
+											<object class="wxButton" name="btnRestoreTab">
+												<label>Step 3: Switch To Restore Tab</label>
+												<default>0</default>
+											</object>
+										</object>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>3</border>
+									<object class="wxStaticText" name="lblTreeTitle11">
+										<font>
+											<family>default</family>
+											<style>normal</style>
+											<weight>bold</weight>
+											<underlined>0</underlined>
+										</font>
+										<label>Method 2: Run Recover Application</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxEXPAND|wxLEFT</flag>
+									<border>20</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>3</border>
+											<object class="wxStaticText" name="m_staticText901">
+												<font>
+													<size>8</size>
+													<family>default</family>
+													<style>italic</style>
+													<weight>normal</weight>
+													<underlined>0</underlined>
+												</font>
+												<label>Every store has an emergency recovery application inside its root folder. \nRun that program (recover.py) to restore all backup data from that store. \nThis is better suited to local stores (e.g. USB drives) that can be easily mounted.</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="notebookpage">
+						<label>Restore Packages</label>
+						<selected>1</selected>
+						<object class="wxPanel" name="m_panel29">
+							<style>wxTAB_TRAVERSAL</style>
+							<object class="wxBoxSizer">
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="lblTreeTitle12">
+										<font>
+											<family>default</family>
+											<style>normal</style>
+											<weight>bold</weight>
+											<underlined>0</underlined>
+										</font>
+										<label>Restore All Packages/Software</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxEXPAND|wxLEFT</flag>
+									<border>20</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>3</border>
+											<object class="wxStaticText" name="m_staticText1041">
+												<font>
+													<size>8</size>
+													<family>default</family>
+													<style>italic</style>
+													<weight>normal</weight>
+													<underlined>0</underlined>
+												</font>
+												<label>If one of your backups includes &quot;Backup Packages&quot;, then\nthe vault can automatically restore all software (packages)\nin one go.\n\nPlease choose a Backup to fetch the package list from.</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND</flag>
+											<border>3</border>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText120">
+														<label>Backup:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxChoice" name="cboBackup">
+														<selection>0</selection>
+														<content>
+															<item>asdf</item>
+															<item>asdfasdf</item>
+														</content>
+													</object>
+												</object>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND | wxALL</flag>
+											<border>5</border>
+											<object class="wxStaticLine" name="m_staticline91">
+												<style>wxLI_HORIZONTAL</style>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>3</border>
+											<object class="wxStaticText" name="m_staticText942">
+												<font>
+													<size>8</size>
+													<family>default</family>
+													<style>italic</style>
+													<weight>normal</weight>
+													<underlined>0</underlined>
+												</font>
+												<label>Click the &quot;Show Missing Packages&quot; button to fetch the backed\nup package list and to compare it will the currently installed list.</label>
+												<wrap>-1</wrap>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALL</flag>
+											<border>3</border>
+											<object class="wxButton" name="btnShowPackages">
+												<label>Show Missing Packages</label>
+												<default>0</default>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxFrame" name="RunRestoreWindow">
+		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
+		<size>497,307</size>
+		<title>Restore Files</title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>5</border>
+				<object class="wxStaticText" name="m_staticText84">
+					<font>
+						<family>default</family>
+						<style>normal</style>
+						<weight>bold</weight>
+						<underlined>0</underlined>
+					</font>
+					<label>Folders</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND|wxLEFT</flag>
+				<border>20</border>
+				<object class="wxFlexGridSizer">
+					<rows>2</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<growablecols>1</growablecols>
+					<growablerows></growablerows>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="m_staticText86">
+							<label>File/Folder To Restore:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxTextCtrl" name="txtSource">
+							<value></value>
+							<maxlength>0</maxlength>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="m_staticText861">
+							<label>Destination Folder:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>3</border>
+						<object class="wxDirPickerCtrl" name="cboDest">
+							<value></value>
+							<message>Select a folder</message>
+							<style>wxDIRP_DEFAULT_STYLE</style>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>5</border>
+				<object class="wxStaticText" name="m_staticText90">
+					<font>
+						<family>default</family>
+						<style>normal</style>
+						<weight>bold</weight>
+						<underlined>0</underlined>
+					</font>
+					<label>Options:</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND|wxLEFT</flag>
+				<border>20</border>
+				<object class="wxBoxSizer">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxCheckBox" name="chkNoRecurse">
+							<label>Do not restore sub-folders</label>
+							<checked>0</checked>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxCheckBox" name="chkNotify">
+							<label>Notify me by desktop message when complete</label>
+							<checked>0</checked>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxCheckBox" name="chkEmail">
+							<label>Notify me by email when complete</label>
+							<checked>0</checked>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxCheckBox" name="chkShutdown">
+							<label>Shutdown the computer afterwards</label>
+							<checked>0</checked>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>5</border>
+				<object class="wxButton" name="btnStart">
+					<label>Start</label>
+					<default>0</default>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxFrame" name="RunDetailsWindow">
+		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
+		<size>570,486</size>
+		<title>Backup Run Details</title>
+		<centered>1</centered>
+		<object class="wxNotebook" name="nbDetails">
+			<object class="notebookpage">
+				<label>Overview</label>
+				<selected>0</selected>
+				<object class="wxPanel" name="pnlOverview">
+					<style>wxTAB_TRAVERSAL</style>
+					<object class="wxBoxSizer">
+						<orient>wxVERTICAL</orient>
+						<object class="sizeritem">
+							<option>1</option>
+							<flag>wxALL|wxEXPAND</flag>
+							<border>20</border>
+							<object class="wxListCtrl" name="lstDetails">
+								<style>wxLC_NO_HEADER|wxLC_REPORT</style>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="notebookpage">
+				<label>Files</label>
+				<selected>1</selected>
+				<object class="wxPanel" name="pnlFiles">
+					<style>wxTAB_TRAVERSAL</style>
+					<object class="wxBoxSizer">
+						<orient>wxVERTICAL</orient>
+						<object class="sizeritem">
+							<option>1</option>
+							<flag>wxALL|wxEXPAND</flag>
+							<border>3</border>
+							<object class="wxListCtrl" name="lstFiles">
+								<style>wxLC_REPORT</style>
+							</object>
+						</object>
+						<object class="sizeritem">
+							<option>0</option>
+							<flag>wxEXPAND | wxALL</flag>
+							<border>0</border>
+							<object class="wxPanel" name="pnlAllFiles">
+								<style>wxTAB_TRAVERSAL</style>
+								<object class="wxBoxSizer">
+									<orient>wxHORIZONTAL</orient>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxStaticText" name="m_staticText62">
+											<label>Only the first 200 files are shown because displaying\nthe full list could take a while.  Do you want to see\nall the files?</label>
+											<wrap>-1</wrap>
+										</object>
+									</object>
+									<object class="spacer">
+										<option>1</option>
+										<flag>wxEXPAND</flag>
+										<border>5</border>
+										<size>0,0</size>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnAllFiles">
+											<label>Display All Files</label>
+											<default>0</default>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="notebookpage">
+				<label>Messages</label>
+				<selected>0</selected>
+				<object class="wxPanel" name="pnlMessages">
+					<style>wxTAB_TRAVERSAL</style>
+					<object class="wxBoxSizer">
+						<orient>wxVERTICAL</orient>
+						<object class="sizeritem">
+							<option>1</option>
+							<flag>wxALL|wxEXPAND</flag>
+							<border>3</border>
+							<object class="wxListCtrl" name="lstMessages">
+								<style>wxLC_REPORT</style>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="m_statusBar4">
+			<style>wxST_SIZEGRIP</style>
+			<fields>1</fields>
+		</object>
+	</object>
+	<object class="wxPanel" name="StoragePanel">
+		<style>wxTAB_TRAVERSAL</style>
+		<size>727,518</size>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND</flag>
+				<border>3</border>
+				<object class="wxSplitterWindow" name="m_splitter2">
+					<style>wxSP_3D</style>
+					<sashpos>180</sashpos>
+					<gravity>0</gravity>
+					<minsize>180</minsize>
+					<orientation>vertical</orientation>
+					<object class="wxPanel" name="pnlList">
+						<style>wxTAB_TRAVERSAL</style>
+						<object class="wxBoxSizer">
+							<orient>wxVERTICAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL</flag>
+								<border>3</border>
+								<object class="wxStaticText" name="m_staticText21">
+									<font>
+										<size>11</size>
+										<family>swiss</family>
+										<style>normal</style>
+										<weight>bold</weight>
+										<underlined>0</underlined>
+										<face>Sans</face>
+									</font>
+									<label>Storage</label>
+									<wrap>-1</wrap>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL|wxEXPAND</flag>
+								<border>3</border>
+								<object class="wxListBox" name="lstItems">
+									<style>wxLB_SORT</style>
+									<size>-1,150</size>
+									<content />
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxEXPAND</flag>
+								<border>3</border>
+								<object class="wxGridSizer">
+									<rows>2</rows>
+									<cols>2</cols>
+									<vgap>0</vgap>
+									<hgap>0</hgap>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnDelete">
+											<label>Delete</label>
+											<default>0</default>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_RIGHT|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnNew">
+											<label>Add New</label>
+											<default>0</default>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnTest">
+											<label>Test</label>
+											<default>0</default>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="wxPanel" name="pnlDetails">
+						<style>wxTAB_TRAVERSAL</style>
+						<object class="wxBoxSizer">
+							<orient>wxVERTICAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL</flag>
+								<border>3</border>
+								<object class="wxStaticText" name="m_staticText43">
+									<font>
+										<family>default</family>
+										<style>normal</style>
+										<weight>bold</weight>
+										<underlined>0</underlined>
+									</font>
+									<label>General</label>
+									<wrap>-1</wrap>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxEXPAND|wxLEFT</flag>
+								<border>20</border>
+								<object class="wxFlexGridSizer">
+									<rows>2</rows>
+									<cols>2</cols>
+									<vgap>0</vgap>
+									<hgap>0</hgap>
+									<growablecols>1</growablecols>
+									<growablerows></growablerows>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxStaticText" name="m_staticText24">
+											<size>80,-1</size>
+											<label>Name:</label>
+											<wrap>-1</wrap>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>1</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
+										<border>0</border>
+										<object class="wxPanel" name="pnlName">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
+													<border>3</border>
+													<object class="wxTextCtrl" name="txtName">
+														<size>200,-1</size>
+														<value></value>
+														<maxlength>0</maxlength>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="lblName">
+														<label>MyLabel</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL</flag>
+								<border>5</border>
+								<object class="wxStaticText" name="m_staticText42">
+									<font>
+										<family>default</family>
+										<style>normal</style>
+										<weight>bold</weight>
+										<underlined>0</underlined>
+									</font>
+									<label>Storage Space</label>
+									<wrap>-1</wrap>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxEXPAND|wxLEFT</flag>
+								<border>20</border>
+								<object class="wxFlexGridSizer">
+									<rows>2</rows>
+									<cols>2</cols>
+									<vgap>0</vgap>
+									<hgap>0</hgap>
+									<growablecols>1</growablecols>
+									<growablerows></growablerows>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxStaticText" name="m_staticText5711">
+											<label>Auto Manage:</label>
+											<wrap>-1</wrap>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>1</option>
+										<flag>wxEXPAND</flag>
+										<border>3</border>
+										<object class="wxBoxSizer">
+											<orient>wxHORIZONTAL</orient>
+											<object class="sizeritem">
+												<option>0</option>
+												<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+												<border>3</border>
+												<object class="wxCheckBox" name="chkAutoManage">
+													<label></label>
+													<checked>0</checked>
+												</object>
+											</object>
+											<object class="sizeritem">
+												<option>0</option>
+												<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+												<border>3</border>
+												<object class="wxStaticText" name="m_staticText53">
+													<label>Limit to:</label>
+													<wrap>-1</wrap>
+												</object>
+											</object>
+											<object class="sizeritem">
+												<option>0</option>
+												<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+												<border>3</border>
+												<object class="wxTextCtrl" name="txtLimitSize">
+													<size>80,-1</size>
+													<value></value>
+													<maxlength>0</maxlength>
+												</object>
+											</object>
+											<object class="sizeritem">
+												<option>0</option>
+												<flag>wxALL</flag>
+												<border>3</border>
+												<object class="wxChoice" name="cboLimitUnits">
+													<selection>0</selection>
+													<content />
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="spacer">
+										<option>1</option>
+										<flag>wxEXPAND</flag>
+										<border>3</border>
+										<size>0,0</size>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxStaticText" name="m_staticText47">
+											<font>
+												<size>8</size>
+												<family>default</family>
+												<style>italic</style>
+												<weight>normal</weight>
+												<underlined>0</underlined>
+											</font>
+											<label>If selected, old backups will automatically be\nremoved as required, and the total space used\nrestricted to the limit.</label>
+											<wrap>-1</wrap>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxStaticText" name="m_staticText111">
+											<label>Contents:</label>
+											<wrap>-1</wrap>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxStaticText" name="lblContentDetails">
+											<font>
+												<size>8</size>
+												<family>default</family>
+												<style>italic</style>
+												<weight>normal</weight>
+												<underlined>0</underlined>
+											</font>
+											<label>not available</label>
+											<wrap>-1</wrap>
+										</object>
+									</object>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL</flag>
+								<border>5</border>
+								<object class="wxStaticText" name="txtStoreTypeName">
+									<font>
+										<family>default</family>
+										<style>normal</style>
+										<weight>bold</weight>
+										<underlined>0</underlined>
+									</font>
+									<label>Storage Connection</label>
+									<wrap>-1</wrap>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxEXPAND|wxLEFT</flag>
+								<border>20</border>
+								<object class="wxChoicebook" name="nbStoreType">
+									<style>wxCHB_DEFAULT</style>
+									<object class="choicebookpage">
+										<label>Local Folder</label>
+										<selected>1</selected>
+										<object class="wxPanel" name="pnlFolder">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText51">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>Local Folder Details</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxFlexGridSizer">
+														<rows>2</rows>
+														<cols>3</cols>
+														<vgap>0</vgap>
+														<hgap>0</hgap>
+														<growablecols>1</growablecols>
+														<growablerows></growablerows>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText109">
+																<size>80,-1</size>
+																<label>Path:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtFolderPath">
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxButton" name="btnFolderChoose">
+																<label>Choose...</label>
+																<default>0</default>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="choicebookpage">
+										<label>FTP Server</label>
+										<selected>0</selected>
+										<object class="wxPanel" name="pnlFTP">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText511">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>FTP Server Details</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxFlexGridSizer">
+														<rows>2</rows>
+														<cols>2</cols>
+														<vgap>0</vgap>
+														<hgap>0</hgap>
+														<growablecols>1</growablecols>
+														<growablerows></growablerows>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText57">
+																<label>Server Address:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtFTPAddress">
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="lblRoot">
+																<label>Root Folder:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtFTPRoot">
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText58">
+																<label>Use SFTP:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxCheckBox" name="chkSFTP">
+																<font>
+																	<size>8</size>
+																	<family>default</family>
+																	<style>italic</style>
+																	<weight>normal</weight>
+																	<underlined>0</underlined>
+																</font>
+																<label>(Encryption. Strongly recommended)</label>
+																<checked>0</checked>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText59">
+																<label>Login ID:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtFTPLogin">
+																<size>200,-1</size>
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText60">
+																<label>Password:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>5</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxTextCtrl" name="txtFTPPass">
+																		<style>wxTE_PASSWORD</style>
+																		<size>200,-1</size>
+																		<value></value>
+																		<maxlength>0</maxlength>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxButton" name="btnFTPHidePassword">
+																		<label>Show</label>
+																		<default>0</default>
+																	</object>
+																</object>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="choicebookpage">
+										<label>Server Share</label>
+										<selected>0</selected>
+										<object class="wxPanel" name="pnlShare">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText5111">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>Server Share</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxFlexGridSizer">
+														<rows>2</rows>
+														<cols>2</cols>
+														<vgap>0</vgap>
+														<hgap>0</hgap>
+														<growablecols>1</growablecols>
+														<growablerows></growablerows>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText571">
+																<label>Local Path:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>5</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>1</option>
+																	<flag>wxALL|wxEXPAND</flag>
+																	<border>3</border>
+																	<object class="wxTextCtrl" name="txtShareRoot">
+																		<value></value>
+																		<maxlength>0</maxlength>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxButton" name="btnShareChoose">
+																		<label>Choose...</label>
+																		<default>0</default>
+																	</object>
+																</object>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText591">
+																<label>Mount Cmd:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtShareMount">
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText71">
+																<label>Unmount Cmd:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtShareUMount">
+																<size>150,-1</size>
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="choicebookpage">
+										<label>DropBox</label>
+										<selected>0</selected>
+										<object class="wxPanel" name="pnlDropBox">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText5112">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>DropBox Details</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxFlexGridSizer">
+														<rows>2</rows>
+														<cols>2</cols>
+														<vgap>0</vgap>
+														<hgap>0</hgap>
+														<growablecols>1</growablecols>
+														<growablerows></growablerows>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText592">
+																<label>Login ID:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtDBLogin">
+																<size>200,-1</size>
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText601">
+																<label>Password:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>0</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxTextCtrl" name="txtDBPass">
+																		<style>wxTE_PASSWORD</style>
+																		<size>200,-1</size>
+																		<value></value>
+																		<maxlength>0</maxlength>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxButton" name="btnDBHidePassword">
+																		<label>Show</label>
+																		<default>0</default>
+																	</object>
+																</object>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="lblRoot1">
+																<label>Root Folder:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtDBRoot">
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText130">
+																<label>Application Key:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtDBKey">
+																<size>200,-1</size>
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText131">
+																<label>Application Secret Key:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtDBSecretKey">
+																<size>200,-1</size>
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="spacer">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>3</border>
+															<size>0,0</size>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>0</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxHyperlinkCtrl" name="url_dropbox_create">
+																		<label>Click to create an account</label>
+																		<url>https://www.dropbox.com/register</url>
+																		<style>wxHL_DEFAULT_STYLE</style>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxStaticText" name="m_staticText118">
+																		<label>(its free!)</label>
+																		<wrap>-1</wrap>
+																	</object>
+																</object>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="choicebookpage">
+										<label>Amazon S3</label>
+										<selected>0</selected>
+										<object class="wxPanel" name="m_panel32">
+											<style>wxTAB_TRAVERSAL</style>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText51121">
+														<font>
+															<family>default</family>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>Amazon S3 Details</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND|wxLEFT</flag>
+													<border>20</border>
+													<object class="wxFlexGridSizer">
+														<rows>2</rows>
+														<cols>2</cols>
+														<vgap>0</vgap>
+														<hgap>0</hgap>
+														<growablecols>1</growablecols>
+														<growablerows></growablerows>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText5921">
+																<label>Access Key ID:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtAmazonKey">
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText6011">
+																<label>Secret Access Key ID:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtAmazonSecretKey">
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="lblRoot11">
+																<label>Bucket Name:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtAmazonBucket">
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="spacer">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>5</border>
+															<size>0,0</size>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>5</border>
+															<object class="wxStaticText" name="m_staticText134">
+																<font>
+																	<size>8</size>
+																	<family>default</family>
+																	<style>italic</style>
+																	<weight>normal</weight>
+																	<underlined>0</underlined>
+																</font>
+																<label>The bucket is a unique identifier for a set of data stored\non Amazon S3. It must be unique world wide. We suggest\nusing &quot;vault.your.email.address&quot;. For example: \n    vault.myname@mailserver.com</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="spacer">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>5</border>
+															<size>0,0</size>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxEXPAND</flag>
+															<border>5</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxHyperlinkCtrl" name="url_amazon_create">
+																		<label>Click to create an account</label>
+																		<url>http://aws.amazon.com</url>
+																		<style>wxHL_DEFAULT_STYLE</style>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxStaticText" name="m_staticText1181">
+																		<label></label>
+																		<wrap>-1</wrap>
+																	</object>
+																</object>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL</flag>
+								<border>5</border>
+								<object class="wxAnimationCtrl" name="m_animCtrl1">
+									<style>wxAC_DEFAULT_STYLE</style>
+									<animation></animation>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxEXPAND</flag>
+								<border>5</border>
+								<object class="wxBoxSizer">
+									<orient>wxHORIZONTAL</orient>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnSave">
+											<label>Apply</label>
+											<default>0</default>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+										<border>3</border>
+										<object class="wxButton" name="btnRevert">
+											<label>Revert</label>
+											<default>0</default>
+										</object>
+									</object>
+									<object class="spacer">
+										<option>1</option>
+										<flag>wxEXPAND</flag>
+										<border>5</border>
+										<size>0,0</size>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxPanel" name="ConfigPanel">
+		<style>wxTAB_TRAVERSAL</style>
+		<size>531,478</size>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND | wxALL</flag>
+				<border>3</border>
+				<object class="wxNotebook" name="nb_config">
+					<object class="notebookpage">
+						<label>Security</label>
+						<selected>1</selected>
+						<object class="wxPanel" name="pnlSecurity">
+							<style>wxTAB_TRAVERSAL</style>
+							<object class="wxBoxSizer">
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText961">
+										<font>
+											<family>default</family>
+											<style>normal</style>
+											<weight>bold</weight>
+											<underlined>0</underlined>
+										</font>
+										<label>Encryption:</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxEXPAND|wxLEFT</flag>
+									<border>20</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>1</option>
+											<flag>wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxFlexGridSizer">
+												<rows>2</rows>
+												<cols>2</cols>
+												<vgap>0</vgap>
+												<hgap>0</hgap>
+												<growablecols></growablecols>
+												<growablerows></growablerows>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText931">
+														<label>Master Password:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<object class="wxBoxSizer">
+														<orient>wxHORIZONTAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtMasterPassword">
+																<style>wxTE_PASSWORD</style>
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>5</border>
+															<object class="wxButton" name="btnHidePassword">
+																<label>Show</label>
+																<default>0</default>
+															</object>
+														</object>
+													</object>
+												</object>
+												<object class="spacer">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<size>0,0</size>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticText" name="m_staticText134">
+														<font>
+															<size>8</size>
+															<family>default</family>
+															<style>italic</style>
+															<weight>normal</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>This master password is used to encrypt all passwords\n(such as FTP, DropBox etc) and to encrypt all remote\ndata (if you enable data encryption).\n\nThis is the only password to *really* need to remember.\n\nWarning: If you change the master password, then all\nexisting backup data and saved passwords will no longer \nbe usable.</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="spacer">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<size>0,0</size>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxButton" name="btnSavePassword">
+														<label>Save Change</label>
+														<default>0</default>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="notebookpage">
+						<label>Notification Email</label>
+						<selected>0</selected>
+						<object class="wxPanel" name="pnlEmail">
+							<style>wxTAB_TRAVERSAL</style>
+							<object class="wxBoxSizer">
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>3</border>
+									<object class="wxStaticText" name="m_staticText92">
+										<font>
+											<family>default</family>
+											<style>normal</style>
+											<weight>bold</weight>
+											<underlined>0</underlined>
+										</font>
+										<label>Email Server</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxEXPAND|wxLEFT</flag>
+									<border>20</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND</flag>
+											<border>3</border>
+											<object class="wxFlexGridSizer">
+												<rows>2</rows>
+												<cols>2</cols>
+												<vgap>0</vgap>
+												<hgap>0</hgap>
+												<growablecols></growablecols>
+												<growablerows></growablerows>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText93">
+														<label>Mail Server:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<object class="wxBoxSizer">
+														<orient>wxHORIZONTAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtMailServer">
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText103">
+																<label>Port:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtMailPort">
+																<size>50,-1</size>
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText104">
+														<label>Use SSL:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxCheckBox" name="chkMailSSL">
+														<font>
+															<size>8</size>
+															<family>default</family>
+															<style>italic</style>
+															<weight>normal</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>(Encryption. Strongly recommended)</label>
+														<checked>0</checked>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxEXPAND | wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticLine" name="m_staticline8">
+										<style>wxLI_HORIZONTAL</style>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+									<border>3</border>
+									<object class="wxCheckBox" name="chkMailAuth">
+										<style>wxALIGN_RIGHT|wxTAB_TRAVERSAL</style>
+										<font>
+											<family>default</family>
+											<style>normal</style>
+											<weight>bold</weight>
+											<underlined>0</underlined>
+										</font>
+										<label>Use Authentication?</label>
+										<checked>0</checked>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxEXPAND|wxLEFT</flag>
+									<border>20</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND</flag>
+											<border>3</border>
+											<object class="wxFlexGridSizer">
+												<rows>2</rows>
+												<cols>2</cols>
+												<vgap>0</vgap>
+												<hgap>0</hgap>
+												<growablecols></growablecols>
+												<growablerows></growablerows>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText941">
+														<label>Login:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxTextCtrl" name="txtMailLogin">
+														<style>wxTAB_TRAVERSAL</style>
+														<value></value>
+														<maxlength>0</maxlength>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText951">
+														<label>Password:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<object class="wxBoxSizer">
+														<orient>wxHORIZONTAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxTextCtrl" name="txtMailPassword">
+																<style>wxTE_PASSWORD|wxTAB_TRAVERSAL</style>
+																<value></value>
+																<maxlength>0</maxlength>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxButton" name="btnHideMailPassword">
+																<label>Show</label>
+																<default>0</default>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxEXPAND | wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticLine" name="m_staticline9">
+										<style>wxLI_HORIZONTAL</style>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText135">
+										<font>
+											<family>default</family>
+											<style>normal</style>
+											<weight>bold</weight>
+											<underlined>0</underlined>
+										</font>
+										<label>Address</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxEXPAND|wxLEFT</flag>
+									<border>20</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND</flag>
+											<border>3</border>
+											<object class="wxFlexGridSizer">
+												<rows>2</rows>
+												<cols>2</cols>
+												<vgap>0</vgap>
+												<hgap>0</hgap>
+												<growablecols>1</growablecols>
+												<growablerows></growablerows>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText9411">
+														<label>Send From:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxTextCtrl" name="txtMailFrom">
+														<style>wxTAB_TRAVERSAL</style>
+														<value></value>
+														<maxlength>0</maxlength>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText9511">
+														<label>Send To:</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
+													<border>3</border>
+													<object class="wxTextCtrl" name="txtMailTo">
+														<style>wxTAB_TRAVERSAL</style>
+														<value></value>
+														<maxlength>0</maxlength>
+													</object>
+												</object>
+												<object class="spacer">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<size>0,0</size>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>3</border>
+													<object class="wxStaticText" name="m_staticText140">
+														<font>
+															<size>8</size>
+															<family>default</family>
+															<style>italic</style>
+															<weight>normal</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>You may enter multiple Send To addresses, separated by &apos;;&apos;</label>
+														<wrap>-1</wrap>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxEXPAND</flag>
+									<border>3</border>
+									<object class="wxBoxSizer">
+										<orient>wxHORIZONTAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+											<border>3</border>
+											<object class="wxButton" name="btnMailSave">
+												<label>Apply</label>
+												<default>0</default>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+											<border>3</border>
+											<object class="wxButton" name="btnEmailTest">
+												<label>Test</label>
+												<default>0</default>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="notebookpage">
+						<label>File Types</label>
+						<selected>0</selected>
+						<object class="wxPanel" name="pnlFileTypes">
+							<style>wxTAB_TRAVERSAL</style>
+							<object class="wxBoxSizer">
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALL</flag>
+									<border>5</border>
+									<object class="wxStaticText" name="m_staticText96">
+										<font>
+											<family>default</family>
+											<style>normal</style>
+											<weight>bold</weight>
+											<underlined>0</underlined>
+										</font>
+										<label>File Types:</label>
+										<wrap>-1</wrap>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxEXPAND|wxLEFT</flag>
+									<border>20</border>
+									<object class="wxBoxSizer">
+										<orient>wxVERTICAL</orient>
+										<object class="sizeritem">
+											<option>1</option>
+											<flag>wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxSplitterWindow" name="m_splitter2">
+												<style>wxSP_3D</style>
+												<sashpos>200</sashpos>
+												<gravity>0</gravity>
+												<minsize>200</minsize>
+												<orientation>vertical</orientation>
+												<object class="wxPanel" name="pnlList">
+													<style>wxTAB_TRAVERSAL</style>
+													<object class="wxBoxSizer">
+														<orient>wxVERTICAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxListBox" name="lstFileTypes">
+																<style>wxLB_SORT</style>
+																<size>-1,100</size>
+																<content />
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxEXPAND</flag>
+															<border>3</border>
+															<object class="wxGridSizer">
+																<rows>2</rows>
+																<cols>2</cols>
+																<vgap>0</vgap>
+																<hgap>0</hgap>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxButton" name="btnDelete">
+																		<label>Delete</label>
+																		<default>0</default>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALIGN_RIGHT|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxButton" name="btnNew">
+																		<label>Add New</label>
+																		<default>0</default>
+																	</object>
+																</object>
+															</object>
+														</object>
+													</object>
+												</object>
+												<object class="wxPanel" name="pnlDetails">
+													<style>wxTAB_TRAVERSAL</style>
+													<object class="wxBoxSizer">
+														<orient>wxVERTICAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText43">
+																<font>
+																	<family>default</family>
+																	<style>normal</style>
+																	<weight>bold</weight>
+																	<underlined>0</underlined>
+																</font>
+																<label>Name</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxEXPAND|wxLEFT</flag>
+															<border>20</border>
+															<object class="wxBoxSizer">
+																<orient>wxHORIZONTAL</orient>
+																<object class="sizeritem">
+																	<option>1</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
+																	<border>3</border>
+																	<object class="wxTextCtrl" name="txtName">
+																		<value></value>
+																		<maxlength>0</maxlength>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>1</option>
+																	<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+																	<border>3</border>
+																	<object class="wxStaticText" name="lblName">
+																		<label>MyLabel</label>
+																		<wrap>-1</wrap>
+																	</object>
+																</object>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>5</border>
+															<object class="wxStaticText" name="m_staticText42">
+																<font>
+																	<family>default</family>
+																	<style>normal</style>
+																	<weight>bold</weight>
+																	<underlined>0</underlined>
+																</font>
+																<label>File Extensions</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxEXPAND|wxLEFT</flag>
+															<border>20</border>
+															<object class="wxBoxSizer">
+																<orient>wxVERTICAL</orient>
+																<object class="sizeritem">
+																	<option>1</option>
+																	<flag>wxALL</flag>
+																	<border>3</border>
+																	<object class="wxTextCtrl" name="txtExtensions">
+																		<style>wxTE_MULTILINE</style>
+																		<size>150,-1</size>
+																		<value></value>
+																		<maxlength>0</maxlength>
+																	</object>
+																</object>
+																<object class="sizeritem">
+																	<option>0</option>
+																	<flag>wxALL</flag>
+																	<border>5</border>
+																	<object class="wxStaticText" name="m_staticText146">
+																		<font>
+																			<size>8</size>
+																			<family>default</family>
+																			<style>italic</style>
+																			<weight>normal</weight>
+																			<underlined>0</underlined>
+																		</font>
+																		<label>Enter the list of file extensions, \none per line. Do not include the &apos;.&apos;.</label>
+																		<wrap>-1</wrap>
+																	</object>
+																</object>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALL</flag>
+															<border>3</border>
+															<object class="wxButton" name="btnSave">
+																<label>Apply</label>
+																<default>0</default>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxFrame" name="HistoryWindow">
+		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
+		<size>707,462</size>
+		<title>History</title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND</flag>
+				<border>3</border>
+				<object class="wxBoxSizer">
+					<orient>wxHORIZONTAL</orient>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="m_staticText111">
+							<label>Show History For Backup:</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxChoice" name="cboBackup">
+							<selection>0</selection>
+							<content />
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxEXPAND | wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticLine" name="m_staticline18">
+							<style>wxLI_VERTICAL</style>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticText" name="txtOrder">
+							<label>Order: Newest At Top</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="btnOrder">
+							<label>Switch</label>
+							<default>0</default>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxEXPAND | wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticLine" name="m_staticline181">
+							<style>wxLI_VERTICAL</style>
+						</object>
+					</object>
+					<object class="spacer">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<size>0,0</size>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="btnRefresh">
+							<label>Refresh</label>
+							<default>0</default>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND | wxALL</flag>
+				<border>5</border>
+				<object class="wxNotebook" name="nb_history">
+					<object class="notebookpage">
+						<label>Runs</label>
+						<selected>1</selected>
+						<object class="wxPanel" name="pnlRuns">
+							<style>wxTAB_TRAVERSAL</style>
+							<object class="wxBoxSizer">
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxALL|wxEXPAND</flag>
+									<border>3</border>
+									<object class="wxListCtrl" name="lstRuns">
+										<style>wxLC_REPORT</style>
+									</object>
+								</object>
+								<object class="sizeritem">
+									<option>0</option>
+									<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+									<border>3</border>
+									<object class="wxButton" name="btnDetails">
+										<label>Show Run Details</label>
+										<default>0</default>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="notebookpage">
+						<label>Messages</label>
+						<selected>0</selected>
+						<object class="wxPanel" name="pnlMessages">
+							<style>wxTAB_TRAVERSAL</style>
+							<object class="wxBoxSizer">
+								<orient>wxVERTICAL</orient>
+								<object class="sizeritem">
+									<option>1</option>
+									<flag>wxALL|wxEXPAND</flag>
+									<border>3</border>
+									<object class="wxListCtrl" name="lstMessages">
+										<style>wxLC_REPORT</style>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxFrame" name="AboutWindow">
+		<style>wxFRAME_NO_TASKBAR|wxSTAY_ON_TOP|wxTAB_TRAVERSAL</style>
+		<size>342,371</size>
+		<title></title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxBoxSizer">
+					<orient>wxHORIZONTAL</orient>
+					<object class="spacer">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<size>0,0</size>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxStaticBitmap" name="m_bitmap2">
+							<bitmap>images/vault.png</bitmap>
+						</object>
+					</object>
+					<object class="spacer">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<size>0,0</size>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+				<border>3</border>
+				<object class="wxStaticText" name="lblTitle">
+					<font>
+						<size>14</size>
+						<family>swiss</family>
+						<style>normal</style>
+						<weight>bold</weight>
+						<underlined>0</underlined>
+						<face>Sans</face>
+					</font>
+					<label>Title</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+				<border>5</border>
+				<object class="wxStaticText" name="lblSubTitle">
+					<font>
+						<size>8</size>
+						<family>default</family>
+						<style>italic</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+					</font>
+					<label>MyLabel</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+				<border>3</border>
+				<object class="wxStaticText" name="lblVersion">
+					<label>MyLabel</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+				<border>3</border>
+				<object class="wxStaticText" name="lblCopyright">
+					<label>MyLabel</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="spacer">
+				<option>0</option>
+				<flag></flag>
+				<border>0</border>
+				<size>5,10</size>
+			</object>
+		</object>
+	</object>
+	<object class="wxFrame" name="PackageWindow">
+		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
+		<size>483,378</size>
+		<title></title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>3</border>
+				<object class="wxStaticText" name="m_staticText112">
+					<font>
+						<family>default</family>
+						<style>normal</style>
+						<weight>bold</weight>
+						<underlined>0</underlined>
+					</font>
+					<label>Missing Packages (Software)</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND|wxLEFT</flag>
+				<border>20</border>
+				<object class="wxBoxSizer">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxCheckListBox" name="lstSoftware">
+							<content>
+								<item>asdf</item>
+							</content>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="m_staticText114">
+							<font>
+								<size>8</size>
+								<family>default</family>
+								<style>italic</style>
+								<weight>normal</weight>
+								<underlined>0</underlined>
+							</font>
+							<label>Uncheck any that you do not want installed, then click &quot;Begin Installation&quot;.</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>3</border>
+						<object class="wxButton" name="btnBegin">
+							<label>Begin Installation</label>
+							<default>0</default>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxEXPAND | wxALL</flag>
+						<border>3</border>
+						<object class="wxStaticLine" name="m_staticline12">
+							<style>wxLI_HORIZONTAL</style>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALL</flag>
+				<border>3</border>
+				<object class="wxStaticText" name="m_staticText113">
+					<font>
+						<family>default</family>
+						<style>normal</style>
+						<weight>bold</weight>
+						<underlined>0</underlined>
+					</font>
+					<label>Installation Progress</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxEXPAND|wxLEFT</flag>
+				<border>20</border>
+				<object class="wxBoxSizer">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>3</border>
+						<object class="wxGauge" name="progress">
+							<style>wxGA_HORIZONTAL|wxGA_SMOOTH</style>
+							<range>100</range>
+							<value>0</value>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="lblCurrentFile">
+							<label></label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+		<object class="wxStatusBar" name="m_statusBar4">
+			<style>wxST_SIZEGRIP</style>
+			<fields>1</fields>
+		</object>
+	</object>
+	<object class="wxFrame" name="ProgressDialog">
+		<style>wxCAPTION|wxFRAME_FLOAT_ON_PARENT|wxFRAME_TOOL_WINDOW|wxTAB_TRAVERSAL</style>
+		<size>348,91</size>
+		<title></title>
+		<centered>1</centered>
+		<object class="wxFlexGridSizer">
+			<rows>1</rows>
+			<cols>3</cols>
+			<vgap>0</vgap>
+			<hgap>0</hgap>
+			<growablecols>1</growablecols>
+			<growablerows></growablerows>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
+				<border>3</border>
+				<object class="wxStaticText" name="lblMessage">
+					<label>MyLabel</label>
+					<wrap>-1</wrap>
+				</object>
+			</object>
+			<object class="spacer">
+				<option>1</option>
+				<flag>wxALIGN_CENTER_VERTICAL|wxEXPAND</flag>
+				<border>0</border>
+				<size>30,0</size>
+			</object>
+			<object class="sizeritem">
+				<option>0</option>
+				<flag>wxALIGN_CENTER_VERTICAL|wxALL|wxEXPAND</flag>
+				<border>3</border>
+				<object class="wxPanel" name="aniPanel">
+					<style>wxTAB_TRAVERSAL</style>
+					<size>32,32</size>
+				</object>
+			</object>
+		</object>
+	</object>
+</resource>

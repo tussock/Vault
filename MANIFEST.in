@@ -1,0 +1,2 @@
+recursive-include vault *
+include vault.run README COPYING CHANGES

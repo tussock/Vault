@@ -1,0 +1,13 @@
+#! /bin/sh
+set -e
+
+#DEBHELPER#
+
+# Don't fail if this command fails, it's not important enough.
+# In this case, make the cleanup by hand.
+#update-python-modules -c -b python-support.private || \
+#	rm -f /usr/share/python-support/private/*.pyc
+rm -f /opt/vault/*.pyc /opt/vault/*/*.pyc
+
+#	Clear out all the compiled language files
+rm -f /opt/vault/i18n/*/*/*.mo

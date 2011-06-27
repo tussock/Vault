@@ -1,0 +1,18 @@
+#Mon Jun 27 12:40:47 NZST 2011
+eclipse.preferences.version=1
+encoding//vault/lib/appconfig.py=utf-8
+encoding//vault/lib/buffer.py=utf-8
+encoding//vault/lib/config.py=utf-8
+encoding//vault/lib/const.py=utf-8
+encoding//vault/lib/cryptor.py=utf-8
+encoding//vault/lib/db.py=utf-8
+encoding//vault/lib/dlg.py=utf-8
+encoding//vault/lib/locking.py=utf-8
+encoding//vault/lib/logger.py=utf-8
+encoding//vault/lib/sendemail.py=utf-8
+encoding//vault/lib/serializer.py=utf-8
+encoding//vault/lib/utils.py=utf-8
+encoding//vault/server/restore.py=utf-8
+encoding//vault/server/run.py=utf-8
+encoding//vault/server/tester.py=utf-8
+encoding//vault/server/verify.py=utf-8

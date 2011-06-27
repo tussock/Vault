@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<omf>
+  <resource>
+    <creator>Paul Reddy (paul@kereru.org)</creator>
+    <maintainer>Paul Reddy (paul@kereru.org)</maintainer>
+    <title>The Vault Help Manual</title>
+    <date>2011-04-20</date>
+    <version identifier="1.0.1" date="2011-04-20" description="The Vault Help Manual"/>
+    <subject category="System|Administration|Backups"/>
+    <description>The Vault - backups for the rest of us.</description>
+    <type>manual</type>
+    <relation seriesid="657d9e1e-54e3-11e0-8c89-000c2967f2f2"/>
+    <rights type="GNU FDL" license.version="1.1" holder="Paul Reddy"/>
+    <format mime="text/xml" dtd="-//OASIS//DTD DocBook XML V4.5//EN"/>
+    <identifier url="file://usr/share/gnome/help/vault/C/vault.xml"/>
+    <language code="C"/>
+  </resource>
+</omf>

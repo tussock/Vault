@@ -1,0 +1,1641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY legal SYSTEM "legal.xml">
+<!ENTITY appversion "1.0.1">
+<!ENTITY manrevision "1.0.1">
+<!ENTITY date "April 2011">
+<!ENTITY app "The Vault">
+]>
+<article id="index" lang="en">
+  <articleinfo>
+    <title>&app;</title>
+
+    <authorgroup>
+      <author>
+        <personname>
+          <firstname>Paul</firstname>
+
+          <surname>Reddy</surname>
+        </personname>
+      </author>
+    </authorgroup>
+
+    <revhistory>
+      <revision>
+        <revnumber>&app; Manual V1.0.1</revnumber>
+
+        <date>April 2011</date>
+
+        <revdescription>
+          <para role="author">Paul Reddy</para>
+
+          <para role="publisher">Kereru</para>
+        </revdescription>
+      </revision>
+    </revhistory>
+
+    <pubdate>3 April 2011</pubdate>
+
+    <copyright>
+      <year>2011</year>
+
+      <holder>Paul Reddy</holder>
+    </copyright>
+
+    <!-- translators: uncomment this:
+  <copyright>
+   <year>2000</year>
+   <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+  -->
+
+    <releaseinfo>This manual describes version &appversion; of The Vault
+    Backup System.</releaseinfo>
+
+    <legalnotice>
+      <title>Feedback</title>
+
+      <para>To report a bug or make a suggestion regarding the &app;
+      application or this manual, follow the directions in the <ulink
+      type="help" url="ghelp:gnome-feedback">GNOME Feedback
+      Page</ulink>.</para>
+
+      <!-- Translators may also add here feedback address for translations -->
+    </legalnotice>
+
+    <abstract role="description">
+      <para>The Vault - Backups for the rest of us.</para>
+    </abstract>
+
+    &legal;
+  </articleinfo>
+
+  <indexterm zone="index">
+    <primary>Vault</primary>
+  </indexterm>
+
+  <indexterm zone="index">
+    <primary>vault</primary>
+  </indexterm>
+
+  <indexterm zone="index">
+    <primary>backup</primary>
+  </indexterm>
+
+  <indexterm zone="index">
+    <primary>archive</primary>
+  </indexterm>
+
+  <sect1 id="introduction">
+    <title>Introduction</title>
+
+    <sect2>
+      <title>Overview</title>
+
+      <para>The Vault is a simple to use, yet fully featured backup system. It
+      supports the following features:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Backup your files (well - wouldn't be much of a backup system
+          without this, right)</para>
+        </listitem>
+
+        <listitem>
+          <para>Multiple backup configurations - back up your key files
+          differently to your music</para>
+        </listitem>
+
+        <listitem>
+          <para>Scheduled backup system</para>
+        </listitem>
+
+        <listitem>
+          <para>Full and incremental backups</para>
+        </listitem>
+
+        <listitem>
+          <para>Multiple offsite storage systems, including cloud
+          storage</para>
+        </listitem>
+
+        <listitem>
+          <para>Automatic storage management, will delete old backups when
+          space becomes tight</para>
+        </listitem>
+
+        <listitem>
+          <para>Optional Email and Popup notification of events, such as
+          successful backups</para>
+        </listitem>
+
+        <listitem>
+          <para>One page system overview</para>
+        </listitem>
+
+        <listitem>
+          <para>Secure: backup encryption using AES, SFTP support, Encrypted
+          SMTP support</para>
+        </listitem>
+
+        <listitem>
+          <para>Simple disaster recovery system</para>
+        </listitem>
+
+        <listitem>
+          <para>Standards support using TAR, GZIP format files, OpenSSL
+          encryption</para>
+        </listitem>
+
+        <listitem>
+          <para>Reliability, with post backup data validation and hash
+          verification</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2>
+      <title>History</title>
+
+      <para>There is currently no good backup system included with Ubuntu. For
+      a while a useful backup tool - Simple Backup - was included, but that
+      has now been removed. While reliable, with reasonable storage
+      management, it did not include encryption, multiple backup sets, large
+      file splitting, a disaster recovery system, hashes and much more.</para>
+
+      <para>There are also a number of command line tools built into Linux in
+      general (and of course Ubuntu in particular) such as tar, rsync, rcopy
+      to name a few. None of them are easy to use, and creating a useful
+      remote backup system from them is certainly beyond the capabilities and
+      inclinication of most users. Sadly this is the system many people
+      use.</para>
+
+      <para>This shameful state has led to the creation of The Vault - the
+      backup system for the rest of us. It provides a simple and reliable
+      backup mechanism for all users, and once it is set up it will continue
+      to reliably back up your files year after year. It provides access to
+      key features demanded by regular and power users alike (such as multiple
+      backup rules, encryption, standards support).</para>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title id="concepts">Concepts</title>
+
+    <sect2>
+      <title>Storage</title>
+
+      <para>A store represents somewhere to store your backup data. It can be
+      a folder on your machine (perhaps on a second drive), a USB drive, an
+      FTP server or any type of file server.</para>
+    </sect2>
+
+    <sect2>
+      <title>Backups</title>
+
+      <para>A backup represents some files that are backed up together. Key
+      information contained in a backup are:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>what to back up (e.g. /home)</para>
+        </listitem>
+
+        <listitem>
+          <para>when to back it up (e.g. every night)</para>
+        </listitem>
+
+        <listitem>
+          <para>where to back it up to (which store)</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2>
+      <title>Runs</title>
+
+      <para>A run represents the execution of a backup.</para>
+
+      <para>There are two types of runs:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Full - meaning all files are copied</para>
+        </listitem>
+
+        <listitem>
+          <para>Incremental - meaning changed files are copied</para>
+        </listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2>
+      <title>Server</title>
+
+      <para>The Vault system comprises two main programs:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>a Graphical User Interface program for configuring your
+          backups, and</para>
+        </listitem>
+
+        <listitem>
+          <para>a command line server that actually performs the
+          backups.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>When you configure a backup's schedule, a series of crontab
+      entries are created that ensure the right backups run at the right
+      time.</para>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title>Overview</title>
+
+    <para>The overview page of The Vault provides, at a glance, an
+    understanding of whether your backup system is fully functional and
+    performing properly.</para>
+
+    <sect2>
+      <title>System Overview</title>
+
+      <para>The system overview will show one of three icons:</para>
+
+      <para><inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="images/status-ok.png" />
+          </imageobject>
+        </inlinemediaobject>OK: The backup system is performing
+      normally</para>
+
+      <para><inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="images/status-warn.png" />
+          </imageobject>
+        </inlinemediaobject>Warn: There is a non-urgent problem. Possible
+      reasons for this being displayed include:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>When an hourly backup has not run for several hours</para>
+        </listitem>
+
+        <listitem>
+          <para>When a daily backup has not run for several days</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>The reason will be display beside the icon. Note that only active
+      backups will be included in these checks, so if an inactive backup
+      hasn't run for a long time, it will not generate a warning.</para>
+
+      <para><inlinemediaobject>
+          <imageobject>
+            <imagedata fileref="images/status-fail.png" />
+          </imageobject>
+        </inlinemediaobject>Error: There is an urgent problem with the backup
+      system. This will be shown whenever the last run of any backup ended in
+      a failure. If a subsequent run of a backup succeeded, this error state
+      will clear. Inactive backups are not included in the error
+      checks.</para>
+    </sect2>
+
+    <sect2>
+      <title>Backups Overview</title>
+
+      <para>All backups are listed, plus their last run states.</para>
+    </sect2>
+
+    <sect2>
+      <title>Storage Overview</title>
+
+      <para>All stores are listed, along with their current space usage. If a
+      store is not 'managed', its space will be shown as "Unlimited". An
+      unmanaged store will be used until writing to the store fails, and then
+      further backups will fail.</para>
+    </sect2>
+
+    <sect2>
+      <title>Overview Actions</title>
+
+      <para>The following actions are available in the Overview window:</para>
+
+      <para><emphasis role="bold"><emphasis
+      role="bold">Refresh</emphasis></emphasis></para>
+
+      <para>Refreshes the current view</para>
+
+      <para><emphasis><emphasis role="bold">Setup
+      Storage</emphasis></emphasis></para>
+
+      <para>This runs the "Storage Setup Wizard", which will walk you through
+      the creation of your first store. Once you are familiar with The Vault -
+      you will probably find that creating stores is easier using the Storage
+      Management interface.</para>
+
+      <para><emphasis><emphasis role="bold">Setup
+      Backup</emphasis></emphasis></para>
+
+      <para>This runs the 'Backup Setup Wizard', which will walk you through
+      the creation of your first backup. Once you are familiar with The Vault
+      - you will probably find that creating backups is easier using the
+      Backup Management interface.</para>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title>Backups</title>
+
+    <para>A backup defines a set of files that need to be saved, and
+    where/when/how to save them.</para>
+
+    <para>There are two key pieces of information that must be set before a
+    backup will work:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>What to back up. This is usually one or more folders - most
+        likely your home folder</para>
+      </listitem>
+
+      <listitem>
+        <para>Where to save the backups to. This is termed a "store", and is
+        explained in more detail in the storage section.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>All other pieces of information are optional extras.</para>
+
+    <para>Note that a backup name is a unique identifier for a backup, and is
+    used widely throughout The Vault to refer to the backup, and to backup
+    data (such as on the store)</para>
+
+    <sect2>
+      <title>Backup Configuration Window</title>
+
+      <para>Selecting the Backups button on the far left brings up the backup
+      configuration page. On the left is a list of all backups currently
+      defined. On the right is the edit area for changing the currently
+      selected backup. When you first install The Vault, a default backup is
+      defined that will copy the whole contents of your /home folder. Your
+      first task is to expand that.</para>
+    </sect2>
+
+    <sect2>
+      <title>Backup Actions</title>
+
+      <para><emphasis><emphasis
+      role="bold">Delete</emphasis></emphasis></para>
+
+      <para>Delete the current backup.</para>
+
+      <para>If the current backup is in use (i.e. there is data backed up
+      somewhere), you will be warned before the delete goes ahead. You will
+      also be given the option of also deleting the offline data, but beware:
+      removing remote backup files cannot be undone. Do it only if you are
+      sure you will never need those backed up files again.</para>
+
+      <para>Note that if you do not elect to delete the files on the store,
+      they will not be counted in future size management calculations. For
+      example: assume the store is limited to 10GB (using auto management),
+      and the backup has used 5GB of it. After deletion, the Vault will think
+      there is 5GB of extra space available because it does not know about the
+      files this backup used. It may then accidently overflow the
+      store.</para>
+
+      <para>Therefore it is usually better to simply deactivate the current
+      backup (set status to Inactive).</para>
+
+      <para><emphasis><emphasis role="bold">Add
+      New</emphasis></emphasis></para>
+
+      <para>Add a new backup. You must specify at least a name, folders to
+      back up and a store.</para>
+
+      <para>Note that the name is unchangeable once the backup is
+      created.</para>
+
+      <para><emphasis><emphasis role="bold">Run</emphasis></emphasis></para>
+
+      <para>You can run a backup at any time from the UI (rather than waiting
+      for its normal scheduled run). This causes the Run dialog to appear, so
+      you can choose options for the run, such as:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>type (full/incremental)</para>
+        </listitem>
+
+        <listitem>
+          <para>whether its a dry run</para>
+        </listitem>
+
+        <listitem>
+          <para>what notification options should be used. These will override
+          the backups own notification options</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>A Dry Run is one where the backup is executed, but no files are
+      copied and no changes amde to the system anywhere. Instead The Vault
+      shows you what would have happened if a backup had actually
+      executed.</para>
+
+      <para><emphasis><emphasis
+      role="bold">History</emphasis></emphasis></para>
+
+      <para>The History button brings up the Backup History window that shows
+      the details for every Run (a backup execution) and all messages
+      generated by those runs.</para>
+    </sect2>
+
+    <sect2>
+      <title>Backup Details</title>
+
+      <para>The following tabs and fields are available to be set on a
+      backup:</para>
+
+      <sect3>
+        <title>General</title>
+
+        <informaltable>
+          <tgroup cols="2">
+            <tbody>
+              <row>
+                <entry>Name</entry>
+
+                <entry>The unique identifier for a backup. This cannot be
+                changed once it has been configured.</entry>
+              </row>
+
+              <row>
+                <entry>Status</entry>
+
+                <entry>If a backup is disabled, it will no longer be
+                automatically backed up. You can still restore from that
+                backup, and you can manually run backups.</entry>
+              </row>
+
+              <row>
+                <entry>Folders</entry>
+
+                <entry>A list of folders to be included in the backup run.
+                Note that all files/folders below these ones will be included
+                in the backup run (subject to exclusions), so you only need to
+                list the top one. For example: /home is a good folder to
+                backup. You can either type in folders, one per line, or you
+                can use the folder selector button on the right.</entry>
+              </row>
+
+              <row>
+                <entry>Packages</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </sect3>
+
+      <sect3>
+        <title>Exclude</title>
+
+        <informaltable>
+          <tgroup cols="2">
+            <tbody>
+              <row>
+                <entry>Exclude File Types</entry>
+
+                <entry>A list of file types that should be excluded from the
+                backup. For example - you might have one backup of /home that
+                excludes all music and videos and runs daily (this gets your
+                working files). Then another backup of /home might only
+                include your music folders and will run weekly. You can add
+                and change this list of available types in Configuration |
+                File Types</entry>
+              </row>
+
+              <row>
+                <entry>Exclude Files/Folder Patterns</entry>
+
+                <entry>A list of patterns describing file and folder names
+                that will be excluded. If a folder matches an exclusion
+                pattern, then all files and folders beneath that folder will
+                also be excluded. For example "*/Music" will exclude the
+                "/home/terry/Music" folder, and all folders beneath it. See
+                Exclusion Patterns for more information</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </sect3>
+
+      <sect3>
+        <title>Storage</title>
+
+        <informaltable>
+          <tgroup cols="2">
+            <tbody>
+              <row>
+                <entry>Store To</entry>
+
+                <entry>The name of the store that will hold the backup runs
+                described by this backup. Stores are folders, USB drives, File
+                Servers and remote FTP Servers. See Storage for more
+                information</entry>
+              </row>
+
+              <row>
+                <entry>Encrypt With Passphrase</entry>
+
+                <entry>Backups can be encrypted using OpenSSL. Specifically,
+                we use SHA256 for key creation, and AES-256-CBC mode for
+                encryption. Encryption provides a very low overhead to the
+                backup as it is significantly faster than compression, so it
+                is usually worth enabling this.</entry>
+              </row>
+
+              <row>
+                <entry>Verify Data After Backup</entry>
+
+                <entry>After the backup has successfully been completed, a
+                verification pass will be made across the stored data to
+                ensure that what was written by to the remote store agrees
+                with what was created by the backup. To do this, an SHA256
+                Hash is created and kept for each backup. This means that we
+                can be confident that the backup has not been changed enroute
+                to the destination.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </sect3>
+
+      <sect3>
+        <title>Schedule</title>
+
+        <para>You must select one of the following schedule options to control
+        how and when this backup will run.</para>
+
+        <para>Every backup has two run types:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Full - when all files are backed up</para>
+          </listitem>
+
+          <listitem>
+            <para>Changes (or Incremental) - when only changed files are
+            backed up.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>It is good practice to backup fully periodically, and backup
+        changes in between.</para>
+
+        <informaltable>
+          <tgroup cols="2">
+            <tbody>
+              <row>
+                <entry>Save Changes Daily/Full Weekly</entry>
+
+                <entry>All file changes are saved daily at the given time. A
+                full backup is performed weekly. This is the default.</entry>
+              </row>
+
+              <row>
+                <entry>Save Changes Daily/Full Monthly</entry>
+
+                <entry>All file changes are saved daily at the given time. A
+                full backup is performed monthly. This is a good option if
+                space is at a premium as change backups are relatively
+                small.</entry>
+              </row>
+
+              <row>
+                <entry>Save Changes Hourly/Full Weekly</entry>
+
+                <entry>All file changes are saved hourly at the given time. A
+                full backup is performed weekly on the given day/time. This is
+                a good option if you are concerned about recovering every file
+                change.</entry>
+              </row>
+
+              <row>
+                <entry>Full Daily</entry>
+
+                <entry>Backup all files every day at the given time.</entry>
+              </row>
+
+              <row>
+                <entry>Full Weekly</entry>
+
+                <entry>Backup all files every week on the given day/time. This
+                is a good option for files that change rarely, such as Music
+                or Movies.</entry>
+              </row>
+
+              <row>
+                <entry>Use Crontab Entries</entry>
+
+                <entry>Cron is a system for running programs at a given
+                day/time. The Vault uses crontab to ensure backups run when
+                they should. If the default backup schedule options are not
+                quite what you are after - you can specific crontab entries
+                for more precise control over when backups run. See the
+                section Crontab Entries for more information.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </sect3>
+
+      <sect3>
+        <title>Notification</title>
+
+        <para>These options are performed after the backup (and possibly
+        verify) complete.</para>
+
+        <informaltable>
+          <tgroup cols="2">
+            <tbody>
+              <row>
+                <entry>Show A System Notification</entry>
+
+                <entry>A popup message is displayed for a few seconds when the
+                backup run completes.</entry>
+              </row>
+
+              <row>
+                <entry>Send An Email</entry>
+
+                <entry>An email with details of the backup run is sent. Note
+                that you must configure how to send the email in Configuration
+                | Notification Email.</entry>
+              </row>
+
+              <row>
+                <entry>Shutdown The Computer</entry>
+
+                <entry>The computer will be shutdown at the end of the backup.
+                Note that a 2 minute timer is set, so if you are still working
+                on the computer, you have 2 minutes to cancel the shutdown
+                using: "sudo shutdown -c"</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Exclusion Patterns</title>
+
+      <para>TBD</para>
+    </sect2>
+
+    <sect2>
+      <title>Crontab Entries</title>
+
+      <para>TBD</para>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title>Storage</title>
+
+    <para>A Store is a place to save backup data to.</para>
+
+    <para>Examples:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>A USB Drive</para>
+      </listitem>
+
+      <listitem>
+        <para>An FTP File Server</para>
+      </listitem>
+
+      <listitem>
+        <para>A folder on your computer</para>
+      </listitem>
+
+      <listitem>
+        <para>A cloud storage provider, such as Amazon S3 and DropBox</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>The best stores are remote from your machine because if your machine
+    is ever stolen you dont want your backups stolen too! Cloud stores are
+    perfect in this regard as they are cheap (often free for up to 2GB or
+    more) and highly available/reliable. Cloud stores are worth consideration
+    for your most crucial data.</para>
+
+    <para>When you start to use a store, a set of files and folders will
+    automatically be created. These are detailed below (see Structure), but
+    they include a marker file, emergency recovery files and the backup data
+    itself.</para>
+
+    <sect2>
+      <title>Structure</title>
+
+      <para>Every store has a defined set of folders and files, in the
+      following structure:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Top Level (the store root folder)</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>__store__</para>
+            </listitem>
+
+            <listitem>
+              <para>__recovery__version__</para>
+            </listitem>
+
+            <listitem>
+              <para>recovery.py</para>
+            </listitem>
+
+            <listitem>
+              <para>recoveryui.py</para>
+            </listitem>
+
+            <listitem>
+              <para>&lt;backup name&gt; (the backup)</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>&lt;ISO Date&gt; &lt;backup type&gt; (the run)</para>
+
+                  <itemizedlist>
+                    <listitem>
+                      <para>vault.xml{.enc}</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>lof{.enc}</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>packages{.enc}</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>data000000</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>data000001</para>
+                    </listitem>
+
+                    <listitem>
+                      <para>...</para>
+                    </listitem>
+                  </itemizedlist>
+                </listitem>
+
+                <listitem>
+                  <para>&lt;ISO Date&gt; &lt;backup type&gt; (another
+                  run)</para>
+
+                  <itemizedlist>
+                    <listitem>
+                      <para>...</para>
+                    </listitem>
+                  </itemizedlist>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para>&lt;backup name&gt; (another backup)</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>...</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+
+      <sect3>
+        <title>Top Level</title>
+
+        <para>At the top level of the store are the following files:</para>
+
+        <informaltable>
+          <tgroup cols="2">
+            <tbody>
+              <row>
+                <entry>__store__</entry>
+
+                <entry>A marker file that is used to confirm that this is
+                indeed a store. It contains the text "STORE"</entry>
+              </row>
+
+              <row>
+                <entry>__recovery_version__</entry>
+
+                <entry>This file contains the currently installed version of
+                the disaster recovery program. If the recovery program is out
+                of date, it gets updated automatically.</entry>
+              </row>
+
+              <row>
+                <entry>recovery.py</entry>
+
+                <entry>The disaster recovery program. If you lose all your
+                files, one way you can recover them is to copy the whole store
+                back to your computer (or plug it in if the store is a USB
+                drive), and then run this program.</entry>
+              </row>
+
+              <row>
+                <entry>recoveryui.py</entry>
+
+                <entry>The UI portion of the disaster recovery program</entry>
+              </row>
+
+              <row>
+                <entry>&lt;backup name&gt;</entry>
+
+                <entry>The backup files for each backup definition is stored
+                in a separate folder.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </sect3>
+
+      <sect3>
+        <title>Backups</title>
+
+        <para>The backed up files for each run of a backup definition are
+        stored in separate folders. The folders are named as follows:</para>
+
+        <para>&lt;ISO Date&gt; &lt;Type&gt;</para>
+
+        <para>The ISO Date is the date and time of each backup run, and the
+        Type records whether this was a Full or Incremental (changes)
+        backup.</para>
+
+        <para>An example folder name is:</para>
+
+        <para>2011-06-23T17:30:00 Full</para>
+
+        <para>which stores the backup files for a backup run that started on
+        23rd June 2011 at 5:30pm. It was a Full backup, so all files were
+        backed up.</para>
+      </sect3>
+
+      <sect3>
+        <title>Backup Runs</title>
+
+        <para>Each backup run contains the following files. For most files, if
+        encryption is enabled, the file will have ".enc" appended to the
+        name.</para>
+
+        <informaltable>
+          <tgroup cols="2">
+            <tbody>
+              <row>
+                <entry>backupeasy.xml{.enc}</entry>
+
+                <entry>A copy of the configuration file as it stood at the
+                time of the backup run. If encryption is enabled, then this
+                will have a ".enc" extension.</entry>
+              </row>
+
+              <row>
+                <entry>deletions{.enc}</entry>
+
+                <entry>A list of all files and folders that were deleted
+                between the last backup run and this. Only incremental backups
+                record deletions. If encryption is enabled, then this will
+                have a ".enc" extension.</entry>
+              </row>
+
+              <row>
+                <entry>packages{.enc}</entry>
+
+                <entry>If package backup is enabled, then this file contains a
+                list of packages that were installed at the time of the backup
+                run. If encryption is enabled, then this will have a ".enc"
+                extension.</entry>
+              </row>
+
+              <row>
+                <entry>data000000 data000001 ...</entry>
+
+                <entry>The actual backup data is stored in a set of files
+                prefixed with "data". Each file is up to 2GB (actually just
+                under) in case the file system is FAT32, which has a file size
+                limit of 2GB. Since 1 million data files can be created, the
+                practical limit of files that can be backed up in each backup
+                run (after compression) is 2GB * 10^6 or about 2
+                petabytes.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Storage Actions</title>
+
+      <sect3>
+        <para>
+          <emphasis role="bold">Delete</emphasis>
+        </para>
+
+        <para>Delete the currently selected store. This will remove all
+        knowledge of the store from Vault, including knowledge of any backups
+        held on that store.</para>
+
+        <para>Note that you have an option to also clear all data held on the
+        store. If you do not do this, the backup data will be kept on the
+        store, and you can recover it at any time (see Disaster
+        Recovery).</para>
+      </sect3>
+
+      <sect3>
+        <para>
+          <emphasis role="bold">Add New</emphasis>
+        </para>
+
+        <para>Create a new store. Note that the store name cannot be changed
+        once the store is created.</para>
+      </sect3>
+
+      <sect3>
+        <para>
+          <emphasis role="bold">Test</emphasis>
+        </para>
+
+        <para>Run a series of tests on the currently selected store to confirm
+        that communications with the store are working, and that you can
+        correctly make folders and save files.</para>
+
+        <para>This should be done any time you create or modify a store to
+        ensure any store permissions or passwords are correctly set.</para>
+
+        <para>A test is performed before every backup run to ensure the backup
+        server has access to the store. If that fails, the backup run is
+        aborted (and you are notified if notifications are enabled).</para>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Storage Detail</title>
+
+      <para>The following fields are available to be configured for a
+      store</para>
+
+      <sect3>
+        <title>General</title>
+
+        <informaltable>
+          <tgroup cols="2">
+            <tbody>
+              <row>
+                <entry>Name</entry>
+
+                <entry>The name of the store. This must be unique, and cannot
+                be changed once the store is saved.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </sect3>
+
+      <sect3>
+        <title>Storage Space</title>
+
+        <informaltable>
+          <tgroup cols="2">
+            <tbody>
+              <row>
+                <entry>Auto Manage</entry>
+
+                <entry>If this is enabled, then the Vault will automatically
+                manage the space available on the store. When it gets low, the
+                Vault will remove old backups to free up some. It is usually
+                best to have this enabled as it ensures backups will
+                automatically manage your storage space.</entry>
+              </row>
+
+              <row>
+                <entry>Limit To</entry>
+
+                <entry>The amount of space the Vault should use on a store. It
+                is guaranteed that the Vault will never use more than this
+                amount of space, but it is usually best to ensure that there
+                is some extra headroom. If your HDD reports 1.5TB available,
+                its probably best to limit the backups to 1.4GB.</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </informaltable>
+      </sect3>
+
+      <sect3>
+        <title>Storage Connection</title>
+
+        <para>The store connection details depend on the type of store you are
+        connecting to.Supported types are:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Local Folder</para>
+          </listitem>
+
+          <listitem>
+            <para>FTP Server</para>
+          </listitem>
+
+          <listitem>
+            <para>Share</para>
+          </listitem>
+
+          <listitem>
+            <para>DropBox</para>
+          </listitem>
+
+          <listitem>
+            <para>Amazon S3 (Simple Storage Service)</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>Once you select the type, the area below will change to show
+        fields appropriate to that store type.</para>
+
+        <sect4>
+          <title>Local Folder</title>
+
+          <para>Local folders can be used to store backups.</para>
+
+          <informaltable>
+            <tgroup cols="2">
+              <tbody>
+                <row>
+                  <entry>Path</entry>
+
+                  <entry>This is path the backup system will use. This path
+                  must exist, must be local, and must always be mounted when
+                  the computer is running.</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </informaltable>
+        </sect4>
+
+        <sect4>
+          <title>FTP Server</title>
+
+          <para>The Vault can store backup data on FTP servers, and that
+          connection can be encrypted.</para>
+
+          <informaltable>
+            <tgroup cols="2">
+              <tbody>
+                <row>
+                  <entry>Server Address</entry>
+
+                  <entry>The IP address or DNS name of the server. This could
+                  be "ftp.myserver.com" or "192.168.1.2".</entry>
+                </row>
+
+                <row>
+                  <entry>Root Folder</entry>
+
+                  <entry>The folder to use on the FTP server. This can be
+                  relative (to whereever you log in to) or absolute.</entry>
+                </row>
+
+                <row>
+                  <entry>Use SFTP</entry>
+
+                  <entry>Should the Secure FTP protocol be used. This is
+                  strongly advised if the server is on the internet as it will
+                  ensure your name and password travel across the internet in
+                  encrypted form.</entry>
+                </row>
+
+                <row>
+                  <entry>Login ID</entry>
+
+                  <entry>Your login ID at the FTP server</entry>
+                </row>
+
+                <row>
+                  <entry>Password</entry>
+
+                  <entry>Your password at the FTP server</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </informaltable>
+        </sect4>
+
+        <sect4>
+          <title>Server Share</title>
+
+          <para>Remote server shares of any kind may also be used.</para>
+
+          <informaltable>
+            <tgroup cols="2">
+              <tbody>
+                <row>
+                  <entry>Local Path</entry>
+
+                  <entry>This is the local path that will be used as a store.
+                  The remote file system must be mounted here, or above
+                  it.</entry>
+                </row>
+
+                <row>
+                  <entry>Mount Cmd</entry>
+
+                  <entry>The command to mount the file server onto the local
+                  path.</entry>
+                </row>
+
+                <row>
+                  <entry>Unmount Cmd</entry>
+
+                  <entry>The command to unmount the file server from the local
+                  path. This will be called when backups are complete.</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </informaltable>
+
+          <para>Example:</para>
+
+          <para>Assume your server is myfileserver.com. Your home directory on
+          that server is /home/paul. You wish to use a directory named
+          "Backups" in your home directory as the store.</para>
+
+          <para>Lets also assume you will be mounting the server to
+          /media/myfileserver.</para>
+
+          <para>Here is a series of steps you could use:</para>
+
+          <orderedlist>
+            <listitem>
+              <para>Create the mount point (if required).</para>
+            </listitem>
+
+            <listitem>
+              <para>Create a mount command to mount
+              "paul@myfileserver.com:/home/paul" onto /media/fileserver. For
+              example: "mount -t cifs paul@myfileserver.com:/home/paul
+              /media/fileserver"</para>
+            </listitem>
+
+            <listitem>
+              <para>Now the "Local Path" for the server share would be
+              /media/fileserver/Backups</para>
+            </listitem>
+          </orderedlist>
+        </sect4>
+
+        <sect4>
+          <title>DropBox</title>
+
+          <para>DropBox stores are supported. You simply need to register an
+          account and enable the application.</para>
+
+          <informaltable>
+            <tgroup cols="2">
+              <tbody>
+                <row>
+                  <entry>Login ID</entry>
+
+                  <entry>Your login ID for DropBox</entry>
+                </row>
+
+                <row>
+                  <entry>Password</entry>
+
+                  <entry>Your password for DropBox</entry>
+                </row>
+
+                <row>
+                  <entry>Root Folder</entry>
+
+                  <entry>The folder name to use on DropBox for the root of the
+                  store. This must start with a '/', but one will be added if
+                  you forget.</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </informaltable>
+        </sect4>
+
+        <sect4>
+          <title>Amazon S3</title>
+
+          <para>Amazon provides a highly reliable store. You can select a
+          level of reliability/availability, plus a region for your
+          data.</para>
+
+          <informaltable>
+            <tgroup cols="2">
+              <tbody>
+                <row>
+                  <entry>Access Key ID</entry>
+
+                  <entry>Your access key</entry>
+                </row>
+
+                <row>
+                  <entry>Secret Access Key ID</entry>
+
+                  <entry>Your secret access key</entry>
+                </row>
+
+                <row>
+                  <entry>Bucket Name</entry>
+
+                  <entry>The bucket is a store (like a folder) into which all
+                  backup data will be saved. It must be unique worldwide, so
+                  we suggest using your email as part of the name. For
+                  example: vault-store.myname.myserver.com</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </informaltable>
+
+          <para>The access keys can be found in your account details.</para>
+
+          <para>Amazon provides a certain level of storage and activity free,
+          so it can be a good option for your key data. </para>
+        </sect4>
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title>Restoring</title>
+
+    <para>There are several ways to restore files from The Vault, depending on
+    your needs.</para>
+
+    <orderedlist>
+      <listitem>
+        <para>If you have accidently deleted some files/folders, you can run
+        the Vault UI, find them in the restore system and "Restore".</para>
+      </listitem>
+
+      <listitem>
+        <para>If you have rebuilt a computer, and reinstalled The Vault, you
+        can recover your system configuration using the Disaster Recovery
+        System. You can then simply restore your files.</para>
+      </listitem>
+
+      <listitem>
+        <para>If you haven't reinstalled The Vault, you can still recover your
+        files. Every store has a copy of a Disaster Recovery program copied
+        onto it, and you can simply mount the Store and run the recovery
+        program.</para>
+      </listitem>
+
+      <listitem>
+        <para>The stores a kept in a TAR/GZIP compatible format (possibly
+        encrypted with OpenSSL), so it is always possible to use tar and
+        openssl to review/recover your files.</para>
+      </listitem>
+    </orderedlist>
+
+    <sect2>
+      <title>Restore Files/Folders</title>
+
+      <para>The Restore Files/Folders Tab shows a file browser in the middle,
+      a run browser on the right (move the slider to select a different run)
+      and a restore action at the bottom.</para>
+
+      <para>The run browser allows you to peruse your file system as it was at
+      various times - effectively a history browser. As you move the run
+      browser date, the file browser will update to reflect the state of the
+      file system at that date (actually - the date/time when the backup run
+      happened).</para>
+
+      <para>Note that the file browser shows all files and folders that were
+      backed up, irrespective of which backup and which store they are on -
+      you dont need to know that to restore files. When you select
+      files/folders to be recovered, The Vault will connect to any stores as
+      required to restore those files/folders.</para>
+
+      <para>Most likely you will want to restore the latest copy of any file,
+      and so by default the run browser starts at the most recent run.</para>
+
+      <sect3>
+        <title>To Restore A File/Folder</title>
+
+        <para>Suppose you have accidently deleted a folder. To restore it,
+        perform the following steps:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Select the run on the right (this starts at the most recent,
+            so is probably correct)</para>
+          </listitem>
+
+          <listitem>
+            <para>Select the folder (or file) in the file browser</para>
+          </listitem>
+
+          <listitem>
+            <para>Click "Restore File/Folder"</para>
+          </listitem>
+
+          <listitem>
+            <para>In the Restore Files window, confirm the file/folder to be
+            restored, the destination folder (i.e. where do you want the files
+            copied to), and any extra options.</para>
+          </listitem>
+
+          <listitem>
+            <para>Click "Start".</para>
+          </listitem>
+        </orderedlist>
+      </sect3>
+
+      <sect3>
+        <title>Restore Options</title>
+
+        <para>When restoring some files, there are a set of options available
+        to you:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Do not restore sub-folders. Only the chosen folder and its
+            contents will be restored. Any subfolders will be ignored. This
+            has no effect with files.</para>
+          </listitem>
+
+          <listitem>
+            <para>Notify me by desktop message when complete. A message shows
+            on the screen briefly when the restore is done.</para>
+          </listitem>
+
+          <listitem>
+            <para>Notify me by email when complete. A message detailing the
+            restore will be emailed to you. Note that this requires the email
+            system to be configured under the "Configuration" section.</para>
+          </listitem>
+
+          <listitem>
+            <para>Shutdown the computer afterwards. The computer will be shut
+            down - with a 2 minute grace period. If you enable this option,
+            you have two minutes from notification to cancel the shutdown with
+            "sudo shutdown -c".</para>
+          </listitem>
+        </itemizedlist>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Disaster Recovery</title>
+
+      <para>If the worst happens and you lose all your data (e.g. drive crash,
+      theft, fire etc), you can be sure the Vault will hold a copy of your
+      data ready to reinstall.</para>
+
+      <para>If you want, you can reinstall directly from the store, without
+      reinstalling The Vault.</para>
+
+      <para>However, if you *do* reinstall your computer, and reinstall The
+      Vault, you can simply recover your configuration and data directly from
+      within the application. There are three steps to this:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Reload the configuration</para>
+        </listitem>
+
+        <listitem>
+          <para>Rebuild the file/folder database</para>
+        </listitem>
+
+        <listitem>
+          <para>Restore your files</para>
+        </listitem>
+      </orderedlist>
+
+      <sect3>
+        <title>Reload Your Configuration</title>
+
+        <para>There are two ways to recover your configuration - one is to
+        type it all in again. The other is to simply fetch a copy from any
+        recent backup, because the configuration is saved every time the
+        backup engine runs.</para>
+
+        <para>When you click the "Reload Configuration", the "Configuration
+        Reload Wizard" appears. It walks you through collecting enough
+        information to fetch a complete copy of your configuration, and will
+        ask for passwords if your backups were encrypted (so make sure you
+        keep your passwords somewhere safe).</para>
+
+        <para>At the end of the wizard, The Vault will now have all the
+        information it needs to completely, and automatically, restore your
+        system.</para>
+      </sect3>
+
+      <sect3>
+        <title>Rebuild Your Database</title>
+
+        <para>The Vault keeps a local database about files that have been
+        backed up. This enables it to provide a UI showing files, versions,
+        backup times etc. The next step is to rebuild this database, which
+        must be done by visiting all the stores that hold backup data.</para>
+
+        <para>Clicking the "Rebuild Database" button will bring up a Rebuild
+        Data Wizard. All this really needs to ask is which backups you want to
+        rebuild the database for. Unless you have a good reason, it is best to
+        leave the default of "all".</para>
+      </sect3>
+
+      <sect3>
+        <title>Restore Your Files</title>
+
+        <para>The "Restore Files" button simply refreshes the File Browser,
+        and switches to it.</para>
+
+        <para>You may now restore files as usual.</para>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Store Disaster Recovery</title>
+
+      <para>You may also perform a store based disaster recovery without
+      reinstalling The Vault. Every store gets a complete copy of a disaster
+      recovery program installed upon it.</para>
+
+      <para>The Store Disaster Recovery program is called "recoveryui.py". You
+      run it by typing:</para>
+
+      <para>python recovery.py</para>
+
+      <para>It shows a GUI that allows you to select a backup, enter a
+      password (if required) and a destination folder.</para>
+
+      <para>This recovery will install most recent Full backup, and then all
+      Incremental backups (i.e. all changes). This effectively restores your
+      file system to the state it was in as at the last backup run.</para>
+    </sect2>
+
+    <sect2>
+      <title>Using Command Line Tools</title>
+
+      <para>The Vault's data files are carefully constructed to be completely
+      TAR, GZIP and OpenSSL compatible. You may peruse and restore from those
+      files by hand.</para>
+
+      <para>The datafiles are a simple stream that must be cat'd together in
+      numeric order. If it is not encrypted, you can use this to view the
+      contents:</para>
+
+      <para>cat data* | tar -tzvf -</para>
+
+      <para>If the datafiles are encrypted, you can this this command to view
+      the contents:</para>
+
+      <para>cat data* | openssl enc -d -aes-256-cbc -md sha256 -pass
+      "pass:&lt;your password&gt;" | tar -tzvf -</para>
+
+      <para>To extract files, you change the tar parameters from tzvf to
+      xzvf.</para>
+
+      <para>You can tell if a backup is encrypted - the vault.xml and packages
+      files will have ".enc" at the end of their name.</para>
+
+      <para>All other files are merely copied and (possibly) encrypted.</para>
+    </sect2>
+  </sect1>
+
+  <sect1>
+    <title>Configuration</title>
+
+    <para>You use the configuration pane to set some global configuration
+    options.</para>
+
+    <sect2>
+      <title>Master Password</title>
+
+      <para>The master password is used in two ways:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>encrypt data on stores (if you select 'encrypt') in the backup
+          options</para>
+        </listitem>
+
+        <listitem>
+          <para>encrypt all passwords in the configuration file</para>
+        </listitem>
+      </orderedlist>
+
+      <para>The master password itself is stored in the file
+      /etc/vault/masterpwd. It is encrypted using the unique machine
+      id.</para>
+    </sect2>
+
+    <sect2>
+      <title>Notification Email</title>
+
+      <para>If you want The Vault to send you email when backup events
+      complete (it is an option on each backup), then you need to tell the
+      Vault about how to contract your mail server.</para>
+
+      <informaltable>
+        <tgroup cols="2">
+          <tbody>
+            <row>
+              <entry>Mail Server</entry>
+
+              <entry>Network name of the mail server. e.g. gmail.com</entry>
+            </row>
+
+            <row>
+              <entry>Port</entry>
+
+              <entry>Network port to use. You generally dont need to adjust
+              this.</entry>
+            </row>
+
+            <row>
+              <entry>Use SSL</entry>
+
+              <entry>Encrypt the communication with your mail server. This is
+              strongly recommended to ensure your passwords are protected. If
+              you select this, the port will automatically change to the SSL
+              mail port.</entry>
+            </row>
+
+            <row>
+              <entry>Use Authentication</entry>
+
+              <entry>Does your mail server need authentication to deliver the
+              email. Because the Vault will be delivering email from your PC
+              rather than from a proper mail server, authentication is often
+              required.</entry>
+            </row>
+
+            <row>
+              <entry>Login</entry>
+
+              <entry>Your login ID to your mail server</entry>
+            </row>
+
+            <row>
+              <entry>Password</entry>
+
+              <entry>Your password to your mail server</entry>
+            </row>
+
+            <row>
+              <entry>Send From </entry>
+
+              <entry>What from address should the mail program use</entry>
+            </row>
+
+            <row>
+              <entry>Send To</entry>
+
+              <entry>What address(es) should the notifications be sent to. You
+              can enter more than one address separated by ';'</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+
+      <para>It is strongly suggested that you test these settings by clicking
+      the 'Test' button. An email will be sent that you should check.</para>
+    </sect2>
+
+    <sect2>
+      <title>File Types</title>
+
+      <para>When specifying a backup, it is possible to request that certain
+      types of files be ignored or skipped. These file types are defined in
+      the file type configuration system. You can create file type names, and
+      associate these with file extensions.</para>
+
+      <para>The list of extensions is entered in list, one per line without
+      the '.'. When you save, the list will automatically be sorted.</para>
+    </sect2>
+  </sect1>
+</article>

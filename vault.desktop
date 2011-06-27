@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=The Vault Backup System
+Generic Name=Backup System
+Comment=Backups for the rest of us
+Exec=su-to-root -X -c /opt/bin/vault.run
+Terminal=false
+Type=Application
+Icon=vault
+Categories=GTK;Archiving;System;Settings;

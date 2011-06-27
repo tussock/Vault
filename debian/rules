@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+%:
+	dh $@ --with python2
+
+clean::
+	rm -rf build build-stamp configure-stamp build/ MANIFEST debian/vault
+	dh_clean

@@ -1,0 +1,52 @@
+==================================
+The Vault Backup Management System
+==================================
+The Vault provides a simple set-and-forget backup management system.
+
+It backups up files to a variety of media, and includes support for
+encryption out of the box, splitting, automatic media management, 
+hash validation and more. It also includes a simple to use GUI to get
+you started right away.
+ 
+All data is stored in industry standard TAR/GZIP compatible files, 
+and encrypted with OpenSSL encryption (AES-256). A variety of 
+disaster recovery systems are available in case the worst happens:
+- all storage media gets a copy of the recovery program so you can 
+recover your files to any computer straight from the backups without
+needing to install the software.
+- the GUI also includes more powerful restore and recovery software. 
+
+=======
+License
+=======
+	The Vault is released under the GNU GPLv3 license.
+
+=======
+AUTHORS
+=======
+
+	Paul Reddy <paul@kereru.org>
+	
+
+=======
+WEBSITE
+=======
+	http://www.kereru.org/vault
+
+
+==========================
+Installation Instructions:
+==========================
+
+For more detailed instructions see: http://www.kereru.org/vault
+
+See: DEPENDS for a full list of dependencies.
+
+Option 1:
+Download and install the .DEB, then double click and select "Install".
+All dependencies will be automatically installed. 
+
+Option 2:
+Download the .tar.gz file and unpack to a temporary folder.
+From the shell, 'cd' into that temporary folder and type:
+	sudo python ./setup.py install  
