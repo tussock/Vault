@@ -20,6 +20,7 @@ from store.folderstore import FolderStore
 from store.ftpstore import FTPStore
 from store.dropboxstore import DropBoxStore
 from store.sharestore import ShareStore
+from store.s3store import S3Store
 import app
 from optiondialog import OptionDialog
 from editpanel import EditPanel, ViewState, NewState
@@ -91,7 +92,7 @@ class StoragePanel(EditPanel, gui.StoragePanel):
         #    Load it
         try:
             with ProgressDialog(self, _("Testing"), _("Testing connectivity and access to the store.\nPlease wait...")):
-                s = self.config.storage[name]
+                s = self.config.storage[name].copy()
                 s.test()
             dlg.Info(self, _("Store {store} OK").format(store=name))
         except Exception as e:
@@ -123,7 +124,7 @@ class StoragePanel(EditPanel, gui.StoragePanel):
                                   wx.WXK_TAB,
                                   wx.WXK_BACK,
                                   wx.WXK_RETURN,
-                                  wx.WXK_DELETE,
+                                  wx.WXK_DELETE, 
                                   wx.WXK_CLEAR,
                                   wx.WXK_HOME,
                                   wx.WXK_END,
@@ -268,6 +269,11 @@ class StoragePanel(EditPanel, gui.StoragePanel):
                 self.txtDBPass.SetValue(d.password)
                 self.txtDBKey.SetValue(d.app_key)
                 self.txtDBSecretKey.SetValue(d.app_secret_key)
+            elif isinstance(d, S3Store):
+                self.nbStoreType.SetSelection(4)
+                self.txtAmazonBucket.SetValue(d.bucket)
+                self.txtAmazonKey.SetValue(d.key)
+                self.txtAmazonSecretKey.SetValue(d.secret_key)
             else:
                 raise Exception("Invalid store type")
 
@@ -331,6 +337,11 @@ class StoragePanel(EditPanel, gui.StoragePanel):
                 app_secret_key = self.txtDBSecretKey.GetValue()
                 d = DropBoxStore(name, limit, auto_manage, root, login, password, 
                                  app_key, app_secret_key)
+            elif self.nbStoreType.GetSelection() == 4:
+                bucket = self.txtAmazonBucket.GetValue()
+                key = self.txtAmazonKey.GetValue()
+                secret_key = self.txtAmazonSecretKey.GetValue()
+                d = S3Store(name, limit, auto_manage, bucket, key, secret_key)
             else:
                 log.error("Invalid Storage Type")
                 raise Exception(_("Invalid Storage type"))

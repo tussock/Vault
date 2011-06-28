@@ -29,7 +29,6 @@ class FolderStore(StoreBase):
         if len(root) == 0:
             raise Exception(_("Root folder cannot be blank"))
         self.root = root
-        self.last_space_check = -sys.maxint
 
         self._persistent.append("root")
 

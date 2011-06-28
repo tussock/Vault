@@ -78,7 +78,6 @@ class DropBoxStore(StoreBase):
         self.root = root
         if len(self.root) == 0 or self.root[0] != "/":
             self.root = "/" + self.root
-        self.last_space_check = -sys.maxint
         self.login = login
         self._password = password
         self._app_key = app_key

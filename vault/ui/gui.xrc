@@ -2284,7 +2284,7 @@
 	</object>
 	<object class="wxFrame" name="RunDetailsWindow">
 		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
-		<size>570,486</size>
+		<size>604,467</size>
 		<title>Backup Run Details</title>
 		<centered>1</centered>
 		<object class="wxNotebook" name="nbDetails">
@@ -2385,7 +2385,7 @@
 	</object>
 	<object class="wxPanel" name="StoragePanel">
 		<style>wxTAB_TRAVERSAL</style>
-		<size>727,518</size>
+		<size>718,507</size>
 		<object class="wxBoxSizer">
 			<orient>wxVERTICAL</orient>
 			<object class="sizeritem">
@@ -2544,7 +2544,7 @@
 							<object class="sizeritem">
 								<option>0</option>
 								<flag>wxALL</flag>
-								<border>5</border>
+								<border>3</border>
 								<object class="wxStaticText" name="m_staticText42">
 									<font>
 										<family>default</family>
@@ -2673,7 +2673,7 @@
 							<object class="sizeritem">
 								<option>0</option>
 								<flag>wxALL</flag>
-								<border>5</border>
+								<border>3</border>
 								<object class="wxStaticText" name="txtStoreTypeName">
 									<font>
 										<family>default</family>
@@ -2693,7 +2693,7 @@
 									<style>wxCHB_DEFAULT</style>
 									<object class="choicebookpage">
 										<label>Local Folder</label>
-										<selected>1</selected>
+										<selected>0</selected>
 										<object class="wxPanel" name="pnlFolder">
 											<style>wxTAB_TRAVERSAL</style>
 											<object class="wxBoxSizer">
@@ -3207,7 +3207,7 @@
 									</object>
 									<object class="choicebookpage">
 										<label>Amazon S3</label>
-										<selected>0</selected>
+										<selected>1</selected>
 										<object class="wxPanel" name="m_panel32">
 											<style>wxTAB_TRAVERSAL</style>
 											<object class="wxBoxSizer">
@@ -3310,7 +3310,7 @@
 																	<weight>normal</weight>
 																	<underlined>0</underlined>
 																</font>
-																<label>The bucket is a unique identifier for a set of data stored\non Amazon S3. It must be unique world wide. We suggest\nusing &quot;vault.your.email.address&quot;. For example: \n    vault.myname@mailserver.com</label>
+																<label>The bucket is a unique identifier for a set of data stored\non Amazon S3. It must be unique world wide. We suggest\nusing &quot;vault.your.email.address&quot;. For example: \n    vault.myname.mailserver.com\n(note: &apos;@&apos; is not permitted in bucket names)</label>
 																<wrap>-1</wrap>
 															</object>
 														</object>
@@ -3356,17 +3356,8 @@
 							</object>
 							<object class="sizeritem">
 								<option>0</option>
-								<flag>wxALL</flag>
-								<border>5</border>
-								<object class="wxAnimationCtrl" name="m_animCtrl1">
-									<style>wxAC_DEFAULT_STYLE</style>
-									<animation></animation>
-								</object>
-							</object>
-							<object class="sizeritem">
-								<option>0</option>
 								<flag>wxEXPAND</flag>
-								<border>5</border>
+								<border>3</border>
 								<object class="wxBoxSizer">
 									<orient>wxHORIZONTAL</orient>
 									<object class="sizeritem">

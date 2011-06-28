@@ -9,7 +9,6 @@
 
 import wx
 from autowidthlist import AutoWidthListCtrl
-import wx.animate
 
 import gettext
 _ = gettext.gettext
@@ -1306,7 +1305,7 @@ class RunRestoreWindow ( wx.Frame ):
 class RunDetailsWindow ( wx.Frame ):
 	
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _("Backup Run Details"), pos = wx.DefaultPosition, size = wx.Size( 570,486 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _("Backup Run Details"), pos = wx.DefaultPosition, size = wx.Size( 604,467 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 		
 		self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
 		
@@ -1389,7 +1388,7 @@ class RunDetailsWindow ( wx.Frame ):
 class StoragePanel ( wx.Panel ):
 	
 	def __init__( self, parent ):
-		wx.Panel.__init__ ( self, parent, id = wx.ID_ANY, pos = wx.DefaultPosition, size = wx.Size( 727,518 ), style = wx.TAB_TRAVERSAL )
+		wx.Panel.__init__ ( self, parent, id = wx.ID_ANY, pos = wx.DefaultPosition, size = wx.Size( 718,507 ), style = wx.TAB_TRAVERSAL )
 		
 		bSizer20 = wx.BoxSizer( wx.VERTICAL )
 		
@@ -1465,7 +1464,7 @@ class StoragePanel ( wx.Panel ):
 		self.m_staticText42.Wrap( -1 )
 		self.m_staticText42.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), 70, 90, 92, False, wx.EmptyString ) )
 		
-		bSizer26.Add( self.m_staticText42, 0, wx.ALL, 5 )
+		bSizer26.Add( self.m_staticText42, 0, wx.ALL, 3 )
 		
 		fgSizer1111 = wx.FlexGridSizer( 2, 2, 0, 0 )
 		fgSizer1111.AddGrowableCol( 1 )
@@ -1520,7 +1519,7 @@ class StoragePanel ( wx.Panel ):
 		self.txtStoreTypeName.Wrap( -1 )
 		self.txtStoreTypeName.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), 70, 90, 92, False, wx.EmptyString ) )
 		
-		bSizer26.Add( self.txtStoreTypeName, 0, wx.ALL, 5 )
+		bSizer26.Add( self.txtStoreTypeName, 0, wx.ALL, 3 )
 		
 		self.nbStoreType = wx.Choicebook( self.pnlDetails, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.CHB_DEFAULT )
 		self.pnlFolder = wx.Panel( self.nbStoreType, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
@@ -1552,7 +1551,7 @@ class StoragePanel ( wx.Panel ):
 		self.pnlFolder.SetSizer( bSizer78 )
 		self.pnlFolder.Layout()
 		bSizer78.Fit( self.pnlFolder )
-		self.nbStoreType.AddPage( self.pnlFolder, _("Local Folder"), True )
+		self.nbStoreType.AddPage( self.pnlFolder, _("Local Folder"), False )
 		self.pnlFTP = wx.Panel( self.nbStoreType, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer781 = wx.BoxSizer( wx.VERTICAL )
 		
@@ -1779,7 +1778,7 @@ class StoragePanel ( wx.Panel ):
 		
 		fgSizer1121.AddSpacer( ( 0, 0), 1, wx.EXPAND, 5 )
 		
-		self.m_staticText134 = wx.StaticText( self.m_panel32, wx.ID_ANY, _("The bucket is a unique identifier for a set of data stored\non Amazon S3. It must be unique world wide. We suggest\nusing \"vault.your.email.address\". For example: \n    vault.myname@mailserver.com"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText134 = wx.StaticText( self.m_panel32, wx.ID_ANY, _("The bucket is a unique identifier for a set of data stored\non Amazon S3. It must be unique world wide. We suggest\nusing \"vault.your.email.address\". For example: \n    vault.myname.mailserver.com\n(note: '@' is not permitted in bucket names)"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText134.Wrap( -1 )
 		self.m_staticText134.SetFont( wx.Font( 8, 70, 93, 90, False, wx.EmptyString ) )
 		
@@ -1804,11 +1803,8 @@ class StoragePanel ( wx.Panel ):
 		self.m_panel32.SetSizer( bSizer78121 )
 		self.m_panel32.Layout()
 		bSizer78121.Fit( self.m_panel32 )
-		self.nbStoreType.AddPage( self.m_panel32, _("Amazon S3"), False )
+		self.nbStoreType.AddPage( self.m_panel32, _("Amazon S3"), True )
 		bSizer26.Add( self.nbStoreType, 0, wx.EXPAND|wx.LEFT, 20 )
-		
-		self.m_animCtrl1 = wx.animate.AnimationCtrl( self.pnlDetails, wx.ID_ANY, wx.animate.NullAnimation, wx.DefaultPosition, wx.DefaultSize, wx.animate.AC_DEFAULT_STYLE ) 
-		bSizer26.Add( self.m_animCtrl1, 0, wx.ALL, 5 )
 		
 		bSizer82 = wx.BoxSizer( wx.HORIZONTAL )
 		
@@ -1821,7 +1817,7 @@ class StoragePanel ( wx.Panel ):
 		
 		bSizer82.AddSpacer( ( 0, 0), 1, wx.EXPAND, 5 )
 		
-		bSizer26.Add( bSizer82, 0, wx.EXPAND, 5 )
+		bSizer26.Add( bSizer82, 0, wx.EXPAND, 3 )
 		
 		self.pnlDetails.SetSizer( bSizer26 )
 		self.pnlDetails.Layout()

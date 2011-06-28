@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-27 16:07+1200\n"
-"PO-Revision-Date: 2011-06-27 16:07+1200\n"
+"POT-Creation-Date: 2011-06-27 17:45+1200\n"
+"PO-Revision-Date: 2011-06-27 17:45+1200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: lang\n"
@@ -1847,7 +1847,7 @@ msgstr ""
 msgid "login, password and app_keys cannot be blank"
 msgstr ""
 
-#: vault/store/storebase.py:475
+#: vault/store/storebase.py:472
 #, python-format
 msgid "Unable to delete %s"
 msgstr ""

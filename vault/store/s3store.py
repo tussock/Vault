@@ -39,12 +39,11 @@ class S3Store(StoreBase):
             raise Exception(_("bucket cannot be blank"))
 
         self.bucket = bucket
-        self.last_space_check = -sys.maxint
         self.bucket = bucket
         self._key = key
         self._secret_key = secret_key
         self.pre_save()
-        for attr in ["root", "login", "key_c", "secret_key_c"]:
+        for attr in ["bucket", "key_c", "secret_key_c"]:
             self._persistent.append(attr)
         
         
