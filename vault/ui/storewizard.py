@@ -49,7 +49,14 @@ def wiz_execute(wiz):
         login = wiz.fields["dblogin"].value
         password = wiz.fields["dbpassword"].value
         root = wiz.fields["dbroot"].value
-        store = DropBoxStore(name, 0, False, root, login, password)
+        key = wiz.fields["dbkey"].value
+        secret_key = wiz.fields["dbsecretkey"].value
+        store = DropBoxStore(name, 0, False, root, login, password, key, secret_key)
+    elif wiz.fields["storagetype"].value == _("Amazon S3"):
+        key = wiz.fields["s3key"].value
+        secret_key = wiz.fields["s3secretkey"].value
+        bucket = wiz.fields["s3bucket"].value
+        store = S3Store(name, 0, False, bucket, key, secret_key)
     elif wiz.fields["storagetype"].value == _("Server Share"):
         name = wiz.fields["name"].value
         path = wiz.fields["sharepath"].value
@@ -85,7 +92,17 @@ def db_test(wizard):
     login = wizard.fields["dblogin"].value
     password = wizard.fields["dbpassword"].value
     root = wizard.fields["dbroot"].value
-    store = DropBoxStore("store", 0, False, root, login, password)
+    key = wizard.fields["dbkey"].value
+    secret_key = wizard.fields["dbsecretkey"].value
+    store = DropBoxStore("store", 0, False, root, login, password, key, secret_key)
+    
+    do_test(wizard, store)
+
+def s3_test(wizard):
+    bucket = wizard.fields["s3bucket"].value
+    key = wizard.fields["s3key"].value
+    secret_key = wizard.fields["s3secretkey"].value
+    store = S3Store("store", 0, False, bucket, key, secret_key)
     
     do_test(wizard, store)
     
@@ -126,7 +143,7 @@ def do_store_wizard(parent):
     #    Type of storage
     page = wizard.Page(wiz, _("Type Of Storage"))
     wizard.OptionsField(page, "storagetype", _("What type of store will we connect to?"),
-                 [_("Local Folder"), _("FTP Server"), _("Server Share"), _("DropBox")],
+                 [_("Local Folder"), _("FTP Server"), _("Server Share"), _("DropBox"), _("Amazon S3")],
                  default=None if not const.Debug else _("Local Folder"))
 
     #    Folder storage
@@ -156,7 +173,21 @@ def do_store_wizard(parent):
                  default=None if not const.Debug else "")
     wizard.TextField(page, "dbroot", _("Path To Store"),
                  default=None if not const.Debug else "store")
+    wizard.TextField(page, "dbkey", _("Application Key"),
+                 default=None if not const.Debug else "key")
+    wizard.TextField(page, "dbsecretkey", _("Application Secret Key"),
+                 default=None if not const.Debug else "secret key")
     wizard.ButtonField(page, "dbtest", _("Test"), db_test)
+
+    #    S3 Storage
+    page = wizard.Page(wiz, _("Amazon S3 Details"), show_cb=lambda wiz: wiz.fields["storagetype"].value == _("Amazon S3"))
+    wizard.TextField(page, "s3key", _("Access Key ID"),
+                 default=None if not const.Debug else "key")
+    wizard.TextField(page, "s3secretkey", _("Secret Access Key ID"),
+                 default=None if not const.Debug else "secret key")
+    wizard.TextField(page, "s3bucket", _("Bucket Name"),
+                 default=None if not const.Debug else "bucket")
+    wizard.ButtonField(page, "s3test", _("Test"), s3_test)
 
     #    Server Share storage
     page = wizard.Page(wiz, _("Server Share Storage Details"), show_cb=lambda wiz: wiz.fields["storagetype"].value == _("Server Share"))

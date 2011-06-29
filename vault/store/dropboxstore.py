@@ -190,7 +190,7 @@ class DropBoxStore(StoreBase):
         auth_config['consumer_key'] = self.app_key
         auth_config['consumer_secret'] = self.app_secret_key
         self.dba = auth.Authenticator(auth_config)
-        self.access_token = self.dba.obtain_trusted_access_token(self.login, self.password)
+        self.access_token = self.dba.obtain_trusted_access_token(str(self.login), str(self.password))
         log.debug("Got access token: ", self.access_token)
         self.db_client = client.DropboxClient(auth_config['server'], auth_config['content_server'], 
                                          auth_config['port'], self.dba, self.access_token)

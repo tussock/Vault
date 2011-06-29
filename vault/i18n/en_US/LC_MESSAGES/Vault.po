@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-27 17:45+1200\n"
-"PO-Revision-Date: 2011-06-27 17:45+1200\n"
+"POT-Creation-Date: 2011-06-29 17:34+1200\n"
+"PO-Revision-Date: 2011-06-29 17:34+1200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: lang\n"
@@ -40,7 +40,7 @@ msgstr ""
 msgid "Page Title"
 msgstr ""
 
-#: vault/lib/wizui.py:58 vault/ui/gui.py:35
+#: vault/lib/wizui.py:58 vault/ui/gui.py:34
 msgid "Quit"
 msgstr ""
 
@@ -80,13 +80,13 @@ msgstr ""
 msgid "Select a file"
 msgstr ""
 
-#: vault/lib/wizui.py:131 vault/ui/gui.py:1255 vault/recovery/recoveryui.py:79
+#: vault/lib/wizui.py:131 vault/ui/gui.py:1254 vault/recovery/recoveryui.py:79
 msgid "Select a folder"
 msgstr ""
 
-#: vault/lib/wizui.py:157 vault/ui/gui.py:91 vault/ui/gui.py:1016
-#: vault/ui/gui.py:1453 vault/ui/gui.py:2188 vault/ui/gui.py:2439
-#: vault/ui/gui.py:2445 vault/ui/gui.py:2449 vault/ui/gui.py:2583
+#: vault/lib/wizui.py:157 vault/ui/gui.py:90 vault/ui/gui.py:1015
+#: vault/ui/gui.py:1452 vault/ui/gui.py:2184 vault/ui/gui.py:2435
+#: vault/ui/gui.py:2441 vault/ui/gui.py:2445 vault/ui/gui.py:2579
 msgid "MyLabel"
 msgstr ""
 
@@ -110,27 +110,27 @@ msgstr ""
 msgid "Confirm Quit"
 msgstr ""
 
-#: vault/lib/appconfig.py:33 vault/ui/gui.py:450
+#: vault/lib/appconfig.py:32 vault/ui/gui.py:449
 msgid "Images"
 msgstr ""
 
-#: vault/lib/appconfig.py:36 vault/ui/gui.py:450
+#: vault/lib/appconfig.py:35 vault/ui/gui.py:449
 msgid "Videos"
 msgstr ""
 
-#: vault/lib/appconfig.py:37
+#: vault/lib/appconfig.py:36
 msgid "Music"
 msgstr ""
 
-#: vault/lib/appconfig.py:38 vault/ui/gui.py:450
+#: vault/lib/appconfig.py:37 vault/ui/gui.py:449
 msgid "Programs"
 msgstr ""
 
-#: vault/lib/appconfig.py:42
+#: vault/lib/appconfig.py:41
 msgid "System Backup Folder"
 msgstr ""
 
-#: vault/lib/appconfig.py:47
+#: vault/lib/appconfig.py:46
 msgid "Home"
 msgstr ""
 
@@ -231,7 +231,7 @@ msgstr ""
 msgid "Restore has been started"
 msgstr ""
 
-#: vault/ui/backuppanel.py:58 vault/ui/gui.py:315
+#: vault/ui/backuppanel.py:58 vault/ui/gui.py:314
 msgid "Backups"
 msgstr ""
 
@@ -306,7 +306,7 @@ msgstr ""
 msgid "Error During Delete"
 msgstr ""
 
-#: vault/ui/rundetailswindow.py:72 vault/ui/gui.py:2177
+#: vault/ui/rundetailswindow.py:72 vault/ui/gui.py:2173
 #: vault/ui/overviewpanel.py:154 vault/ui/overviewpanel.py:195
 #: vault/ui/historywindow.py:91 vault/recovery/recoveryui.py:36
 msgid "Name"
@@ -395,147 +395,147 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: vault/ui/gui.py:24
+#: vault/ui/gui.py:23
 msgid "The Vault"
 msgstr ""
 
-#: vault/ui/gui.py:41
+#: vault/ui/gui.py:40
 msgid "About"
 msgstr ""
 
-#: vault/ui/gui.py:44
+#: vault/ui/gui.py:43
 msgid "Show Help"
 msgstr ""
 
-#: vault/ui/gui.py:85
+#: vault/ui/gui.py:84
 msgid "<title>"
 msgstr ""
 
-#: vault/ui/gui.py:95
+#: vault/ui/gui.py:94
 msgid "Check Me!"
 msgstr ""
 
-#: vault/ui/gui.py:138
+#: vault/ui/gui.py:137
 msgid "System Overview"
 msgstr ""
 
-#: vault/ui/gui.py:153
+#: vault/ui/gui.py:152
 msgid "Status: Healthy"
 msgstr ""
 
-#: vault/ui/gui.py:162 vault/ui/gui.py:1363 vault/ui/gui.py:2364
+#: vault/ui/gui.py:161 vault/ui/gui.py:1362 vault/ui/gui.py:2360
 msgid "Messages"
 msgstr ""
 
-#: vault/ui/gui.py:173
+#: vault/ui/gui.py:172
 msgid "Backups Overview"
 msgstr ""
 
-#: vault/ui/gui.py:191
+#: vault/ui/gui.py:190
 msgid "No backups have been defined"
 msgstr ""
 
-#: vault/ui/gui.py:202
+#: vault/ui/gui.py:201
 msgid "Storage Overview"
 msgstr ""
 
-#: vault/ui/gui.py:220
+#: vault/ui/gui.py:219
 msgid "No stores have been defined"
 msgstr ""
 
-#: vault/ui/gui.py:231
+#: vault/ui/gui.py:230
 msgid "Actions"
 msgstr ""
 
-#: vault/ui/gui.py:245 vault/ui/gui.py:996 vault/ui/gui.py:2336
+#: vault/ui/gui.py:244 vault/ui/gui.py:995 vault/ui/gui.py:2332
 msgid "Refresh"
 msgstr ""
 
-#: vault/ui/gui.py:248
+#: vault/ui/gui.py:247
 msgid "View History"
 msgstr ""
 
-#: vault/ui/gui.py:254
+#: vault/ui/gui.py:253
 msgid "First Time Wizards:"
 msgstr ""
 
-#: vault/ui/gui.py:258
+#: vault/ui/gui.py:257
 msgid "Setup Storage"
 msgstr ""
 
-#: vault/ui/gui.py:261
+#: vault/ui/gui.py:260
 msgid "Setup Backup"
 msgstr ""
 
-#: vault/ui/gui.py:327 vault/ui/gui.py:1415 vault/ui/gui.py:2163
+#: vault/ui/gui.py:326 vault/ui/gui.py:1414 vault/ui/gui.py:2159
 msgid "Delete"
 msgstr ""
 
-#: vault/ui/gui.py:330 vault/ui/gui.py:1418 vault/ui/gui.py:2166
+#: vault/ui/gui.py:329 vault/ui/gui.py:1417 vault/ui/gui.py:2162
 msgid "Add New"
 msgstr ""
 
-#: vault/ui/gui.py:333
+#: vault/ui/gui.py:332
 msgid "Run..."
 msgstr ""
 
-#: vault/ui/gui.py:336 vault/ui/gui.py:2301
+#: vault/ui/gui.py:335 vault/ui/gui.py:2297
 msgid "History"
 msgstr ""
 
-#: vault/ui/gui.py:351 vault/ui/gui.py:438 vault/ui/gui.py:1432
+#: vault/ui/gui.py:350 vault/ui/gui.py:437 vault/ui/gui.py:1431
 msgid "General"
 msgstr ""
 
-#: vault/ui/gui.py:362 vault/ui/gui.py:834 vault/ui/gui.py:1443
+#: vault/ui/gui.py:361 vault/ui/gui.py:833 vault/ui/gui.py:1442
 msgid "Name:"
 msgstr ""
 
-#: vault/ui/gui.py:371
+#: vault/ui/gui.py:370
 msgid "Static Name"
 msgstr ""
 
-#: vault/ui/gui.py:377
+#: vault/ui/gui.py:376
 msgid "Status:"
 msgstr ""
 
-#: vault/ui/gui.py:381
+#: vault/ui/gui.py:380
 msgid "Active/Enabled"
 msgstr ""
 
-#: vault/ui/gui.py:386
+#: vault/ui/gui.py:385
 msgid "Backup What Folders"
 msgstr ""
 
-#: vault/ui/gui.py:397
+#: vault/ui/gui.py:396
 msgid "Folders:"
 msgstr ""
 
-#: vault/ui/gui.py:415
+#: vault/ui/gui.py:414
 msgid "Type one folder per line, or click \"+\" to use a folder selector."
 msgstr ""
 
-#: vault/ui/gui.py:423
+#: vault/ui/gui.py:422
 msgid "Packages:"
 msgstr ""
 
-#: vault/ui/gui.py:427
+#: vault/ui/gui.py:426
 msgid "Include list of installed packages"
 msgstr ""
 
-#: vault/ui/gui.py:442
+#: vault/ui/gui.py:441
 msgid "Exclude File Types"
 msgstr ""
 
-#: vault/ui/gui.py:456
+#: vault/ui/gui.py:455
 msgid "File types may be adjusted in Configuration | File Types."
 msgstr ""
 
-#: vault/ui/gui.py:464
+#: vault/ui/gui.py:463
 msgid "Exclude Files/Folder Patterns"
 msgstr ""
 
-#: vault/ui/gui.py:477
+#: vault/ui/gui.py:476
 msgid ""
 "Enter paths and patterns for files/folders to exclude - one per line.\n"
 "* - matches any path\n"
@@ -546,252 +546,252 @@ msgid ""
 "subfolders."
 msgstr ""
 
-#: vault/ui/gui.py:488
+#: vault/ui/gui.py:487
 msgid "Exclude"
 msgstr ""
 
-#: vault/ui/gui.py:492
+#: vault/ui/gui.py:491
 msgid "Store To:"
 msgstr ""
 
-#: vault/ui/gui.py:507
+#: vault/ui/gui.py:506
 msgid "Protect Backup Files"
 msgstr ""
 
-#: vault/ui/gui.py:513
+#: vault/ui/gui.py:512
 msgid "Encrypt data"
 msgstr ""
 
-#: vault/ui/gui.py:516
+#: vault/ui/gui.py:515
 msgid "Encryption will use the master password (see the Configuration panel)."
 msgstr ""
 
-#: vault/ui/gui.py:522
+#: vault/ui/gui.py:521
 msgid "Verify data after backup"
 msgstr ""
 
-#: vault/ui/gui.py:525
+#: vault/ui/gui.py:524
 msgid "Note that verification will slow down the backup"
 msgstr ""
 
-#: vault/ui/gui.py:534 vault/ui/gui.py:1403 vault/ui/storagepanel.py:58
+#: vault/ui/gui.py:533 vault/ui/gui.py:1402 vault/ui/storagepanel.py:59
 msgid "Storage"
 msgstr ""
 
-#: vault/ui/gui.py:538
+#: vault/ui/gui.py:537
 msgid "Simple Backup Schedule"
 msgstr ""
 
-#: vault/ui/gui.py:548 vault/ui/gui.py:569
+#: vault/ui/gui.py:547 vault/ui/gui.py:568
 msgid "Save changes daily at"
 msgstr ""
 
-#: vault/ui/gui.py:551 vault/ui/gui.py:572 vault/ui/gui.py:602
-#: vault/ui/gui.py:614 vault/ui/gui.py:635
+#: vault/ui/gui.py:550 vault/ui/gui.py:571 vault/ui/gui.py:601
+#: vault/ui/gui.py:613 vault/ui/gui.py:634
 msgid "7:00pm"
 msgstr ""
 
-#: vault/ui/gui.py:556 vault/ui/gui.py:623
+#: vault/ui/gui.py:555 vault/ui/gui.py:622
 msgid "Save all weekly on"
 msgstr ""
 
-#: vault/ui/gui.py:560 vault/ui/gui.py:593 vault/ui/gui.py:626
+#: vault/ui/gui.py:559 vault/ui/gui.py:592 vault/ui/gui.py:625
 msgid "Sunday"
 msgstr ""
 
-#: vault/ui/gui.py:577
+#: vault/ui/gui.py:576
 msgid "Save all monthly on"
 msgstr ""
 
-#: vault/ui/gui.py:581
+#: vault/ui/gui.py:580
 msgid "1"
 msgstr ""
 
-#: vault/ui/gui.py:590
+#: vault/ui/gui.py:589
 msgid "Save changes hourly.  Save all weekly on"
 msgstr ""
 
-#: vault/ui/gui.py:598 vault/ui/gui.py:631
+#: vault/ui/gui.py:597 vault/ui/gui.py:630
 msgid "at"
 msgstr ""
 
-#: vault/ui/gui.py:611
+#: vault/ui/gui.py:610
 msgid "Save all daily at"
 msgstr ""
 
-#: vault/ui/gui.py:647
+#: vault/ui/gui.py:646
 msgid "Advanced Backup Schedule"
 msgstr ""
 
-#: vault/ui/gui.py:655
+#: vault/ui/gui.py:654
 msgid "Use Crontab Entries"
 msgstr ""
 
-#: vault/ui/gui.py:663
+#: vault/ui/gui.py:662
 msgid "Backup Changes:"
 msgstr ""
 
-#: vault/ui/gui.py:670
+#: vault/ui/gui.py:669
 msgid "Backup Everything:"
 msgstr ""
 
-#: vault/ui/gui.py:680
+#: vault/ui/gui.py:679
 msgid ""
 "Crontab format is \"min hour dayofmonth month dayofweek\"\n"
 "For example: \"30 5 * * *\" runs every day at 5:30 am.\n"
 "Leave blank to disable. See help for more details."
 msgstr ""
 
-#: vault/ui/gui.py:696
+#: vault/ui/gui.py:695
 msgid "Schedule"
 msgstr ""
 
-#: vault/ui/gui.py:700
+#: vault/ui/gui.py:699
 msgid "After The Backup Completes"
 msgstr ""
 
-#: vault/ui/gui.py:708
+#: vault/ui/gui.py:707
 msgid "Show a system notification"
 msgstr ""
 
-#: vault/ui/gui.py:711
+#: vault/ui/gui.py:710
 msgid "Send an email"
 msgstr ""
 
-#: vault/ui/gui.py:714
+#: vault/ui/gui.py:713
 msgid "Shutdown the computer"
 msgstr ""
 
-#: vault/ui/gui.py:722
+#: vault/ui/gui.py:721
 msgid "Notification"
 msgstr ""
 
-#: vault/ui/gui.py:728 vault/ui/gui.py:1815 vault/ui/gui.py:2127
-#: vault/ui/gui.py:2213
+#: vault/ui/gui.py:727 vault/ui/gui.py:1811 vault/ui/gui.py:2123
+#: vault/ui/gui.py:2209
 msgid "Apply"
 msgstr ""
 
-#: vault/ui/gui.py:731 vault/ui/gui.py:1818
+#: vault/ui/gui.py:730 vault/ui/gui.py:1814
 msgid "Revert"
 msgstr ""
 
-#: vault/ui/gui.py:818
+#: vault/ui/gui.py:817
 msgid "Run Backup Window"
 msgstr ""
 
-#: vault/ui/gui.py:824
+#: vault/ui/gui.py:823
 msgid "Backup"
 msgstr ""
 
-#: vault/ui/gui.py:843
+#: vault/ui/gui.py:842
 msgid "Type:"
 msgstr ""
 
-#: vault/ui/gui.py:849
+#: vault/ui/gui.py:848
 msgid "Full"
 msgstr ""
 
-#: vault/ui/gui.py:852
+#: vault/ui/gui.py:851
 msgid "Changes"
 msgstr ""
 
-#: vault/ui/gui.py:857
+#: vault/ui/gui.py:856
 msgid "After Finished:"
 msgstr ""
 
-#: vault/ui/gui.py:863
+#: vault/ui/gui.py:862
 msgid "Show message"
 msgstr ""
 
-#: vault/ui/gui.py:866
+#: vault/ui/gui.py:865
 msgid "Send email"
 msgstr ""
 
-#: vault/ui/gui.py:869
+#: vault/ui/gui.py:868
 msgid "Shutdown computer"
 msgstr ""
 
-#: vault/ui/gui.py:874
+#: vault/ui/gui.py:873
 msgid "Dry Run:"
 msgstr ""
 
-#: vault/ui/gui.py:878
+#: vault/ui/gui.py:877
 msgid "Enable"
 msgstr ""
 
-#: vault/ui/gui.py:884
+#: vault/ui/gui.py:883
 msgid ""
 "A dry run will execute a backup without actually copying any files\n"
 "or changing the system. It shows what *would* happen if this backup ran."
 msgstr ""
 
-#: vault/ui/gui.py:895
+#: vault/ui/gui.py:894
 msgid "List Of Files"
 msgstr ""
 
-#: vault/ui/gui.py:906
+#: vault/ui/gui.py:905
 msgid "D = Directory; F = File; X = Deleted"
 msgstr ""
 
-#: vault/ui/gui.py:924 vault/ui/gui.py:1282
+#: vault/ui/gui.py:923 vault/ui/gui.py:1281
 msgid "Start"
 msgstr ""
 
-#: vault/ui/gui.py:927
+#: vault/ui/gui.py:926
 msgid "Stop"
 msgstr ""
 
-#: vault/ui/gui.py:930 vault/recovery/recoveryui.py:97
+#: vault/ui/gui.py:929 vault/recovery/recoveryui.py:97
 msgid "Close"
 msgstr ""
 
-#: vault/ui/gui.py:980
+#: vault/ui/gui.py:979
 msgid "File System"
 msgstr ""
 
-#: vault/ui/gui.py:999
+#: vault/ui/gui.py:998
 msgid "Restore File/Folder..."
 msgstr ""
 
-#: vault/ui/gui.py:1002
+#: vault/ui/gui.py:1001
 msgid "<selected file>"
 msgstr ""
 
-#: vault/ui/gui.py:1012
+#: vault/ui/gui.py:1011
 msgid "Selected Date"
 msgstr ""
 
-#: vault/ui/gui.py:1023
+#: vault/ui/gui.py:1022
 msgid "Oldest"
 msgstr ""
 
-#: vault/ui/gui.py:1032
+#: vault/ui/gui.py:1031
 msgid "Latest"
 msgstr ""
 
-#: vault/ui/gui.py:1041
+#: vault/ui/gui.py:1040
 msgid "Run Details"
 msgstr ""
 
-#: vault/ui/gui.py:1049
+#: vault/ui/gui.py:1048
 msgid "Restore Files/Folders"
 msgstr ""
 
-#: vault/ui/gui.py:1053
+#: vault/ui/gui.py:1052
 msgid "Method 1: Rebuild Local Database"
 msgstr ""
 
-#: vault/ui/gui.py:1061
+#: vault/ui/gui.py:1060
 msgid ""
 "Step 1: Retrieve a copy of the backup configuration from *any* recently used "
 "store."
 msgstr ""
 
-#: vault/ui/gui.py:1067
+#: vault/ui/gui.py:1066
 msgid "Step 1: Fetch Configuration"
 msgstr ""
 
-#: vault/ui/gui.py:1073
+#: vault/ui/gui.py:1072
 msgid ""
 "Step 2: Once the configuration has been fetched, The Vault can rebuild a "
 "complete\n"
@@ -799,25 +799,25 @@ msgid ""
 "files."
 msgstr ""
 
-#: vault/ui/gui.py:1079
+#: vault/ui/gui.py:1078
 msgid "Step 2: Rebuild Database"
 msgstr ""
 
-#: vault/ui/gui.py:1085
+#: vault/ui/gui.py:1084
 msgid ""
 "Step 3: Use the \"Restore Flies/Folders\" tab to recover your files and "
 "folders."
 msgstr ""
 
-#: vault/ui/gui.py:1091
+#: vault/ui/gui.py:1090
 msgid "Step 3: Switch To Restore Tab"
 msgstr ""
 
-#: vault/ui/gui.py:1096
+#: vault/ui/gui.py:1095
 msgid "Method 2: Run Recover Application"
 msgstr ""
 
-#: vault/ui/gui.py:1104
+#: vault/ui/gui.py:1103
 msgid ""
 "Every store has an emergency recovery application inside its root folder. \n"
 "Run that program (recover.py) to restore all backup data from that store. \n"
@@ -825,15 +825,15 @@ msgid ""
 "mounted."
 msgstr ""
 
-#: vault/ui/gui.py:1115 vault/recovery/recoveryui.py:22
+#: vault/ui/gui.py:1114 vault/recovery/recoveryui.py:22
 msgid "Disaster Recovery"
 msgstr ""
 
-#: vault/ui/gui.py:1119
+#: vault/ui/gui.py:1118
 msgid "Restore All Packages/Software"
 msgstr ""
 
-#: vault/ui/gui.py:1127
+#: vault/ui/gui.py:1126
 msgid ""
 "If one of your backups includes \"Backup Packages\", then\n"
 "the vault can automatically restore all software (packages)\n"
@@ -842,141 +842,141 @@ msgid ""
 "Please choose a Backup to fetch the package list from."
 msgstr ""
 
-#: vault/ui/gui.py:1135
+#: vault/ui/gui.py:1134
 msgid "Backup:"
 msgstr ""
 
-#: vault/ui/gui.py:1139 vault/ui/gui.py:2504
+#: vault/ui/gui.py:1138 vault/ui/gui.py:2500
 msgid "asdf"
 msgstr ""
 
-#: vault/ui/gui.py:1139
+#: vault/ui/gui.py:1138
 msgid "asdfasdf"
 msgstr ""
 
-#: vault/ui/gui.py:1151
+#: vault/ui/gui.py:1150
 msgid ""
 "Click the \"Show Missing Packages\" button to fetch the backed\n"
 "up package list and to compare it will the currently installed list."
 msgstr ""
 
-#: vault/ui/gui.py:1157
+#: vault/ui/gui.py:1156
 msgid "Show Missing Packages"
 msgstr ""
 
-#: vault/ui/gui.py:1165
+#: vault/ui/gui.py:1164
 msgid "Restore Packages"
 msgstr ""
 
-#: vault/ui/gui.py:1227
+#: vault/ui/gui.py:1226
 msgid "Restore Files"
 msgstr ""
 
-#: vault/ui/gui.py:1233 vault/ui/historywindow.py:96
+#: vault/ui/gui.py:1232 vault/ui/historywindow.py:96
 msgid "Folders"
 msgstr ""
 
-#: vault/ui/gui.py:1244
+#: vault/ui/gui.py:1243
 msgid "File/Folder To Restore:"
 msgstr ""
 
-#: vault/ui/gui.py:1251
+#: vault/ui/gui.py:1250
 msgid "Destination Folder:"
 msgstr ""
 
-#: vault/ui/gui.py:1260
+#: vault/ui/gui.py:1259
 msgid "Options:"
 msgstr ""
 
-#: vault/ui/gui.py:1268
+#: vault/ui/gui.py:1267
 msgid "Do not restore sub-folders"
 msgstr ""
 
-#: vault/ui/gui.py:1271
+#: vault/ui/gui.py:1270
 msgid "Notify me by desktop message when complete"
 msgstr ""
 
-#: vault/ui/gui.py:1274
+#: vault/ui/gui.py:1273
 msgid "Notify me by email when complete"
 msgstr ""
 
-#: vault/ui/gui.py:1277
+#: vault/ui/gui.py:1276
 msgid "Shutdown the computer afterwards"
 msgstr ""
 
-#: vault/ui/gui.py:1309
+#: vault/ui/gui.py:1308
 msgid "Backup Run Details"
 msgstr ""
 
-#: vault/ui/gui.py:1325
+#: vault/ui/gui.py:1324
 msgid "Overview"
 msgstr ""
 
-#: vault/ui/gui.py:1335
+#: vault/ui/gui.py:1334
 msgid ""
 "Only the first 200 files are shown because displaying\n"
 "the full list could take a while.  Do you want to see\n"
 "all the files?"
 msgstr ""
 
-#: vault/ui/gui.py:1342
+#: vault/ui/gui.py:1341
 msgid "Display All Files"
 msgstr ""
 
-#: vault/ui/gui.py:1353 vault/ui/historywindow.py:95
+#: vault/ui/gui.py:1352 vault/ui/historywindow.py:95
 msgid "Files"
 msgstr ""
 
-#: vault/ui/gui.py:1421 vault/ui/gui.py:2130 vault/ui/recoverconfig.py:243
+#: vault/ui/gui.py:1420 vault/ui/gui.py:2126 vault/ui/recoverconfig.py:243
 #: vault/ui/storewizard.py:149 vault/ui/storewizard.py:159
 #: vault/ui/storewizard.py:169
 msgid "Test"
 msgstr ""
 
-#: vault/ui/gui.py:1464
+#: vault/ui/gui.py:1463
 msgid "Storage Space"
 msgstr ""
 
-#: vault/ui/gui.py:1475
+#: vault/ui/gui.py:1474
 msgid "Auto Manage:"
 msgstr ""
 
-#: vault/ui/gui.py:1484
+#: vault/ui/gui.py:1483
 msgid "Limit to:"
 msgstr ""
 
-#: vault/ui/gui.py:1501
+#: vault/ui/gui.py:1500
 msgid ""
 "If selected, old backups will automatically be\n"
 "removed as required, and the total space used\n"
 "restricted to the limit."
 msgstr ""
 
-#: vault/ui/gui.py:1507
+#: vault/ui/gui.py:1506
 msgid "Contents:"
 msgstr ""
 
-#: vault/ui/gui.py:1511
+#: vault/ui/gui.py:1510
 msgid "not available"
 msgstr ""
 
-#: vault/ui/gui.py:1519
+#: vault/ui/gui.py:1518
 msgid "Storage Connection"
 msgstr ""
 
-#: vault/ui/gui.py:1529
+#: vault/ui/gui.py:1528
 msgid "Local Folder Details"
 msgstr ""
 
-#: vault/ui/gui.py:1540
+#: vault/ui/gui.py:1539
 msgid "Path:"
 msgstr ""
 
-#: vault/ui/gui.py:1547 vault/ui/gui.py:1643
+#: vault/ui/gui.py:1546 vault/ui/gui.py:1642
 msgid "Choose..."
 msgstr ""
 
-#: vault/ui/gui.py:1555 vault/ui/recoverconfig.py:44
+#: vault/ui/gui.py:1554 vault/ui/recoverconfig.py:44
 #: vault/ui/recoverconfig.py:223 vault/ui/recoverconfig.py:224
 #: vault/ui/recoverconfig.py:227 vault/ui/storewizard.py:34
 #: vault/ui/storewizard.py:129 vault/ui/storewizard.py:130
@@ -984,130 +984,131 @@ msgstr ""
 msgid "Local Folder"
 msgstr ""
 
-#: vault/ui/gui.py:1559
+#: vault/ui/gui.py:1558
 msgid "FTP Server Details"
 msgstr ""
 
-#: vault/ui/gui.py:1570
+#: vault/ui/gui.py:1569
 msgid "Server Address:"
 msgstr ""
 
-#: vault/ui/gui.py:1577 vault/ui/gui.py:1703
+#: vault/ui/gui.py:1576 vault/ui/gui.py:1702
 msgid "Root Folder:"
 msgstr ""
 
-#: vault/ui/gui.py:1584
+#: vault/ui/gui.py:1583
 msgid "Use SFTP:"
 msgstr ""
 
-#: vault/ui/gui.py:1588 vault/ui/gui.py:2026
+#: vault/ui/gui.py:1587 vault/ui/gui.py:2022
 msgid "(Encryption. Strongly recommended)"
 msgstr ""
 
-#: vault/ui/gui.py:1593 vault/ui/gui.py:1682
+#: vault/ui/gui.py:1592 vault/ui/gui.py:1681
 msgid "Login ID:"
 msgstr ""
 
-#: vault/ui/gui.py:1600 vault/ui/gui.py:1689 vault/ui/gui.py:2058
+#: vault/ui/gui.py:1599 vault/ui/gui.py:1688 vault/ui/gui.py:2054
 msgid "Password:"
 msgstr ""
 
-#: vault/ui/gui.py:1609 vault/ui/gui.py:1698 vault/ui/gui.py:1959
-#: vault/ui/gui.py:2069
+#: vault/ui/gui.py:1608 vault/ui/gui.py:1697 vault/ui/gui.py:1955
+#: vault/ui/gui.py:2065
 msgid "Show"
 msgstr ""
 
-#: vault/ui/gui.py:1619 vault/ui/recoverconfig.py:46
+#: vault/ui/gui.py:1618 vault/ui/recoverconfig.py:46
 #: vault/ui/recoverconfig.py:223 vault/ui/recoverconfig.py:232
 #: vault/ui/storewizard.py:38 vault/ui/storewizard.py:129
 #: vault/ui/storewizard.py:138
 msgid "FTP Server"
 msgstr ""
 
-#: vault/ui/gui.py:1623 vault/ui/gui.py:1667 vault/ui/recoverconfig.py:58
+#: vault/ui/gui.py:1622 vault/ui/gui.py:1666 vault/ui/recoverconfig.py:58
 #: vault/ui/recoverconfig.py:223 vault/ui/recoverconfig.py:256
 #: vault/ui/storewizard.py:53 vault/ui/storewizard.py:129
 #: vault/ui/storewizard.py:162
 msgid "Server Share"
 msgstr ""
 
-#: vault/ui/gui.py:1634
+#: vault/ui/gui.py:1633
 msgid "Local Path:"
 msgstr ""
 
-#: vault/ui/gui.py:1648
+#: vault/ui/gui.py:1647
 msgid "Mount Cmd:"
 msgstr ""
 
-#: vault/ui/gui.py:1655
+#: vault/ui/gui.py:1654
 msgid "Unmount Cmd:"
 msgstr ""
 
-#: vault/ui/gui.py:1671 vault/ui/recoverconfig.py:246
+#: vault/ui/gui.py:1670 vault/ui/recoverconfig.py:246
 #: vault/ui/storewizard.py:152
 msgid "DropBox Details"
 msgstr ""
 
-#: vault/ui/gui.py:1710
+#: vault/ui/gui.py:1709
 msgid "Application Key:"
 msgstr ""
 
-#: vault/ui/gui.py:1717
+#: vault/ui/gui.py:1716
 msgid "Application Secret Key:"
 msgstr ""
 
-#: vault/ui/gui.py:1729 vault/ui/gui.py:1793
+#: vault/ui/gui.py:1728 vault/ui/gui.py:1792
 msgid "Click to create an account"
 msgstr ""
 
-#: vault/ui/gui.py:1732
+#: vault/ui/gui.py:1731
 msgid "(its free!)"
 msgstr ""
 
-#: vault/ui/gui.py:1743 vault/ui/recoverconfig.py:53
+#: vault/ui/gui.py:1742 vault/ui/recoverconfig.py:53
 #: vault/ui/recoverconfig.py:223 vault/ui/recoverconfig.py:246
 #: vault/ui/storewizard.py:47 vault/ui/storewizard.py:129
 #: vault/ui/storewizard.py:152
 msgid "DropBox"
 msgstr ""
 
-#: vault/ui/gui.py:1747
+#: vault/ui/gui.py:1746
 msgid "Amazon S3 Details"
 msgstr ""
 
-#: vault/ui/gui.py:1758
+#: vault/ui/gui.py:1757
 msgid "Access Key ID:"
 msgstr ""
 
-#: vault/ui/gui.py:1765
+#: vault/ui/gui.py:1764
 msgid "Secret Access Key ID:"
 msgstr ""
 
-#: vault/ui/gui.py:1772
+#: vault/ui/gui.py:1771
 msgid "Bucket Name:"
 msgstr ""
 
-#: vault/ui/gui.py:1782
+#: vault/ui/gui.py:1781
 msgid ""
 "The bucket is a unique identifier for a set of data stored\n"
 "on Amazon S3. It must be unique world wide. We suggest\n"
 "using \"vault.your.email.address\". For example: \n"
-"    vault.myname@mailserver.com"
+"    vault.myname.mailserver.com\n"
+"(note: '@' is not permitted in bucket names)"
 msgstr ""
 
-#: vault/ui/gui.py:1807
+#: vault/ui/gui.py:1806
 msgid "Amazon S3"
 msgstr ""
 
-#: vault/ui/gui.py:1936
+#: vault/ui/gui.py:1932
 msgid "Encryption:"
 msgstr ""
 
-#: vault/ui/gui.py:1948
+#: vault/ui/gui.py:1944
 msgid "Master Password:"
 msgstr ""
 
-#: vault/ui/gui.py:1967
+#: vault/ui/gui.py:1963
 msgid ""
 "This master password is used to encrypt all passwords\n"
 "(such as FTP, DropBox etc) and to encrypt all remote\n"
@@ -1120,115 +1121,115 @@ msgid ""
 "be usable."
 msgstr ""
 
-#: vault/ui/gui.py:1976
+#: vault/ui/gui.py:1972
 msgid "Save Change"
 msgstr ""
 
-#: vault/ui/gui.py:1986
+#: vault/ui/gui.py:1982
 msgid "Security"
 msgstr ""
 
-#: vault/ui/gui.py:1990
+#: vault/ui/gui.py:1986
 msgid "Email Server"
 msgstr ""
 
-#: vault/ui/gui.py:2002
+#: vault/ui/gui.py:1998
 msgid "Mail Server:"
 msgstr ""
 
-#: vault/ui/gui.py:2013
+#: vault/ui/gui.py:2009
 msgid "Port:"
 msgstr ""
 
-#: vault/ui/gui.py:2022
+#: vault/ui/gui.py:2018
 msgid "Use SSL:"
 msgstr ""
 
-#: vault/ui/gui.py:2038
+#: vault/ui/gui.py:2034
 msgid "Use Authentication?"
 msgstr ""
 
-#: vault/ui/gui.py:2049
+#: vault/ui/gui.py:2045
 msgid "Login:"
 msgstr ""
 
-#: vault/ui/gui.py:2081
+#: vault/ui/gui.py:2077
 msgid "Address"
 msgstr ""
 
-#: vault/ui/gui.py:2094
+#: vault/ui/gui.py:2090
 msgid "Send From:"
 msgstr ""
 
-#: vault/ui/gui.py:2103
+#: vault/ui/gui.py:2099
 msgid "Send To:"
 msgstr ""
 
-#: vault/ui/gui.py:2115
+#: vault/ui/gui.py:2111
 msgid "You may enter multiple Send To addresses, separated by ';'"
 msgstr ""
 
-#: vault/ui/gui.py:2138
+#: vault/ui/gui.py:2134
 msgid "Notification Email"
 msgstr ""
 
-#: vault/ui/gui.py:2142
+#: vault/ui/gui.py:2138
 msgid "File Types:"
 msgstr ""
 
-#: vault/ui/gui.py:2194
+#: vault/ui/gui.py:2190
 msgid "File Extensions"
 msgstr ""
 
-#: vault/ui/gui.py:2205
+#: vault/ui/gui.py:2201
 msgid ""
 "Enter the list of file extensions, \n"
 "one per line. Do not include the '.'."
 msgstr ""
 
-#: vault/ui/gui.py:2227
+#: vault/ui/gui.py:2223
 msgid "File Types"
 msgstr ""
 
-#: vault/ui/gui.py:2311
+#: vault/ui/gui.py:2307
 msgid "Show History For Backup:"
 msgstr ""
 
-#: vault/ui/gui.py:2323
+#: vault/ui/gui.py:2319
 msgid "Order: Newest At Top"
 msgstr ""
 
-#: vault/ui/gui.py:2327
+#: vault/ui/gui.py:2323
 msgid "Switch"
 msgstr ""
 
-#: vault/ui/gui.py:2348
+#: vault/ui/gui.py:2344
 msgid "Show Run Details"
 msgstr ""
 
-#: vault/ui/gui.py:2354
+#: vault/ui/gui.py:2350
 msgid "Runs"
 msgstr ""
 
-#: vault/ui/gui.py:2433
+#: vault/ui/gui.py:2429
 msgid "Title"
 msgstr ""
 
-#: vault/ui/gui.py:2496
+#: vault/ui/gui.py:2492
 msgid "Missing Packages (Software)"
 msgstr ""
 
-#: vault/ui/gui.py:2508
+#: vault/ui/gui.py:2504
 msgid ""
 "Uncheck any that you do not want installed, then click \"Begin Installation"
 "\"."
 msgstr ""
 
-#: vault/ui/gui.py:2514
+#: vault/ui/gui.py:2510
 msgid "Begin Installation"
 msgstr ""
 
-#: vault/ui/gui.py:2522
+#: vault/ui/gui.py:2518
 msgid "Installation Progress"
 msgstr ""
 
@@ -1600,7 +1601,7 @@ msgstr ""
 msgid "Failed to create store"
 msgstr ""
 
-#: vault/ui/storewizard.py:106 vault/ui/storagepanel.py:93
+#: vault/ui/storewizard.py:106 vault/ui/storagepanel.py:94
 msgid "Testing"
 msgstr ""
 
@@ -1675,55 +1676,55 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: vault/ui/storagepanel.py:93
+#: vault/ui/storagepanel.py:94
 msgid ""
 "Testing connectivity and access to the store.\n"
 "Please wait..."
 msgstr ""
 
-#: vault/ui/storagepanel.py:96
+#: vault/ui/storagepanel.py:97
 msgid "Store {store} OK"
 msgstr ""
 
-#: vault/ui/storagepanel.py:109 vault/ui/storagepanel.py:115
+#: vault/ui/storagepanel.py:110 vault/ui/storagepanel.py:116
 msgid "Choose A Store Folder"
 msgstr ""
 
-#: vault/ui/storagepanel.py:211
+#: vault/ui/storagepanel.py:212
 msgid ""
 "Store '{store}' contains {size} of backups.\n"
 "Are you sure?"
 msgstr ""
 
-#: vault/ui/storagepanel.py:213
+#: vault/ui/storagepanel.py:214
 msgid "Delete Store"
 msgstr ""
 
-#: vault/ui/storagepanel.py:213
+#: vault/ui/storagepanel.py:214
 msgid "Also delete all backup data stored on the store."
 msgstr ""
 
-#: vault/ui/storagepanel.py:219
+#: vault/ui/storagepanel.py:220
 msgid "Store '{store}' is not currently used. Delete?"
 msgstr ""
 
-#: vault/ui/storagepanel.py:235
+#: vault/ui/storagepanel.py:236
 msgid "The store '{store}' seems to be corrupt."
 msgstr ""
 
-#: vault/ui/storagepanel.py:287
+#: vault/ui/storagepanel.py:293
 msgid "Size {size}, Files {files}, Folders {folders}"
 msgstr ""
 
-#: vault/ui/storagepanel.py:296
+#: vault/ui/storagepanel.py:302
 msgid "Store {store} appears to be corrupt. Unable to show."
 msgstr ""
 
-#: vault/ui/storagepanel.py:303
+#: vault/ui/storagepanel.py:309
 msgid "Storage name cannot be blank"
 msgstr ""
 
-#: vault/ui/storagepanel.py:336
+#: vault/ui/storagepanel.py:347
 msgid "Invalid Storage type"
 msgstr ""
 
@@ -1839,7 +1840,7 @@ msgstr ""
 msgid "Root folder cannot be blank"
 msgstr ""
 
-#: vault/store/folderstore.py:108
+#: vault/store/folderstore.py:107
 msgid "Missing file"
 msgstr ""
 
