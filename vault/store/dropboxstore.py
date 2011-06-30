@@ -186,16 +186,18 @@ class DropBoxStore(StoreBase):
     def _connect(self):
 #        config = auth.SimpleOAuthClient(server, port, request_token_url, access_token_url, authorization_url)
         log.debug("Connecting...")
-        global auth_config
-        auth_config['consumer_key'] = self.app_key
-        auth_config['consumer_secret'] = self.app_secret_key
-        self.dba = auth.Authenticator(auth_config)
-        self.access_token = self.dba.obtain_trusted_access_token(str(self.login), str(self.password))
-        log.debug("Got access token: ", self.access_token)
-        self.db_client = client.DropboxClient(auth_config['server'], auth_config['content_server'], 
-                                         auth_config['port'], self.dba, self.access_token)
-        self.db_root = auth_config['dropbox_root']
-
+        try:
+            global auth_config
+            auth_config['consumer_key'] = str(self.app_key)
+            auth_config['consumer_secret'] = str(self.app_secret_key)
+            self.dba = auth.Authenticator(auth_config)
+            self.access_token = self.dba.obtain_trusted_access_token(str(self.login), str(self.password))
+            log.debug("Got access token: ", self.access_token)
+            self.db_client = client.DropboxClient(auth_config['server'], auth_config['content_server'], 
+                                             auth_config['port'], self.dba, self.access_token)
+            self.db_root = auth_config['dropbox_root']
+        except Exception as e:
+            raise Exception("Access denied. Check login, password and access keys")
         log.debug("Connected. Making root")
 
     def _disconnect(self):

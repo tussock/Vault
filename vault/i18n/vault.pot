@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-29 17:34+1200\n"
+"POT-Creation-Date: 2011-06-30 15:56+1200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -268,7 +268,8 @@ msgstr ""
 msgid "Confirm Delete"
 msgstr ""
 
-#: vault/ui/backuppanel.py:207
+#: vault/ui/backuppanel.py:207 vault/ui/storagepanel.py:216
+#: vault/ui/storagepanel.py:224
 msgid "Deleting"
 msgstr ""
 
@@ -929,8 +930,8 @@ msgid "Files"
 msgstr ""
 
 #: vault/ui/gui.py:1420 vault/ui/gui.py:2126 vault/ui/recoverconfig.py:243
-#: vault/ui/storewizard.py:149 vault/ui/storewizard.py:159
-#: vault/ui/storewizard.py:169
+#: vault/ui/storewizard.py:168 vault/ui/storewizard.py:182
+#: vault/ui/storewizard.py:192 vault/ui/storewizard.py:202
 msgid "Test"
 msgstr ""
 
@@ -979,9 +980,9 @@ msgstr ""
 
 #: vault/ui/gui.py:1554 vault/ui/recoverconfig.py:44
 #: vault/ui/recoverconfig.py:223 vault/ui/recoverconfig.py:224
-#: vault/ui/recoverconfig.py:227 vault/ui/storewizard.py:34
-#: vault/ui/storewizard.py:129 vault/ui/storewizard.py:130
-#: vault/ui/storewizard.py:133
+#: vault/ui/recoverconfig.py:227 vault/ui/storewizard.py:35
+#: vault/ui/storewizard.py:148 vault/ui/storewizard.py:149
+#: vault/ui/storewizard.py:152
 msgid "Local Folder"
 msgstr ""
 
@@ -1020,15 +1021,15 @@ msgstr ""
 
 #: vault/ui/gui.py:1618 vault/ui/recoverconfig.py:46
 #: vault/ui/recoverconfig.py:223 vault/ui/recoverconfig.py:232
-#: vault/ui/storewizard.py:38 vault/ui/storewizard.py:129
-#: vault/ui/storewizard.py:138
+#: vault/ui/storewizard.py:39 vault/ui/storewizard.py:148
+#: vault/ui/storewizard.py:157
 msgid "FTP Server"
 msgstr ""
 
 #: vault/ui/gui.py:1622 vault/ui/gui.py:1666 vault/ui/recoverconfig.py:58
 #: vault/ui/recoverconfig.py:223 vault/ui/recoverconfig.py:256
-#: vault/ui/storewizard.py:53 vault/ui/storewizard.py:129
-#: vault/ui/storewizard.py:162
+#: vault/ui/storewizard.py:62 vault/ui/storewizard.py:148
+#: vault/ui/storewizard.py:195
 msgid "Server Share"
 msgstr ""
 
@@ -1045,7 +1046,7 @@ msgid "Unmount Cmd:"
 msgstr ""
 
 #: vault/ui/gui.py:1670 vault/ui/recoverconfig.py:246
-#: vault/ui/storewizard.py:152
+#: vault/ui/storewizard.py:171
 msgid "DropBox Details"
 msgstr ""
 
@@ -1067,12 +1068,12 @@ msgstr ""
 
 #: vault/ui/gui.py:1742 vault/ui/recoverconfig.py:53
 #: vault/ui/recoverconfig.py:223 vault/ui/recoverconfig.py:246
-#: vault/ui/storewizard.py:47 vault/ui/storewizard.py:129
-#: vault/ui/storewizard.py:152
+#: vault/ui/storewizard.py:48 vault/ui/storewizard.py:148
+#: vault/ui/storewizard.py:171
 msgid "DropBox"
 msgstr ""
 
-#: vault/ui/gui.py:1746
+#: vault/ui/gui.py:1746 vault/ui/storewizard.py:185
 msgid "Amazon S3 Details"
 msgstr ""
 
@@ -1097,7 +1098,8 @@ msgid ""
 "(note: '@' is not permitted in bucket names)"
 msgstr ""
 
-#: vault/ui/gui.py:1806
+#: vault/ui/gui.py:1806 vault/ui/storewizard.py:56 vault/ui/storewizard.py:148
+#: vault/ui/storewizard.py:185
 msgid "Amazon S3"
 msgstr ""
 
@@ -1290,7 +1292,7 @@ msgstr ""
 msgid "Successfully connected to store"
 msgstr ""
 
-#: vault/ui/recoverconfig.py:200 vault/ui/storewizard.py:108
+#: vault/ui/recoverconfig.py:200 vault/ui/storewizard.py:127
 msgid "Success"
 msgstr ""
 
@@ -1315,7 +1317,7 @@ msgstr ""
 msgid "We are now ready to recover your backup configuration."
 msgstr ""
 
-#: vault/ui/recoverconfig.py:221 vault/ui/storewizard.py:127
+#: vault/ui/recoverconfig.py:221 vault/ui/storewizard.py:146
 msgid "Type Of Storage"
 msgstr ""
 
@@ -1323,39 +1325,39 @@ msgstr ""
 msgid "What type of storage will we connect to?"
 msgstr ""
 
-#: vault/ui/recoverconfig.py:227 vault/ui/storewizard.py:133
+#: vault/ui/recoverconfig.py:227 vault/ui/storewizard.py:152
 msgid "Folder Storage Details"
 msgstr ""
 
 #: vault/ui/recoverconfig.py:228 vault/ui/recoverconfig.py:241
-#: vault/ui/recoverconfig.py:251 vault/ui/storewizard.py:134
-#: vault/ui/storewizard.py:157
+#: vault/ui/recoverconfig.py:251 vault/ui/storewizard.py:153
+#: vault/ui/storewizard.py:176
 msgid "Path To Store"
 msgstr ""
 
-#: vault/ui/recoverconfig.py:232 vault/ui/storewizard.py:138
+#: vault/ui/recoverconfig.py:232 vault/ui/storewizard.py:157
 msgid "FTP Storage Details"
 msgstr ""
 
-#: vault/ui/recoverconfig.py:233 vault/ui/storewizard.py:139
+#: vault/ui/recoverconfig.py:233 vault/ui/storewizard.py:158
 msgid "Name or IP Address of FTP Server"
 msgstr ""
 
-#: vault/ui/recoverconfig.py:235 vault/ui/storewizard.py:141
+#: vault/ui/recoverconfig.py:235 vault/ui/storewizard.py:160
 msgid "Use an encrypted connection"
 msgstr ""
 
-#: vault/ui/recoverconfig.py:235 vault/ui/storewizard.py:141
+#: vault/ui/recoverconfig.py:235 vault/ui/storewizard.py:160
 msgid "Enable SFTP"
 msgstr ""
 
 #: vault/ui/recoverconfig.py:237 vault/ui/recoverconfig.py:247
-#: vault/ui/storewizard.py:143 vault/ui/storewizard.py:153
+#: vault/ui/storewizard.py:162 vault/ui/storewizard.py:172
 msgid "Login name"
 msgstr ""
 
 #: vault/ui/recoverconfig.py:239 vault/ui/recoverconfig.py:249
-#: vault/ui/storewizard.py:145 vault/ui/storewizard.py:155
+#: vault/ui/storewizard.py:164 vault/ui/storewizard.py:174
 msgid "Password"
 msgstr ""
 
@@ -1584,47 +1586,47 @@ msgstr ""
 msgid "Which store should this be saved to?"
 msgstr ""
 
-#: vault/ui/storewizard.py:60
+#: vault/ui/storewizard.py:69
 msgid "Creating Store"
 msgstr ""
 
-#: vault/ui/storewizard.py:60
+#: vault/ui/storewizard.py:69
 msgid ""
 "Creating and testing new store.\n"
 "Please wait..."
 msgstr ""
 
-#: vault/ui/storewizard.py:67
+#: vault/ui/storewizard.py:76
 msgid "Store successfully created."
 msgstr ""
 
-#: vault/ui/storewizard.py:70
+#: vault/ui/storewizard.py:79
 msgid "Failed to create store"
 msgstr ""
 
-#: vault/ui/storewizard.py:106 vault/ui/storagepanel.py:94
+#: vault/ui/storewizard.py:125 vault/ui/storagepanel.py:94
 msgid "Testing"
 msgstr ""
 
-#: vault/ui/storewizard.py:106
+#: vault/ui/storewizard.py:125
 msgid ""
 "Testing connection to Store.\n"
 "Please wait..."
 msgstr ""
 
-#: vault/ui/storewizard.py:108
+#: vault/ui/storewizard.py:127
 msgid "Successfully connected and tested store"
 msgstr ""
 
-#: vault/ui/storewizard.py:110
+#: vault/ui/storewizard.py:129
 msgid "Store Test Failed: {error}"
 msgstr ""
 
-#: vault/ui/storewizard.py:114
+#: vault/ui/storewizard.py:133
 msgid "Store Creation Wizard"
 msgstr ""
 
-#: vault/ui/storewizard.py:115
+#: vault/ui/storewizard.py:134
 msgid ""
 "Welcome to the store creation wizard.\n"
 "\n"
@@ -1633,35 +1635,55 @@ msgid ""
 "through the creation of your store."
 msgstr ""
 
-#: vault/ui/storewizard.py:120
+#: vault/ui/storewizard.py:139
 msgid "We are now ready to create the store."
 msgstr ""
 
-#: vault/ui/storewizard.py:123
+#: vault/ui/storewizard.py:142
 msgid "Store Name"
 msgstr ""
 
-#: vault/ui/storewizard.py:124
+#: vault/ui/storewizard.py:143
 msgid "What shall we call this store?"
 msgstr ""
 
-#: vault/ui/storewizard.py:128
+#: vault/ui/storewizard.py:147
 msgid "What type of store will we connect to?"
 msgstr ""
 
-#: vault/ui/storewizard.py:147
+#: vault/ui/storewizard.py:166
 msgid "Path to store"
 msgstr ""
 
-#: vault/ui/storewizard.py:162
+#: vault/ui/storewizard.py:178
+msgid "Application Key"
+msgstr ""
+
+#: vault/ui/storewizard.py:180
+msgid "Application Secret Key"
+msgstr ""
+
+#: vault/ui/storewizard.py:186
+msgid "Access Key ID"
+msgstr ""
+
+#: vault/ui/storewizard.py:188
+msgid "Secret Access Key ID"
+msgstr ""
+
+#: vault/ui/storewizard.py:190
+msgid "Bucket Name"
+msgstr ""
+
+#: vault/ui/storewizard.py:195
 msgid "Server Share Storage Details"
 msgstr ""
 
-#: vault/ui/storewizard.py:165
+#: vault/ui/storewizard.py:198
 msgid "Command to mount share"
 msgstr ""
 
-#: vault/ui/storewizard.py:167
+#: vault/ui/storewizard.py:200
 msgid "Command to unmount share"
 msgstr ""
 
@@ -1705,27 +1727,34 @@ msgstr ""
 msgid "Also delete all backup data stored on the store."
 msgstr ""
 
-#: vault/ui/storagepanel.py:220
+#: vault/ui/storagepanel.py:216 vault/ui/storagepanel.py:224
+#, python-format
+msgid ""
+"Deleting store %s.\n"
+"Please wait. This can take a while..."
+msgstr ""
+
+#: vault/ui/storagepanel.py:222
 msgid "Store '{store}' is not currently used. Delete?"
 msgstr ""
 
-#: vault/ui/storagepanel.py:236
+#: vault/ui/storagepanel.py:239
 msgid "The store '{store}' seems to be corrupt."
 msgstr ""
 
-#: vault/ui/storagepanel.py:293
+#: vault/ui/storagepanel.py:296
 msgid "Size {size}, Files {files}, Folders {folders}"
 msgstr ""
 
-#: vault/ui/storagepanel.py:302
+#: vault/ui/storagepanel.py:305
 msgid "Store {store} appears to be corrupt. Unable to show."
 msgstr ""
 
-#: vault/ui/storagepanel.py:309
+#: vault/ui/storagepanel.py:312
 msgid "Storage name cannot be blank"
 msgstr ""
 
-#: vault/ui/storagepanel.py:347
+#: vault/ui/storagepanel.py:350
 msgid "Invalid Storage type"
 msgstr ""
 
@@ -1854,7 +1883,7 @@ msgstr ""
 msgid "Unable to delete %s"
 msgstr ""
 
-#: vault/store/s3store.py:39
+#: vault/store/s3store.py:35
 msgid "bucket cannot be blank"
 msgstr ""
 

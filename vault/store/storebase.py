@@ -288,7 +288,7 @@ class StoreBase(Serializer):
                         remote_version = self.get_contents(version_file).strip()
                         local_version = open(os.path.join(const.AppDir, "recovery", const.RecoveryVersion)).read().strip()
                         log.debug("Recovery Version Check: Remote version: '%s' Local Version: '%s'" % (remote_version, local_version))
-                        if remote_version >= local_version:
+                        if int(remote_version) >= int(local_version):
                             copy_recovery = False
                 else:
                     log.debug("No remote recovery. Sending...")
@@ -299,7 +299,7 @@ class StoreBase(Serializer):
             if copy_recovery:
                 log.debug("Copying recovery files to store")
                 for name in const.RecoveryFiles:
-                    self.send(os.path.join(const.AppDir, "recovery", name), const.RecoveryFolder)
+                    self.send(os.path.join(const.AppDir, "recovery", name), const.RecoveryFolder+os.sep)
         except:
             raise
 

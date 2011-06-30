@@ -14,6 +14,7 @@ from store.folderstore import FolderStore
 from store.ftpstore import FTPStore
 from store.dropboxstore import DropBoxStore
 from store.sharestore import ShareStore
+from store.s3store import S3Store
 from progressdialog import ProgressDialog
 import app
 
@@ -53,6 +54,7 @@ def wiz_execute(wiz):
         secret_key = wiz.fields["dbsecretkey"].value
         store = DropBoxStore(name, 0, False, root, login, password, key, secret_key)
     elif wiz.fields["storagetype"].value == _("Amazon S3"):
+        name = wiz.fields["name"].value
         key = wiz.fields["s3key"].value
         secret_key = wiz.fields["s3secretkey"].value
         bucket = wiz.fields["s3bucket"].value

@@ -725,6 +725,10 @@
       </listitem>
 
       <listitem>
+        <para>A share on a file server</para>
+      </listitem>
+
+      <listitem>
         <para>A cloud storage provider, such as Amazon S3 and DropBox</para>
       </listitem>
     </itemizedlist>
@@ -733,7 +737,7 @@
     is ever stolen you dont want your backups stolen too! Cloud stores are
     perfect in this regard as they are cheap (often free for up to 2GB or
     more) and highly available/reliable. Cloud stores are worth consideration
-    for your most crucial data.</para>
+    for your most crucial data, although perhaps not your music.</para>
 
     <para>When you start to use a store, a set of files and folders will
     automatically be created. These are detailed below (see Structure), but
@@ -756,15 +760,21 @@
             </listitem>
 
             <listitem>
-              <para>__recovery__version__</para>
-            </listitem>
+              <para>Recovery</para>
 
-            <listitem>
-              <para>recovery.py</para>
-            </listitem>
+              <itemizedlist>
+                <listitem>
+                  <para>version</para>
+                </listitem>
 
-            <listitem>
-              <para>recoveryui.py</para>
+                <listitem>
+                  <para>recovery.py</para>
+                </listitem>
+
+                <listitem>
+                  <para>recoveryui.py</para>
+                </listitem>
+              </itemizedlist>
             </listitem>
 
             <listitem>
@@ -788,15 +798,49 @@
                     </listitem>
 
                     <listitem>
-                      <para>data000000</para>
-                    </listitem>
+                      <para>data</para>
 
-                    <listitem>
-                      <para>data000001</para>
-                    </listitem>
+                      <itemizedlist>
+                        <listitem>
+                          <para>data00000</para>
 
-                    <listitem>
-                      <para>...</para>
+                          <itemizedlist>
+                            <listitem>
+                              <para>data000</para>
+                            </listitem>
+
+                            <listitem>
+                              <para>data001</para>
+                            </listitem>
+
+                            <listitem>
+                              <para>...</para>
+                            </listitem>
+                          </itemizedlist>
+                        </listitem>
+
+                        <listitem>
+                          <para>data00001</para>
+
+                          <itemizedlist>
+                            <listitem>
+                              <para>data000</para>
+                            </listitem>
+
+                            <listitem>
+                              <para>data001</para>
+                            </listitem>
+
+                            <listitem>
+                              <para>...</para>
+                            </listitem>
+                          </itemizedlist>
+                        </listitem>
+
+                        <listitem>
+                          <para>...</para>
+                        </listitem>
+                      </itemizedlist>
                     </listitem>
                   </itemizedlist>
                 </listitem>
@@ -843,7 +887,7 @@
               </row>
 
               <row>
-                <entry>__recovery_version__</entry>
+                <entry>version</entry>
 
                 <entry>This file contains the currently installed version of
                 the disaster recovery program. If the recovery program is out
@@ -934,15 +978,12 @@
               </row>
 
               <row>
-                <entry>data000000 data000001 ...</entry>
+                <entry>data000 data001 ...</entry>
 
                 <entry>The actual backup data is stored in a set of files
-                prefixed with "data". Each file is up to 2GB (actually just
-                under) in case the file system is FAT32, which has a file size
-                limit of 2GB. Since 1 million data files can be created, the
-                practical limit of files that can be backed up in each backup
-                run (after compression) is 2GB * 10^6 or about 2
-                petabytes.</entry>
+                prefixed with "data". Each file is up to 20MB in size. There
+                are 100 data files per data folder (or 2GB per folder), and no
+                limit to the number of data folders.</entry>
               </row>
             </tbody>
           </tgroup>

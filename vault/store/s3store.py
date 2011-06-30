@@ -8,10 +8,6 @@
 @author: paul
 '''
 
-import os
-import sys
-import tempfile
-
 from storebase import StoreBase
 from lib import const
 from lib import passphrase
@@ -89,21 +85,27 @@ class S3Store(StoreBase):
     def _connect(self):
 #        config = auth.SimpleOAuthClient(server, port, request_token_url, access_token_url, authorization_url)
         log.debug("Connecting...")
-        if self.key != "" and self.secret_key != "":
-            #    We will be providing a key. If not, we will assume that boto.conf is set up
-            try:
-                #    This may already exist.
-                boto.config.add_section("Credentials")
-            except:
-                pass
-            boto.config.set("Credentials", 'aws_access_key_id', self.key)
-            boto.config.set("Credentials", 'aws_secret_access_key', self.secret_key)
-        self.s3 = boto.connect_s3()
-
-        log.debug("Connected. Making bucket")
+        try:
+            if self.key != "" and self.secret_key != "":
+                #    We will be providing a key. If not, we will assume that boto.conf is set up
+                try:
+                    #    This may already exist.
+                    boto.config.add_section("Credentials")
+                except:
+                    pass
+                boto.config.set("Credentials", 'aws_access_key_id', self.key)
+                boto.config.set("Credentials", 'aws_secret_access_key', self.secret_key)
+            self.s3 = boto.connect_s3()
+    
+            log.debug("Connected. Making bucket")
         #    If the bucket exists... this wont fail
-        self.s3.create_bucket(self.bucket)
-        self.s3_bucket = self.s3.get_bucket(self.bucket)
+            self.s3.create_bucket(self.bucket)
+            self.s3_bucket = self.s3.get_bucket(self.bucket)
+        except Exception as e:
+            if hasattr(e, "error_message"):
+                raise Exception(e.error_message)
+            else:
+                raise
 
     def _disconnect(self):
         self.s3 = None
@@ -122,7 +124,9 @@ class S3Store(StoreBase):
     def _make_dir(self, folder):
         if folder in ["", "/", "."]:
             return
-            
+        
+        #    Folders are not required in S3
+        return
         #    We need to create something so that exists and remove work.
         key = self.s3_bucket.new_key(folder)
         key.set_contents_from_string('DIR')

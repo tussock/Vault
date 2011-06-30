@@ -213,15 +213,18 @@ class StoragePanel(EditPanel, gui.StoragePanel):
                                                 store=name, size=utils.readable_form(use.size))
             mbox = OptionDialog(self, msg, _("Delete Store"), _("Also delete all backup data stored on the store."))
             if mbox.ShowModal() == wx.ID_OK:
-                self.delete_store(name, mbox.chkOption.GetValue())
-                self.clear()
-                self.state = ViewState
+                with ProgressDialog(self, _("Deleting"), _("Deleting store %s.\nPlease wait. This can take a while..." % name)):
+                    
+                    self.delete_store(name, mbox.chkOption.GetValue())
+                    self.clear()
+                    self.state = ViewState
         else:
             ret = dlg.OkCancel(self, _("Store '{store}' is not currently used. Delete?").format(store=name))
             if ret == wx.ID_OK:
-                self.delete_store(name, False)
-                self.clear()
-                self.state = ViewState
+                with ProgressDialog(self, _("Deleting"), _("Deleting store %s.\nPlease wait. This can take a while..." % name)):
+                    self.delete_store(name, False)
+                    self.clear()
+                    self.state = ViewState
         app.broadcast_update()
 
 
