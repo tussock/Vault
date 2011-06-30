@@ -11,7 +11,7 @@ Created on Nov 10, 2010
 
 import os
 import sys
-from threading import Thread, RLock
+from threading import Thread
  
 from storebase import *
 from lib import const
