@@ -18,7 +18,6 @@ from lib.backup import Backup
 from server.run import Run
 from server.restore import Restore
 from lib import utils
-from lib.dlg import Notify
 from lib import sendemail
 from store.folderstore import FolderStore
 
@@ -68,7 +67,11 @@ class Tester():
             pass
             
         if self.options.message:
-            Notify(const.AppTitle, "Test run is complete")
+            try:
+                from lib.dlg import Notify
+                Notify(const.AppTitle, "Test run is complete")
+            except:
+                log.debug("Unable to notify. No-one logged in?")
         if self.options.email:
             self.send_email(True)
         if self.options.shutdown:

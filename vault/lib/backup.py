@@ -89,10 +89,12 @@ class Backup(Serializer):
             OR (for custom)
                 crontab\ncrontab
     '''
-    def __init__(self, name=u"__dummy__"):
+    def __init__(self, name=u"<blank>"):
         log.trace("***Backup.init", name)
-        if name == const.RecoveryFolder:
-            raise Exception(_("You cannot use the name '%s' for a backup. It is reserved for system use") % const.RecoveryFolder)
+        if len(name) == 0:
+            raise Exception(_("You cannot have a blank backup"))
+        if name[0] == "_":
+            raise Exception(_("Backup names starting with '_' are reserved."))
         self.name = name
         self.active = True
         self.include_folders = []

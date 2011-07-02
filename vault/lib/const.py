@@ -72,8 +72,8 @@ UIPath = os.path.join(AppDir, UIProgram)
 ServerProgram = "vault_svr.py"
 ServerPath = os.path.join(AppDir, ServerProgram)
 
-StoreMarkerFile = "__store__"
-RecoveryFolder = "Recovery"
+StoreMarkerFile = "_store_"
+RecoveryFolder = "_Recovery_"
 RecoveryVersion = 'version'
 RecoveryFiles = ["recovery.py", "recoveryui.py", RecoveryVersion]
 LOFFile = "lof"
@@ -187,4 +187,7 @@ Niceness = 10
 #    Sort Orders
 ASC = 1
 DESC = 2
+
+#    Is this the first time we have run the program?
+FirstTime = False
 

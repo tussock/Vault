@@ -28,7 +28,6 @@ from store.streamer import StreamOut
 from store.storebase import StoreFullException
 from lib import cryptor      #@UnresolvedImport
 from lib import utils
-from lib.dlg import Notify
 from lib import sendemail
 from lib import locking      #@UnresolvedImport
 from verify import Verify
@@ -249,6 +248,7 @@ class Run():
 
         if self.options.message or (self.backup.notify_msg and not self.dry_run):
             try:
+                from lib.dlg import Notify
                 Notify(const.AppTitle, message)
             except Exception as e:
                 #    This one is not really an error... there is probably no-one logged in.
@@ -581,7 +581,7 @@ class Run():
             #    Otherwise log it and keep going...
             msg = "Unable to backup %s: %s" % (path, str(e))
             self.db.save_message(msg)
-            log.error(msg)
+            log.warn(msg)
 
     def do_backup_folder(self, folder, name):
         log.trace("do_backup_folder", folder, name)
@@ -612,7 +612,7 @@ class Run():
             #    Otherwise log it and keep going...
             msg = "Unable to backup %s: %s" % (path, str(e))
             self.db.save_message(msg)
-            log.error(msg)
+            log.warn(msg)
 
     def do_backup_deleted(self, folder, name):
         path = os.path.join(folder, name)
@@ -634,7 +634,7 @@ class Run():
             #    Otherwise log it and keep going...
             msg = "Unable to backup %s: %s" % (path, str(e))
             self.db.save_message(msg)
-            log.error(msg)
+            log.warn(msg)
 
 
     def prepare_store(self):

@@ -70,6 +70,7 @@ class Config(serializer.Serializer):
                 appconfig.build_config(_appconfig)
                 _appconfig.post_load()
                 _appconfig.save()
+                const.FirstTime = True
         log.trace("Returning", _appconfig)
         return _appconfig
 

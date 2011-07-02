@@ -17,7 +17,6 @@ from lib import passphrase
 from lib.config import Config
 from lib.db import DB
 from store.streamer import StreamIn
-from lib.dlg import Notify
 from lib import sendemail
 from lib import cryptor      #@UnresolvedImport
 
@@ -126,11 +125,19 @@ class Restore():
             # TODO! Check for files that weren't found.
 
         if self.options.message:
-            log.debug("Notifying user")
-            Notify(const.AppTitle, _("Restore is complete"))
+            try:
+                log.debug("Notifying user")
+                from lib.dlg import Notify
+                Notify(const.AppTitle, _("Restore is complete"))
+            except:
+                #    Probably no-one logged in
+                log.debug("Unable to notify. No-one logged in?")
         if self.options.email:
-            log.debug("Emailing user")
-            self.send_email(True)
+            try:
+                log.debug("Emailing user")
+                self.send_email(True)
+            except Exception as e:
+                log.debug("Failed to email: ", str(e))
         if self.options.shutdown:
             log.debug("Shutting down")
             os.system("shutdown -P +2")
