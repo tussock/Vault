@@ -127,7 +127,7 @@ class Verify():
         self.store_thread.start()
 
         log.debug("Connecting tar object")
-        self.tarfile = tarfile.open(mode="r|gz", fileobj=self.crypto)
+        self.tarfile = tarfile.open(mode="r|gz", fileobj=self.crypto, bufsize=const.BufferSize)
 
         log.trace("Completed input preparation")
 

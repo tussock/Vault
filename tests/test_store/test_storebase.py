@@ -273,6 +273,12 @@ class StoreBaseTests:
         #    Close will queue the job and start the worker
         #    This will cause flush to clean up the error condition
         self.assertRaises(DebugException, fd.close)
+        #    There will be an error in the store... clear it
+        try:
+            #    This will generate an error, but also clean up.
+            self.store.flush()
+        except:
+            pass
 
     def testRead(self):
         testfile = utils.maketempfile(1037)

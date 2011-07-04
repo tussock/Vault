@@ -273,7 +273,7 @@ class Restore():
 
         #    Now set up the tar file which will feed all this
         log.debug("Connecting tar object")
-        self.tarfile = tarfile.open(mode="r|gz", fileobj=self.crypto)
+        self.tarfile = tarfile.open(mode="r|gz", fileobj=self.crypto, bufsize=const.BufferSize)
 
         log.trace("Completed input preparation")
 

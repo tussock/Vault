@@ -105,9 +105,10 @@ class StreamOut(Thread, StreamBase):
             #    If something went wrong, we try to close the pipe to ensure
             #    the callers know about it. Make sure this can't fail.
             try:
-                self.pipe.crash()
+                self.stream.crash()
             except:
                 pass
+            log.debug("Streamer terminating")
             
     def get_hash(self):
         return (self.total_bytes, self.hashobj.hexdigest())
@@ -169,7 +170,7 @@ class StreamIn(Thread, StreamBase):
             log.debug("Got error in streamer run:", str(e))
             #    If something went wrong, we try to close the pipe to ensure
             #    the callers know about it. Make sure this can't fail.
-            log.error("Closing the pipe")
+            log.error("Closing the stream")
             try:
                 self.stream.crash()
             except:

@@ -222,8 +222,11 @@ class DropBoxStore(StoreBase):
         try:
             dest = utils.join_paths(self.root, dest_folder)
             with open(src, "rb") as fd:
+                log.debug("Dropbox Sending", src)
                 ret = self.db_client.put_file(self.db_root, dest, fd)
+            log.debug("Dropbox Send complete.", ret)
             if ret.status != 200:
+                log.debug("Dropbox send failed")
                 raise IOError("Unable to send file: " + ret.reason)
         finally:
             if old_src:

@@ -692,7 +692,7 @@ class Run():
         #    Now set up the tar file which will feed all this
         log.debug("Connecting tar object")
         self.tarfile = tarfile.open(mode="w|gz", fileobj=self.crypto, format=tarfile.PAX_FORMAT, encoding="utf-8",
-                                    dereference=False)
+                                    dereference=False, bufsize=const.BufferSize)
 
         #    Now set up a zipped temp file to record the list of files/folders saved
         tmp = tempfile.NamedTemporaryFile(delete=False)

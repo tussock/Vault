@@ -154,11 +154,11 @@ else:
 MinSpaceAvail = 2*ChunkSize
 
 
-#    How much will we attempt to read/write at a time. (100k)
+#    How much will we attempt to read/write at a time. (1m)
 if Debug:
-    BufferSize = 10240
+    BufferSize = 10 * Kilobyte
 else:
-    BufferSize = 102400
+    BufferSize = 1 * Megabyte
 
 if Debug:
     FSCacheSize = 5
@@ -167,9 +167,9 @@ else:
 
 #    Minimum size of a Storage area
 if Debug:
-    MinStoreSize = 1 * 1024 * 1024
+    MinStoreSize = 1 * Megabyte
 else:
-    MinStoreSize = 10 * 1024 * 1024
+    MinStoreSize = 10 * Megabyte
 
 
 

@@ -70,11 +70,13 @@ class IOWorker(Thread):
                     if self.store.debug_fail:
                         raise DebugException("FAIL TEST")
                     self.store.send(path, dest_path)
+                    log.debug("Success sending work")
                 except Exception as e:
+                    log.error("Failed to send a file!")
                     self.error = e
                     #    If we can't sent it... fail. 
                     #    Send will retry (usually - can be overridden).
-                    return
+                    break
                 finally:
                     try:
                         os.remove(path)
@@ -82,6 +84,7 @@ class IOWorker(Thread):
                         pass
                     
         #    We are finishing... So clean out the queue and clean up files
+        log.debug("Cleaning up files and finishing")
         while not self.queue.empty():
             try:
                 work = self.queue.get(True, 0)
@@ -89,7 +92,7 @@ class IOWorker(Thread):
                 os.remove(path)
             except:
                 pass
-                
+        log.debug("Threading stopping")
                     
             
 
@@ -636,6 +639,12 @@ class StoreBase(Serializer):
                 self.io_worker = IOWorker(self, self.queue)  
                 self.io_worker.start()                  
             #    This could block if the queue is full
+            #    Before we put it into the queue, check that the
+            #    ioworker is up and running and not in an error state
+            if self.io_worker.error:
+                raise self.io_worker.error
+            if not self.io_worker.is_alive():
+                raise Exception("IO Worker has died") 
             self.queue.put((src, dest))
             return dest
             
@@ -646,9 +655,12 @@ class StoreBase(Serializer):
         success = False
         while not success:
             try:
+                log.debug("Storebase blocking send")
                 self._send(src, dest)
                 success = True
+                log.debug("Storebase blocking send Success")
             except Exception as e:
+                log.debug("Storebase blocking send Failed. attempt=", retries)
                 self.disconnect()
                 self.connect()
                 retries += 1
