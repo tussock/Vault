@@ -356,7 +356,7 @@ class Run():
                 self.store.send(enc_path, os.path.join(self.backup_folder, name))
                 os.remove(enc_path)
             else:
-                self.store.send(path, self.backup_folder+os.sep)
+                self.store.send(path, os.path.join(self.backup_folder, name))
 
 
     def build_excl_exts(self):

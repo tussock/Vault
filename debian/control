@@ -15,6 +15,7 @@ Depends: python-setuptools (>= 0.6.4),
 		 python-wxgtk2.8 (>= 2.8.11),
 		 gettext (>= 0.18.1),
 		 menu (>= 2.1.44),
+		 python-boto (>= 1.9),
 		 ${misc:Depends}, 		 
          ${python:Depends}		 
 Description: Backups For The Rest Of Us

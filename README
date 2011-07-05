@@ -41,6 +41,14 @@ Installation Instructions:
 For more detailed instructions see: http://www.kereru.org/vault
 
 See: DEPENDS for a full list of dependencies.
+Requires Packages:
+ 	python-setuptools
+   	python-wxgtk2.8	(for GUI framework)
+   	python-boto (for Amazon S3 support)
+   	gettext (i18n)
+   	menu
+Also requires python packages (install with easy_install)
+   	poster (for DropBox connectivity). 
 
 Option 1:
 Download and install the .DEB, then double click and select "Install".
