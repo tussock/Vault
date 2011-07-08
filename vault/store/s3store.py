@@ -12,7 +12,7 @@ from storebase import StoreBase
 from lib import const
 from lib import passphrase
 from lib.cryptor import decrypt_string_base64, encrypt_string_base64
-import boto 
+import boto
 
 #    Do this last!
 from lib.logger import Logger
@@ -20,17 +20,17 @@ log = Logger("io")
 
 
 class S3Store(StoreBase):
-    def __init__(self, name="__dummy__", limit="", auto_manage=False, 
+    def __init__(self, name="__dummy__", limit="", auto_manage=False,
                  bucket="__dummy__", key="", secret_key=""):
         StoreBase.__init__(self, name, limit, auto_manage)
-        
+
         #    We dont create large files for dropbox.
         log.trace("S3Store.init", name, limit, auto_manage, bucket, key, secret_key)
         if const.Debug:
             self.split_size = 500 * 1024
         else:
             self.split_size = 100 * 1024 * 1024
-     
+
         if bucket == "":
             raise Exception(_("bucket cannot be blank"))
 
@@ -41,20 +41,20 @@ class S3Store(StoreBase):
         self.pre_save()
         for attr in ["bucket", "key_c", "secret_key_c"]:
             self._persistent.append(attr)
-        
-        
+
+
 
     def pre_save(self):
-        self.key_c = encrypt_string_base64(passphrase.passphrase, self._key) 
-        self.secret_key_c = encrypt_string_base64(passphrase.passphrase, self._secret_key) 
+        self.key_c = encrypt_string_base64(passphrase.passphrase, self._key)
+        self.secret_key_c = encrypt_string_base64(passphrase.passphrase, self._secret_key)
     def post_load(self):
-        self._key = decrypt_string_base64(passphrase.passphrase, self.key_c) 
-        self._secret_key = decrypt_string_base64(passphrase.passphrase, self.secret_key_c) 
+        self._key = decrypt_string_base64(passphrase.passphrase, self.key_c)
+        self._secret_key = decrypt_string_base64(passphrase.passphrase, self.secret_key_c)
 
     @property
     def key(self):
         return self._key
-    
+
     @key.setter
     def key(self, value):
         self._key = value
@@ -62,12 +62,12 @@ class S3Store(StoreBase):
     @property
     def secret_key(self):
         return self._secret_key
-    
+
     @secret_key.setter
     def secret_key(self, value):
         self._secret_key = value
-        
-    
+
+
 
     def copy(self):
         '''
@@ -96,7 +96,7 @@ class S3Store(StoreBase):
                 boto.config.set("Credentials", 'aws_access_key_id', self.key)
                 boto.config.set("Credentials", 'aws_secret_access_key', self.secret_key)
             self.s3 = boto.connect_s3()
-    
+
             log.debug("Connected. Making bucket")
         #    If the bucket exists... this wont fail
             self.s3.create_bucket(self.bucket)
@@ -115,22 +115,24 @@ class S3Store(StoreBase):
         key = self.s3_bucket.new_key(dest)
         with open(src, "rb") as fd:
             key.set_contents_from_file(fd)
-    
+
     def _get(self, src, dest):
         key = self.s3_bucket.get_key(src)
+        if not key:
+            raise IOError("Unable to get %s: %s" % (src, "Missing file"))
         with open(dest, "wb") as fd:
             key.get_contents_to_file(fd)
-                
+
     def _make_dir(self, folder):
         if folder in ["", "/", "."]:
             return
-        
-        #    Folders are not required in S3
-        return
+
+#        #    Folders are not required in S3
+#        return
         #    We need to create something so that exists and remove work.
         key = self.s3_bucket.new_key(folder)
         key.set_contents_from_string('DIR')
-    
+
     def _remove_file(self, path):
         key = self.s3_bucket.get_key(path)
         if key:
@@ -145,12 +147,12 @@ class S3Store(StoreBase):
         self.s3_bucket.delete()
         self.s3_bucket = None
         self.disconnect()
-        
+
     def _remove_dir(self, path):
         if path == "" or path == ".":
             self._remove_bucket()
             return
-            
+
         dir = path
         if dir[-1] != "/":
             dir += "/"
@@ -161,9 +163,9 @@ class S3Store(StoreBase):
         key = self.s3_bucket.get_key(path)
         if key:
             key.delete()
-        
 
-    #    Its more efficient to use this exists method.
+
+    #    Its more efficient to use this exists method than the standard
     def exists(self, path):
         if not self.connected:
             self.connect()
@@ -175,7 +177,7 @@ class S3Store(StoreBase):
         len_dir = len(dir)
         #    Copy the names into contents. One will be the folder, 
         #    and will be blank when we remove the folder
-        contents = [key.name[len_dir+1:] for key in keys if key.name[len_dir+1:] != ""]
+        contents = [key.name[len_dir + 1:] for key in keys if key.name[len_dir + 1:] != ""]
         return contents
 
     def _listkeys(self, dir):
@@ -183,8 +185,8 @@ class S3Store(StoreBase):
             dir += "/"
         keys = self.s3_bucket.list(dir)
         return keys
-    
-    def size(self, path):
+
+    def _size(self, path):
         key = self.s3_bucket.get_key(path)
         return key.size
-        
+

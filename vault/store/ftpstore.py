@@ -128,7 +128,7 @@ class FTPStreamer(Thread):
             log.debug("Added %d bytes to FTP queue" % len(bytes))
         finally:
             self.lock.release()
-            
+
 
 
 class FTPStore(StoreBase):
@@ -151,24 +151,24 @@ class FTPStore(StoreBase):
         self.sftp = sftp
         self.folder_stack = []
         self._password = password
-        self.pre_save()        
+        self.pre_save()
         for attr in ["ip", "root", "login", "password_c", "sftp"]:
             self._persistent.append(attr)
 
 
     def pre_save(self):
-        self.password_c = encrypt_string_base64(passphrase.passphrase, self._password) 
+        self.password_c = encrypt_string_base64(passphrase.passphrase, self._password)
     def post_load(self):
-        self._password = decrypt_string_base64(passphrase.passphrase, self.password_c) 
+        self._password = decrypt_string_base64(passphrase.passphrase, self.password_c)
 
     @property
     def password(self):
         return self._password
-    
+
     @password.setter
     def password(self, value):
         self._password = value
-        
+
 
     def __str__(self):
         return "FTP: %s@%s/%s %s" % (self.login, self.ip, self.root, str(self.sftp))
@@ -194,9 +194,9 @@ class FTPStore(StoreBase):
             self.make_dir(dir)
         else:
             self.io_state = ioReading
-        
+
         self.io_path = os.path.join(self.root, path)
-                    
+
         self.io_fd = FTPStreamer(self.ftp, self.io_path, self.io_state)
         self.io_fd.start()
         #    Now we wait for some data, or an error
@@ -210,13 +210,13 @@ class FTPStore(StoreBase):
             log.debug("Got data")
 
         return self
-        
+
     def seek(self, offset, whence):
         pass
-        
+
     def tell(self):
         return 0
-    
+
     def close(self):
         self.io_fd.close()
         self.io_fd.join()
@@ -224,8 +224,8 @@ class FTPStore(StoreBase):
         if self.io_fd.error:
             log.error("Raising exception from FTPWorker", self.io_fd.error)
             raise Exception(str(self.io_fd.error))
-        
-        
+
+
 ###################################################################################
 #
 #    Implementation Of The Store API
@@ -241,7 +241,7 @@ class FTPStore(StoreBase):
             if self.sftp:
                 log.debug("Connect SFTP")
                 self.ftp = FTP_TLS()
-                self.ftp.ssl_version = ssl.PROTOCOL_SSLv23
+                #self.ftp.ssl_version = ssl.PROTOCOL_SSLv23
             else:
                 log.debug("Connect FTP")
                 self.ftp = FTP()
@@ -263,7 +263,7 @@ class FTPStore(StoreBase):
     def _disconnect(self):
         if self.ftp:
             self.ftp.close()
-        
+
     def _send(self, src, dest):
         dest = utils.join_paths(self.root, dest)
         fd = open(src, "rb")
@@ -271,15 +271,15 @@ class FTPStore(StoreBase):
             self.ftp.storbinary("STOR " + dest, fd)
         finally:
             fd.close()
-                
-        
+
+
     def _get(self, src, dest):
         src = utils.join_paths(self.root, src)
-        
+
         fd = open(dest, "wb")
         try:
             self.ftp.retrbinary("RETR " + src, fd.write)
-        finally:        
+        finally:
             fd.close()
 
     def _make_dir(self, folder):
@@ -333,7 +333,7 @@ class FTPStore(StoreBase):
 
     def _size(self, path):
         path = utils.join_paths(self.root, path)
-        self.ftp.sendcmd("TYPE i")         
+        self.ftp.sendcmd("TYPE i")
         size = self.ftp.size(path)
         return size
 
@@ -375,6 +375,9 @@ class FTPStore(StoreBase):
                     self._recurse_delete(d)
             #    The folder should now be empty.
             #    Exceptions will bubble this up.
+        except Exception as e:
+            log.debug("NList exception", str(e))
+            raise e
         finally:
             self._popd()
         #    Attempt to delete the folder itself

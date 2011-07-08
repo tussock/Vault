@@ -80,6 +80,21 @@ class ServerTestCase(unittest.TestCase):
     def testBackupRestore(self):
         self.backup_restore_compare()
 
+    def testCheckFiles(self):
+        self.backup.include_packages = True
+        b = Run("testbackup", const.FullBackup, self.options)
+        b.run()
+        #    Check that all the right files are there.
+        runs = self.db.runs(self.backup.name)
+        self.assertEqual(len(runs), 1)
+        run = runs[0]
+        folder = run.folder()
+        self.assertTrue(self.store.exists(os.path.join(folder, PackageFile + EncryptionSuffix)))
+        self.assertTrue(self.store.exists(os.path.join(folder, LOFFile + EncryptionSuffix)))
+        self.assertTrue(self.store.exists(os.path.join(folder, ConfigName + EncryptionSuffix)))
+
+        self.assertTrue(self.store.exists)
+
     def testAutoManagementOfStore1(self):
         #    Run a set of backups that will overload the store. 
         #    The automanaged store should continue to archive old backups as required.

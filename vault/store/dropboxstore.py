@@ -12,18 +12,18 @@ Created on Nov 10, 2010
 import os
 import sys
 from threading import Thread
- 
+
 from storebase import *
 from lib import const
 from lib import utils
-from lib.buffer import Buffer 
-from lib import passphrase  
+from lib.buffer import Buffer
+from lib import passphrase
 from lib.cryptor import decrypt_string_base64, encrypt_string_base64
-from dropbox import auth, client    
+from dropbox import auth, client
 
 #    Do this last!
 from lib.logger import Logger
-log = Logger("io") 
+log = Logger("io")
 
 
 auth_config = {}
@@ -37,41 +37,21 @@ auth_config['access_token_url'] = "https://api.dropbox.com/0/oauth/access_token"
 auth_config['authorization_url'] = "https://www.dropbox.com/0/oauth/authorize"
 auth_config['trusted_access_token_url'] = "https://api.dropbox.com/0/token"
 
-class DropBoxWriter(Thread, Buffer):
-    def __init__(self, db_store, path):
-        self.db_store = db_store
-        self.path = path
-        self.folder, self.filename = os.path.split(path)
 
-        Thread.__init__(self)
-        Buffer.__init__(self, name=self.filename)
-        self.error = None
-        
-   
-    def run(self):
-        log.debug("Starting put_file", self.path)
-        try:
-            ret = self.db_store.db_client.put_file(self.db_store.db_root, self.folder, self)
-            log.debug("Completed put_file", ret.__dict__)
-        except Exception as e:
-            log.error("Exception in put thread", str(e))
-            self.error = e
-            
-               
-        
+
 class DropBoxStore(StoreBase):
-    def __init__(self, name="__dummy__", limit="", auto_manage=False, 
+    def __init__(self, name="__dummy__", limit="", auto_manage=False,
                  root="store", login="__dummy__", password="__dummy__",
                  app_key="__dummy__", app_secret_key="__dummy__"):
         StoreBase.__init__(self, name, limit, auto_manage)
-        
+
         #    We dont create large files for dropbox.
         log.trace("DropBoxStore.init", name, limit, auto_manage, root, login, password)
         if const.Debug:
             self.split_size = 500 * 1024
         else:
             self.split_size = 100 * 1024 * 1024
-     
+
         if login == "" or password == "" or app_key == "" or app_secret_key == "":
             raise Exception(_("login, password and app_keys cannot be blank"))
 
@@ -85,43 +65,43 @@ class DropBoxStore(StoreBase):
         self.pre_save()
         for attr in ["root", "login", "password_c", "app_key_c", "app_secret_key_c"]:
             self._persistent.append(attr)
-        
-        
+
+
 
     def pre_save(self):
-        self.password_c = encrypt_string_base64(passphrase.passphrase, self._password) 
-        self.app_key_c = encrypt_string_base64(passphrase.passphrase, self._app_key) 
-        self.app_secret_key_c = encrypt_string_base64(passphrase.passphrase, self._app_secret_key) 
+        self.password_c = encrypt_string_base64(passphrase.passphrase, self._password)
+        self.app_key_c = encrypt_string_base64(passphrase.passphrase, self._app_key)
+        self.app_secret_key_c = encrypt_string_base64(passphrase.passphrase, self._app_secret_key)
     def post_load(self):
-        self._password = decrypt_string_base64(passphrase.passphrase, self.password_c) 
-        self._app_key = decrypt_string_base64(passphrase.passphrase, self.app_key_c) 
-        self._app_secret_key = decrypt_string_base64(passphrase.passphrase, self.app_secret_key_c) 
+        self._password = decrypt_string_base64(passphrase.passphrase, self.password_c)
+        self._app_key = decrypt_string_base64(passphrase.passphrase, self.app_key_c)
+        self._app_secret_key = decrypt_string_base64(passphrase.passphrase, self.app_secret_key_c)
 
     @property
     def password(self):
         return self._password
-    
+
     @password.setter
     def password(self, value):
         self._password = value
-        
+
     @property
     def app_key(self):
         return self._app_key
-    
+
     @app_key.setter
     def app_key(self, value):
         self._app_key = value
-        
+
     @property
     def app_secret_key(self):
         return self._app_secret_key
-    
+
     @app_secret_key.setter
     def app_secret_key(self, value):
         self._app_secret_key = value
-        
-     
+
+
 
     def copy(self):
         '''
@@ -131,56 +111,11 @@ class DropBoxStore(StoreBase):
 
         '''
         log.trace("Copy constructor")
-        return DropBoxStore(self.name, self.limit, self.auto_manage, self.root, 
+        return DropBoxStore(self.name, self.limit, self.auto_manage, self.root,
                             self.login, self.password, self.app_key, self.app_secret_key)
 
     def __str__(self):
         return "PATH: %s" % self.root
-    
-    
-#    def open(self, path, mode):
-#        if not self.connected:
-#            self.connect()
-#
-#        self.io_path = os.path.join(self.root, path)
-#        if "w" in mode:
-#            self.io_state = ioWriting
-#            #    Make sure the dest folder exists
-#            dir, _ = os.path.split(path)
-#            self.make_dir(dir)
-#
-#            self.io_fd = DropBoxWriter(self, self.io_path)
-#            self.io_fd.start()
-#        else:
-#            self.io_state = ioReading
-#            self.io_fd = self.db_client.get_file(self.db_root, self.io_path)
-#            if self.io_fd.status != 200:
-#                raise Exception("Failed to fetch file object")                   
-#
-#        return self
-#
-#
-#    def close(self):
-#        self.io_state = ioClosed
-#        self.io_fd.close()
-#        self.io_fd.join()
-#    
-#    def read(self, size=-1):
-#        if self.io_state != ioReading:
-#            raise Exception("Not opened for reading")
-#        return self.io_fd.read(size)
-#    
-#    def write(self, data):
-#        if self.io_state != ioWriting:
-#            raise Exception("Not opened for writing")
-#        self.io_fd.write(data)
-#        
-#    def seek(self, offset, whence=0):
-#        pass
-#        
-#    def tell(self):
-#        return 0
-    
 
 
     def _connect(self):
@@ -193,16 +128,16 @@ class DropBoxStore(StoreBase):
             self.dba = auth.Authenticator(auth_config)
             self.access_token = self.dba.obtain_trusted_access_token(str(self.login), str(self.password))
             log.debug("Got access token: ", self.access_token)
-            self.db_client = client.DropboxClient(auth_config['server'], auth_config['content_server'], 
+            self.db_client = client.DropboxClient(auth_config['server'], auth_config['content_server'],
                                              auth_config['port'], self.dba, self.access_token)
             self.db_root = auth_config['dropbox_root']
         except Exception as e:
             raise Exception("Access denied. Check login, password and access keys")
-        log.debug("Connected. Making root")
+        log.debug("Connected")
 
     def _disconnect(self):
         pass
-        
+
 
     def _send(self, src, dest):
         #    Dropbox limitation - the final file name must match the source
@@ -273,9 +208,9 @@ class DropBoxStore(StoreBase):
         resp = self.db_client.metadata(self.db_root, path, file_limit=10000, list="true")
         ret = [os.path.basename(item["path"]) for item in resp.data["contents"]]
         return ret
-    
+
     def _size(self, path):
         path = utils.join_paths(self.root, path)
         resp = self.db_client.metadata(self.db_root, path, list="false")
         return resp.data["bytes"]
-        
+

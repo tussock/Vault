@@ -26,7 +26,7 @@ class Test_FTPStore(StoreBaseTests, unittest.TestCase):
     Note that SFTP will always be used.
     '''
 
-    def __init__(self, methodName = "runTest"):
+    def __init__(self, methodName="runTest"):
         StoreBaseTests.__init__(self)
         unittest.TestCase.__init__(self, methodName)
 
@@ -35,10 +35,10 @@ class Test_FTPStore(StoreBaseTests, unittest.TestCase):
             self.login = self.config.get("FTP", "login")
             self.password = self.config.get("FTP", "password")
             self.folder = self.config.get("FTP", "folder")
-            
+
         except Exception as e:
             raise Exception("FTP server, login or password missing from vault test config", str(e))
-        
+
 
 
     def setUp(self):
@@ -47,6 +47,7 @@ class Test_FTPStore(StoreBaseTests, unittest.TestCase):
 
     def tearDown(self):
         StoreBaseTests.tearDown(self)
+
 
 if __name__ == "__main__":
     unittest.main()

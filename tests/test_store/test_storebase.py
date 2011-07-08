@@ -29,10 +29,10 @@ class StoreBaseTests:
             raise Exception("Vault test configuration file (~/.vault) does not exist")
         self.config = ConfigParser.RawConfigParser()
         self.config.read(config_file)
-        
+
     def setUp(self):
         self.working_folder = tempfile.mkdtemp()
-    
+
     def tearDown(self):
         shutil.rmtree(self.working_folder)
         self.store.remove_dir("")
@@ -40,7 +40,7 @@ class StoreBaseTests:
 
     def testTest(self):
         self.store.test()
-        
+
 
     def testCopy(self):
         temp_path = utils.maketempfile(1000)
@@ -59,23 +59,23 @@ class StoreBaseTests:
                 self.store.remove_dir("test")
             except:
                 pass
-            
+
     def testCopyFolder(self):
         temp_path = utils.maketempfile(100)
         fname = os.path.basename(temp_path)
         try:
             self.store.send(temp_path, "test/")
             self.assertTrue(self.store.exists(os.path.join("test", fname)))
-            
+
             self.store.get(os.path.join("test", fname), self.working_folder + os.sep)
             self.assertTrue(os.path.isfile(os.path.join(self.working_folder, fname)))
         finally:
             os.remove(temp_path)
-             
+
     def testCopyLarge(self):
         temp_path = utils.maketempfile(100000)
         temp_path2 = temp_path + "2"
-        
+
         try:
             remote = self.store.send(temp_path, "test/")
             self.store.get(remote, temp_path2)
@@ -95,23 +95,23 @@ class StoreBaseTests:
                 local_file = utils.maketempfile(1000, dir=tempf)
                 local.append(local_file)
                 self.store.send(local_file, "test/")
-    
+
             #    Make sure each file made it
             files = self.store.list("test")
             for i in xrange(numFiles):
                 self.assertTrue(os.path.basename(local[i]) in files)
-                
+
             for i in xrange(numFiles):
                 remote_contents = self.store.get_contents(os.path.join("test", os.path.basename(local[i])))
                 local_contents = open(local[i]).read()
                 self.assertEqual(local_contents, remote_contents)
-                
+
             #    Make sure list is only returning those files
             self.assertEqual(len(files), numFiles)
         finally:
             shutil.rmtree(tempf)
             self.store.remove_dir("test")
-            
+
     def testGetSet(self):
         str = os.urandom(1033)
         self.store.set_contents("test/test/test/x", str)
@@ -119,18 +119,18 @@ class StoreBaseTests:
         self.assertEqual(str, str2)
 #        self.store.get_contents("blah")
         self.assertRaises(IOError, self.store.get_contents, "badfile")
-            
+
     def testSize(self):
         tempf = utils.maketempfile(1037)
         try:
             remote = self.store.send(tempf, "test/")
             size = self.store.size(remote)
-        
+
             self.assertEqual(size, 1037)
         finally:
             os.remove(tempf)
             self.store.remove_dir("test")
-        
+
     def testFolder(self):
         self.store.make_dir("blah")
         self.assertTrue(self.store.exists("blah"))
@@ -146,7 +146,7 @@ class StoreBaseTests:
             self.assertFalse(self.store.exists(remote))
         finally:
             os.remove(tempf)
-        
+
     def testRecursiveDelete(self):
         self.store.make_dir("test")
         self.assertTrue(self.store.exists("test"))
@@ -154,7 +154,7 @@ class StoreBaseTests:
         try:
             remote1 = self.store.send(t, "test/")
             remote2 = self.store.send(t, "test2/")
-            
+
             self.assertTrue(self.store.exists(remote1))
             self.assertTrue(self.store.exists(remote2))
             self.store.remove_dir("test")
@@ -163,11 +163,11 @@ class StoreBaseTests:
             self.assertFalse(self.store.exists("test"))
             #    Make sure the delete didn't touch any other files
             self.assertTrue(self.store.exists(remote2))
-            
+
         finally:
             os.remove(t)
             self.store.remove_dir("test2")
-            
+
     def testSpeed(self):
         tempf = utils.maketempfile(128000)
         try:
@@ -176,8 +176,8 @@ class StoreBaseTests:
         finally:
             os.remove(tempf)
             self.store.remove_dir("test")
-        
-        
+
+
     def testWrite(self):
         teststring = os.urandom(1024)
         fd = self.store.open("test/blah", "w")
@@ -189,9 +189,9 @@ class StoreBaseTests:
         self.assertEqual(teststring, remote_data)
 
     def testBadOpen(self):
-        
+
         self.assertRaises(IOError, self.store.open, "bad", "r")
-        
+
     def testQueuedWrite(self):
         if isinstance(self.store, FolderStore) or isinstance(self.store, FTPStore):
             # These classes stream rather than queue
@@ -206,7 +206,6 @@ class StoreBaseTests:
         fd = self.store.open("test/blah3", "wq")
         fd.write(teststring)
         fd.close()
-        print("Sent all")
         self.assertTrue(self.store.queue.qsize() > 0)
         self.store.flush()
         print("Flushed")
@@ -219,7 +218,7 @@ class StoreBaseTests:
         remote_data = self.store.get_contents("test/blah3")
         self.assertEqual(len(teststring), len(remote_data))
         self.assertEqual(teststring, remote_data)
-        
+
     def testQueuedSend(self):
         if isinstance(self.store, FolderStore) or isinstance(self.store, FTPStore):
             # These classes stream rather than queue
@@ -236,7 +235,7 @@ class StoreBaseTests:
             #    In case sometihng failed - we ensure the file is gone
             if os.path.isfile(fname):
                 os.remove(fname)
-            
+
     def testQueuedFail(self):
         if isinstance(self.store, FolderStore) or isinstance(self.store, FTPStore):
             # These classes stream rather than queue
@@ -284,14 +283,14 @@ class StoreBaseTests:
         testfile = utils.maketempfile(1037)
         try:
             remote = self.store.send(testfile, "test/")
-        
+
             fd = self.store.open(remote, "r")
             remote_data = fd.read()
             fd.close()
             self.assertEqual(remote_data, open(testfile).read())
         finally:
                 os.remove(testfile)
-               
+
     def testSeek(self):
         pass
 

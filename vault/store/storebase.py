@@ -40,9 +40,9 @@ ioClosed, ioReading, ioWriting = range(3)
 
 class IOWorker(Thread):
     def __init__(self, store, queue):
-        Thread.__init__(self, 
+        Thread.__init__(self,
                         name="%s %s" % (store.name, "IOWorker"))
-        
+
         self.store = store
         self.queue = queue
         #    Crash NOW
@@ -50,7 +50,7 @@ class IOWorker(Thread):
         #    When the queue is empty... stop
         self.finish = False
         self.error = None
-        
+
     def run(self):
         while not self.terminate:
             try:
@@ -82,7 +82,7 @@ class IOWorker(Thread):
                         os.remove(path)
                     except:
                         pass
-                    
+
         #    We are finishing... So clean out the queue and clean up files
         log.debug("Cleaning up files and finishing")
         while not self.queue.empty():
@@ -93,8 +93,8 @@ class IOWorker(Thread):
             except:
                 pass
         log.debug("Threading stopping")
-                    
-            
+
+
 
 
 class StoreBase(Serializer):
@@ -113,7 +113,7 @@ class StoreBase(Serializer):
         name = name.strip()
         if len(name) == 0:
             raise Exception("Name cannot be empty or consist of only blanks")
-       
+
 
         self.name = name
         self.limit = limit
@@ -135,7 +135,7 @@ class StoreBase(Serializer):
         #    For testing... causes a queued xmit to fail.
         self.debug_fail = False
 
-        
+
     def __del__(self):
         if hasattr(self, "connected"):
             self.disconnect()
@@ -194,7 +194,7 @@ class StoreBase(Serializer):
         use = self.db.store_usage(self.name)
 
         if not self.auto_manage:
-            ret = (None, use.size, None) 
+            ret = (None, use.size, None)
         else:
             size, _, _ = self.limit_details()
             if size == 0:
@@ -224,12 +224,12 @@ class StoreBase(Serializer):
         #    So we can't juts use locks. We use a large random number,
         #    and watch for anyone else using it.
         remotedir = "__test%s" % \
-            ''.join(random.choice(string.letters+string.digits) for _ in xrange(10))
-        
+            ''.join(random.choice(string.letters + string.digits) for _ in xrange(10))
+
         if self.exists(remotedir):
             #    Uh oh... very unlikely but possible.
             raise Exception("Test folder in use")
-                    
+
         try:
             tempf = utils.maketempfile(256)
             temps = open(tempf).read()
@@ -243,7 +243,7 @@ class StoreBase(Serializer):
 
             #    Attempt to send 
             log.debug("Sending temp file")
-            remotefile = self.send(tempf, remotedir+os.sep)
+            remotefile = self.send(tempf, remotedir + os.sep)
 
             #    Make sure it exists
             if not self.exists(remotefile):
@@ -253,7 +253,7 @@ class StoreBase(Serializer):
             contents = self.get_contents(remotefile)
             if contents != temps:
                 raise Exception("Writing and reading a file fails")
-            
+
             #    Attempt to delete (make sure we have delete permission
             self.remove_file(remotefile)
             if self.exists(remotefile):
@@ -302,7 +302,7 @@ class StoreBase(Serializer):
             if copy_recovery:
                 log.debug("Copying recovery files to store")
                 for name in const.RecoveryFiles:
-                    self.send(os.path.join(const.AppDir, "recovery", name), const.RecoveryFolder+os.sep)
+                    self.send(os.path.join(const.AppDir, "recovery", name), const.RecoveryFolder + os.sep)
         except:
             raise
 
@@ -368,7 +368,7 @@ class StoreBase(Serializer):
             #    Uh oh.... we have exceeded our usage in this run. CRASH AND BURN
             log.error("Out of space on store")
             raise StoreFullException("Unable to free enough space for backup. Store too small. (size=%s)" % \
-                        (utils.readable_form(size))) 
+                        (utils.readable_form(size)))
 
 
     def delete_run_data(self, run):
@@ -400,7 +400,7 @@ class StoreBase(Serializer):
         @param backup_name:
         '''
         self.remove_dir(backup_name)
-                        
+
     def delete_store_data(self):
         '''
         Delete this complete store. All data is removed, including
@@ -446,7 +446,7 @@ class StoreBase(Serializer):
             self.send(tempf.name, dest)
         finally:
             os.remove(tempf.name)
-    
+
     def remove(self, path):
         '''
         Attempt to remove path. Will raise StoreCannotDelete exception if
@@ -473,7 +473,7 @@ class StoreBase(Serializer):
                     raise Exception
             except:
                 raise StoreCannotDelete(_("Unable to delete %s") % path)
-            
+
 ############################################################################
 #
 #    File-like functions.
@@ -489,8 +489,8 @@ class StoreBase(Serializer):
     def open(self, path, mode):
         if not self.connected:
             self.connect()
-            
-        
+
+
         if "w" in mode:
             self.io_fd = tempfile.NamedTemporaryFile(delete=False)
             self.io_path = self.io_fd.name
@@ -510,24 +510,24 @@ class StoreBase(Serializer):
             self.io_fd = open(self.io_path, "rb")
             self.io_block = True
         return self
-                
-    def read(self, size=-1):
+
+    def read(self, size= -1):
         if self.io_state != ioReading:
             raise Exception("Not opened for reading")
         return self.io_fd.read(size)
-    
+
     def write(self, data):
         if self.io_state != ioWriting:
             raise Exception("Not opened for writing")
         self.io_fd.write(data)
 
-        
+
     def seek(self, offset, whence):
         self.io_fd.seek(offset, whence)
-        
+
     def tell(self):
         return self.io_fd.tell()
-    
+
     def close(self):
         self.io_fd.close()
         if self.io_state == ioWriting:
@@ -536,7 +536,7 @@ class StoreBase(Serializer):
         if self.io_block:
             #    If we blocked, then the file has gone. Clean up.
             os.remove(self.io_path)
-        
+
         if self.io_state == ioReading:
             #    Clean up the temporary folder
             os.rmdir(self.io_folder)
@@ -548,9 +548,9 @@ class StoreBase(Serializer):
         #    and raise the error
         if not self.io_block and self.io_worker and self.io_worker.error:
             self.flush()
-        
 
-        
+
+
 ############################################################################
 #
 #    Non Blocking Transmit Interface
@@ -562,8 +562,8 @@ class StoreBase(Serializer):
             if self.io_worker:
                 log.debug("Waiting for worker to finish")
                 self.io_worker.finish = True
-                self.io_worker.join()        
-    
+                self.io_worker.join()
+
             #    IF we are not blocking, 
             #    and an io_worker has started AND its in an error state.
             if self.io_worker and self.io_worker.error:
@@ -573,7 +573,7 @@ class StoreBase(Serializer):
             #    We may need to re-create it if more work 
             #    arrives in the future.
             self.io_worker = None
-        
+
 ############################################################################
 #
 #    The Public interface
@@ -603,7 +603,7 @@ class StoreBase(Serializer):
         self.flush()
         self._disconnect()
         self.connected = False
-    
+
     def send(self, src, dest, block=True):
         '''
         Send a file to the given location.
@@ -629,25 +629,25 @@ class StoreBase(Serializer):
             dest = os.path.join(folder, os.path.basename(src))
         else:
             folder = os.path.split(dest)[0]
-        
+
         if not block:
             #    We use a thread to actually manage the send.
             log.debug("Queued writing")
             #    Make sure there is a worker.
             if not self.io_worker:
                 log.debug("Starting worker")
-                self.io_worker = IOWorker(self, self.queue)  
-                self.io_worker.start()                  
+                self.io_worker = IOWorker(self, self.queue)
+                self.io_worker.start()
             #    This could block if the queue is full
             #    Before we put it into the queue, check that the
             #    ioworker is up and running and not in an error state
             if self.io_worker.error:
                 raise self.io_worker.error
             if not self.io_worker.is_alive():
-                raise Exception("IO Worker has died") 
+                raise Exception("IO Worker has died")
             self.queue.put((src, dest))
             return dest
-            
+
         #    Make sure the folder exists
         self.make_dir(folder)
 
@@ -667,8 +667,8 @@ class StoreBase(Serializer):
                 if retries > const.Retries:
                     raise e
         return dest
-            
-        
+
+
     def get(self, src, dest):
         '''
         Get a given file from the remote location
@@ -704,7 +704,7 @@ class StoreBase(Serializer):
                 if retries > const.Retries:
                     raise e
         return dest
-            
+
     def make_dir(self, folder):
         '''
         Create a given directory.
@@ -720,7 +720,7 @@ class StoreBase(Serializer):
         if not self.connected:
             self.connect()
         self._make_dir(folder)
-        
+
     def remove_file(self, path):
         '''
         Called to remove a file from the remote system
@@ -769,7 +769,7 @@ class StoreBase(Serializer):
         if not self.connected:
             self.connect()
         return self._list(folder)
-    
+
     def size(self, path):
         '''
         Return the size of the given file in bytes
@@ -807,4 +807,4 @@ class StoreBase(Serializer):
         raise Exception("Unimplemented operation")
     def _size(self, path):
         raise Exception("Unimplemented operation")
-       
+
