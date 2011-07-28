@@ -131,7 +131,7 @@ class GoogleStore(StoreBase):
     def _exists(self, path):
         if folder in ["", ".", "/"]:
             items = client.GetDocList(uri='/feeds/default/private/full/folder%3Aroot/contents')
-            does the collection exist
+            #does the collection exist
         else:
             path = utils.join_paths(self.root, folder)
         raise NotImplementedError()

@@ -2,7 +2,7 @@
 set -e
 
 #	Compile all files
-find /opt/vault -name "*.py" -print0 | xargs -0 -n 1 python -m compileall 
+find /usr/lib/python2.7/dist-packages/vault -name "*.py" -print0 | xargs -0 -n 1 python -m compileall 
 
 #	Update documentation indexes
 if which scrollkeeper-update > /dev/null; then
@@ -11,7 +11,7 @@ fi
 
 #compile language files with msgfmt
 olddir=`pwd`
-cd /opt/vault
+cd /usr/lib/python2.7/dist-packages/vault
 #	Find and compile all language files
 for po in `find i18n -name "*.po" -print`; do
 	mo=`echo $po | sed "s/po$/mo/"`

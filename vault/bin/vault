@@ -7,7 +7,7 @@
 # published by the Free Software Foundation.
 
 #	Execution for the vault UI.
-#	This will be installed in /usr/local/sbin.
-#	Vault will be installed in /opt/vault.
-cd /opt/vault
-python ./vault.py
+#	This will be installed in an appropriate bin directory
+#	Vault will be installed in /usr/lib/python2.7/dist-packages/vault.
+cd /usr/lib/python2.7/dist-packages/vault
+python ./vault.py "$@"

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Copyright 2010, 2011 Paul Reddy <paul@kereru.org>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3 as
+# published by the Free Software Foundation.
+
+#	Execution for the vault UI.
+#	This will be installed in an appropriate bin directory
+#	Vault will be installed in /usr/lib/python2.7/dist-packages/vault.
+cd /usr/lib/python2.7/dist-packages/vault
+python ./vault_svr.py "$@"

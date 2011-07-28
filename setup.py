@@ -8,11 +8,12 @@
 '''
 Setup Application Goals:
 
-a) Copy the whole application into /opt (by default)
-b) Copy the vault.run script into /opt/bin
+a) Copy the whole application into /usr/lib/python2.7/dist-packages (by default)
+b) Copy the vault and vault_svr script into /usr/bin
 c) Copy the documentation file into /usr/share/doc/vault/en
 d) Copy the vault.xml, legal.xml, fdl-appendix.xml, images/* into /usr/share/gnome/help/vault/C
     (other translations go into /usr/share/gnome/help/vault/<country code>)
+e) Man pages copied to /usr/share/man/man1
     
 '''
 import os
@@ -81,9 +82,10 @@ setup(
                         glob.glob('vault/help/C/images/*.png')),
                     #    Application  
                     ("share/applications", 
-                        ["vault.desktop"]),
+                        ["vault/bin/vault.desktop"]),
                     ("share/pixmaps", ["vault/ui/images/vault.png"]),
                     ("share/omf/vault", ["vault/help/vault.omf"]),
+                    ("share/man/man1", glob.glob("vault/help/C/*.1.gz")),
 #                    ('share/icons/hicolor/16x16/apps', ['vault/ui/images/16x16/vault.png']),
 #                    ('share/icons/hicolor/24x24/apps', ['vault/ui/images/24x24/vault.png']),
 #                    ('share/icons/hicolor/32x32/apps', ['vault/ui/images/32x32/vault.png']),
@@ -96,7 +98,7 @@ setup(
                          
                   ],
     long_description = read('README'),
-    scripts = ["vault.run"],
+    scripts = ["vault/bin/vault", "vault/bin/vault_svr"],
     classifiers = [
                  "Development Status :: 4 - Beta",
                  "Environment :: X11 Applications :: Gnome",
