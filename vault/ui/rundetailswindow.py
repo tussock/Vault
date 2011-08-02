@@ -40,7 +40,7 @@ class RunDetailsWindow(gui.RunDetailsWindow):
         self.load_files(200)
         self.load_messages()
 
-        icon = wx.Icon("images/storage.png", wx.BITMAP_TYPE_ANY)
+        icon = wx.Icon(os.path.join(const.PixmapDir, "storage.png"), wx.BITMAP_TYPE_ANY)
         self.SetIcon(icon)
 
         #    Ensure the right page is showing

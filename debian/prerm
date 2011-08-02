@@ -7,7 +7,7 @@ set -e
 # In this case, make the cleanup by hand.
 #update-python-modules -c -b python-support.private || \
 
-rm -f /usr/share/vault/*.pyc /usr/share/vault/*/*.pyc
+rm -f /usr/lib/vault/vault/*.pyc //usr/lib/vault/vault/*/*.pyc
 
 #	Clear out all the compiled language files
-rm -f/usr/lib/python2.7/dist-packages/vault/i18n/*/*/*.mo
+rm -f/usr/lib/vault/vault/i18n/*/*/*.mo

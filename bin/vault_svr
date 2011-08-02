@@ -8,6 +8,6 @@
 
 #	Execution for the vault UI.
 #	This will be installed in an appropriate bin directory
-#	Vault will be installed in /usr/lib/python2.7/dist-packages/vault.
-cd /usr/lib/python2.7/dist-packages/vault
-python ./vault.py "$@"
+#	Vault will be installed in cd /usr/lib/vault/vault.
+cd /usr/lib/vault/vault
+python ./vault_svr.py "$@"

@@ -6,6 +6,7 @@
 
 
 import wx
+import os
 
 
 import gui
@@ -46,7 +47,7 @@ class HistoryWindow(gui.HistoryWindow):
 #        self.img_down = self.imgList.Add(wx.Bitmap("images/go-down.png", wx.BITMAP_TYPE_PNG))
 #        self.lstRuns.SetImageList(self.imgList, wx.IMAGE_LIST_SMALL)
 
-        icon = wx.Icon("images/storage.png", wx.BITMAP_TYPE_ANY)
+        icon = wx.Icon(os.path.join(const.PixmapDir, "storage.png"), wx.BITMAP_TYPE_ANY)
         self.SetIcon(icon)
 
 #        listmix.ColumnSorterMixin.__init__(self, 7)

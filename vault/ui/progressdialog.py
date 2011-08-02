@@ -8,6 +8,7 @@
 import wx
 import wx.animate
 import gui
+import os
 
 #    Do last!
 from lib.logger import Logger
@@ -28,7 +29,7 @@ class ProgressDialog(gui.ProgressDialog):
         self.lblMessage.SetLabel(message)
         self.Fit()
 
-        busy_fname = "images/animated/rotating_arrow.gif"
+        busy_fname = os.path.join(const.PixmapDir, "animated/rotating_arrow.gif")
         busy_ani = wx.animate.GIFAnimationCtrl(self.aniPanel, -1, busy_fname, pos=(0, 0))
         busy_ani.GetPlayer().UseBackgroundColour(True)
         # continuously loop through the frames of the gif file (default)

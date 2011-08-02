@@ -8,7 +8,7 @@
 '''
 Setup Application Goals:
 
-a) Copy the whole application into /usr/lib/python2.7/dist-packages (by default)
+a) Copy the whole application into /usr/lib/vault/vault (by default)
 b) Copy the vault and vault_svr script into /usr/bin
 c) Copy the documentation file into /usr/share/doc/vault/en
 d) Copy the vault.xml, legal.xml, fdl-appendix.xml, images/* into /usr/share/gnome/help/vault/C
@@ -41,7 +41,6 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
-PACKAGES = ["vault", "vault.store", "vault.store.dropbox", "vault.ui", "vault.server", "vault.lib", "vault.recovery"]
 
 #    Taken from the quodlibet setup.py. Creates the right install list
 def recursive_include(dir, pre, ext):
@@ -56,6 +55,24 @@ def recursive_include(dir, pre, ext):
     return all
 
 from vault.lib import const
+
+PACKAGES = ["vault", "vault.store", "vault.store.dropbox", "vault.ui", "vault.server", "vault.lib", "vault.recovery"]
+
+OS_FILES = [
+     # XDG application description
+     ('share/applications', ['bin/vault.desktop']),
+     # XDG application icon
+     ('share/pixmaps', ['pixmaps/vault.png']),
+     # Application working icons
+     ('share/vault/pixmaps', glob.glob('pixmaps/*.png')),
+     # man-page ("man 1 vault")
+     ('share/man/man1',['help/C/vault.1']),
+     ('share/man/man1',['help/C/vault_svr.1']),
+     # doc, in-ap help
+     ("share/gnome/help/vault/C", glob.glob('help/C/*.xml')),
+     
+     ("share/omf/vault", ["help/vault.omf"]),
+]
 setup(
     name = const.PackageName,
     version = const.Version,
@@ -70,35 +87,10 @@ setup(
     url = 'http://www.kereru.org/vault',
     packages = PACKAGES,
                       
-#    package_dir = {'vault': 'vault'},
-                
-    package_data = {"vault": recursive_include("vault", ".", ("version", "png", "gif", "po")),
-                    },
-    data_files = [
-                    #    Help files
-                    ("share/gnome/help/vault/C", 
-                        glob.glob('vault/help/C/*.xml')),
-                    ("share/gnome/help/vault/C/images", 
-                        glob.glob('vault/help/C/images/*.png')),
-                    #    Application  
-                    ("share/applications", 
-                        ["vault/bin/vault.desktop"]),
-                    ("share/pixmaps", ["vault/ui/images/vault.png"]),
-                    ("share/omf/vault", ["vault/help/vault.omf"]),
-                    ("share/man/man1", glob.glob("vault/help/C/*.1.gz")),
-#                    ('share/icons/hicolor/16x16/apps', ['vault/ui/images/16x16/vault.png']),
-#                    ('share/icons/hicolor/24x24/apps', ['vault/ui/images/24x24/vault.png']),
-#                    ('share/icons/hicolor/32x32/apps', ['vault/ui/images/32x32/vault.png']),
-#                    ('share/icons/hicolor/48x48/apps', ['vault/ui/images/48x48/vault.png']),
-#                    ('share/icons/hicolor/64x64/apps', ['vault/ui/images/64x64/vault.png']),
-#                    ('share/icons/hicolor/96x96/apps', ['vault/ui/images/96x96/vault.png']),
-#                    ('share/icons/hicolor/128x128/apps', ['vault/ui/images/128x128/vault.png']),
-#                    ('share/icons/hicolor/192x192/apps', ['vault/ui/images/192x192/vault.png']),
-#                    ('share/icons/hicolor/256x256/apps', ['vault/ui/images/256x256/vault.png']),
-                         
-                  ],
+    data_files = OS_FILES,
+    
     long_description = read('README'),
-    scripts = ["vault/bin/vault", "vault/bin/vault_svr"],
+    scripts = ["bin/vault", "bin/vault_svr"],
     classifiers = [
                  "Development Status :: 4 - Beta",
                  "Environment :: X11 Applications :: Gnome",

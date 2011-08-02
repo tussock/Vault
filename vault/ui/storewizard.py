@@ -136,7 +136,8 @@ def do_store_wizard(parent):
                     "The first time you use The Vault, you need to configure\n"
                     "a store to hold your backups. This wizard will guide you\n"
                     "through the creation of your store."),
-                 _("We are now ready to create the store."), wiz_execute, icon="images/storage.png")
+                 _("We are now ready to create the store."), wiz_execute, 
+                 icon=os.path.join(const.PixmapDir, "storage.png"))
 
     #    Name
     page = wizard.Page(wiz, _("Store Name"))

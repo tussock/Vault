@@ -5,6 +5,7 @@
 # published by the Free Software Foundation.
 
 import wx
+import os
 
 import gui
 from lib import const
@@ -44,7 +45,7 @@ class AboutWindow(gui.AboutWindow):
         self.Bind(wx.EVT_TIMER, self.update, self.timer)
         self.timer.Start(50)
 
-        icon = wx.Icon("images/storage.png", wx.BITMAP_TYPE_ANY)
+        icon = wx.Icon(os.path.join(const.PixmapDir, "storage.png"), wx.BITMAP_TYPE_ANY)
         self.SetIcon(icon)
         
     def onLeftUp(self, event):

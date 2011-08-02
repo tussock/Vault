@@ -5,6 +5,7 @@
 # published by the Free Software Foundation.
 
 import wx
+import os
 #    DNS is a third party library we include.
 #import dns.resolver
 
@@ -54,7 +55,7 @@ class BackupPanel(EditPanel, gui.BackupPanel):
             self.lstItems.SetSelection(0)
             self.onItemSelected(None)
 #        self.onNotifyEmail(None)
-        self.image = wx.Bitmap("images/backup.png")
+        self.image = wx.Bitmap(os.path.join(const.PixmapDir, "backup.png"))
         self.title = _("Backups")
 
         self.onBackupSchedule(None)

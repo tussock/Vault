@@ -181,7 +181,8 @@ def do_rebuilddb(parent):
                     "\n"
                     "Note that this wizard does not actually recover files, it just recovers\n"
                     "information about those files."),
-                 _("We are now ready to restore your backup information."), wiz_execute, icon="images/storage.png")
+                 _("We are now ready to restore your backup information."), wiz_execute, 
+                 icon=os.path.join(const.PixmapDir, "storage.png"))
 
     #    Type of storage
     page = wizard.Page(wiz, _("Choose Backups"))

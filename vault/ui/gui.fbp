@@ -663,7 +663,7 @@
                             <property name="proportion">0</property>
                             <object class="wxStaticBitmap" expanded="0">
                                 <property name="bg"></property>
-                                <property name="bitmap">images/status-ok.png; Load From File</property>
+                                <property name="bitmap">../../pixmaps/status-ok.png; Load From File</property>
                                 <property name="context_help"></property>
                                 <property name="context_menu">1</property>
                                 <property name="enabled">1</property>
@@ -2431,7 +2431,7 @@
                                             <object class="notebookpage" expanded="0">
                                                 <property name="bitmap"></property>
                                                 <property name="label">General</property>
-                                                <property name="select">0</property>
+                                                <property name="select">1</property>
                                                 <object class="wxPanel" expanded="0">
                                                     <property name="bg"></property>
                                                     <property name="context_help"></property>
@@ -3066,7 +3066,7 @@
                                                                                     <property name="proportion">0</property>
                                                                                     <object class="wxBitmapButton" expanded="0">
                                                                                         <property name="bg"></property>
-                                                                                        <property name="bitmap">images/add.png; Load From File</property>
+                                                                                        <property name="bitmap">../../pixmaps/add.png; Load From File</property>
                                                                                         <property name="context_help"></property>
                                                                                         <property name="context_menu">1</property>
                                                                                         <property name="default">0</property>
@@ -3313,7 +3313,7 @@
                                             <object class="notebookpage" expanded="0">
                                                 <property name="bitmap"></property>
                                                 <property name="label">Exclude</property>
-                                                <property name="select">1</property>
+                                                <property name="select">0</property>
                                                 <object class="wxPanel" expanded="0">
                                                     <property name="bg"></property>
                                                     <property name="context_help"></property>
@@ -8688,7 +8688,7 @@
                         <object class="notebookpage" expanded="0">
                             <property name="bitmap"></property>
                             <property name="label">Disaster Recovery</property>
-                            <property name="select">0</property>
+                            <property name="select">1</property>
                             <object class="wxPanel" expanded="0">
                                 <property name="bg"></property>
                                 <property name="context_help"></property>
@@ -9384,7 +9384,7 @@
                         <object class="notebookpage" expanded="0">
                             <property name="bitmap"></property>
                             <property name="label">Restore Packages</property>
-                            <property name="select">1</property>
+                            <property name="select">0</property>
                             <object class="wxPanel" expanded="0">
                                 <property name="bg"></property>
                                 <property name="context_help"></property>
@@ -20121,13 +20121,13 @@
                                 <property name="width">0</property>
                             </object>
                         </object>
-                        <object class="sizeritem" expanded="0">
-                            <property name="border">3</property>
-                            <property name="flag">wxALL|wxEXPAND</property>
+                        <object class="sizeritem" expanded="1">
+                            <property name="border">5</property>
+                            <property name="flag">wxALL</property>
                             <property name="proportion">0</property>
-                            <object class="wxStaticBitmap" expanded="0">
+                            <object class="wxStaticBitmap" expanded="1">
                                 <property name="bg"></property>
-                                <property name="bitmap">images/vault.png; Load From File</property>
+                                <property name="bitmap">../../pixmaps/vault.png; Load From File</property>
                                 <property name="context_help"></property>
                                 <property name="context_menu">1</property>
                                 <property name="enabled">1</property>
@@ -20137,10 +20137,10 @@
                                 <property name="id">wxID_ANY</property>
                                 <property name="maximum_size"></property>
                                 <property name="minimum_size"></property>
-                                <property name="name">m_bitmap2</property>
+                                <property name="name">imgStatus</property>
                                 <property name="permission">protected</property>
                                 <property name="pos"></property>
-                                <property name="size"></property>
+                                <property name="size">-1,-1</property>
                                 <property name="subclass"></property>
                                 <property name="tooltip"></property>
                                 <property name="validator_data_type"></property>
@@ -20159,7 +20159,7 @@
                                 <event name="OnLeaveWindow"></event>
                                 <event name="OnLeftDClick"></event>
                                 <event name="OnLeftDown"></event>
-                                <event name="OnLeftUp">onLeftUp</event>
+                                <event name="OnLeftUp"></event>
                                 <event name="OnMiddleDClick"></event>
                                 <event name="OnMiddleDown"></event>
                                 <event name="OnMiddleUp"></event>

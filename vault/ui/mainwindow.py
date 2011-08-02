@@ -9,6 +9,7 @@ from __future__ import division, with_statement, print_function
 import wx
 import gui
 import subprocess
+import os
 
 from lib import const
 
@@ -36,7 +37,7 @@ class MainWindow(gui.MainWindow):
         self.notebook = wx.Toolbook(self, id= -1, style=wx.BK_LEFT)
         self.GetSizer().Add(self.notebook, flag=wx.EXPAND, proportion=1)
 
-        icon = wx.Icon("images/storage.png", wx.BITMAP_TYPE_ANY)
+        icon = wx.Icon(os.path.join(const.PixmapDir, "storage.png"), wx.BITMAP_TYPE_ANY)
         self.SetIcon(icon)
 
         log.debug("Building panels")

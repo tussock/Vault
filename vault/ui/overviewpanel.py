@@ -7,6 +7,7 @@
 
 import wx
 from datetime import datetime, timedelta
+import os
 
 import gui
 from lib.db import DB
@@ -37,7 +38,7 @@ class OverviewPanel(gui.OverviewPanel):
         self.config = Config.get_config()
 
         self.update_data()
-        self.image = wx.Bitmap("images/overview.png")
+        self.image = wx.Bitmap(os.path.join(const.PixmapDir, "overview.png"))
         self.title = "Overview"
         
         self.timer = wx.Timer(self)
@@ -66,13 +67,22 @@ class OverviewPanel(gui.OverviewPanel):
         '''
         status, messages = self.calculate_status()
         if status == const.SystemStateError:
-            self.imgStatus.SetBitmap(wx.Bitmap("images/status-fail.png", wx.BITMAP_TYPE_PNG))
+            self.imgStatus.SetBitmap(
+                                     wx.Bitmap(os.path.join(const.PixmapDir, "status-fail.png"), 
+                                               wx.BITMAP_TYPE_PNG)
+                                     )
             self.lblStatus.SetLabel(_("Error"))
         elif status == const.SystemStateWarn:
-            self.imgStatus.SetBitmap(wx.Bitmap("images/status-warn.png", wx.BITMAP_TYPE_PNG))
+            self.imgStatus.SetBitmap(
+                                     wx.Bitmap(os.path.join(const.PixmapDir, "status-warn.png"), 
+                                               wx.BITMAP_TYPE_PNG)
+                                     )
             self.lblStatus.SetLabel(_("Warning"))
         else:
-            self.imgStatus.SetBitmap(wx.Bitmap("images/status-ok.png", wx.BITMAP_TYPE_PNG))
+            self.imgStatus.SetBitmap(
+                                     wx.Bitmap(os.path.join(const.PixmapDir, "status-ok.png"), 
+                                               wx.BITMAP_TYPE_PNG)
+                                     )
             self.lblStatus.SetLabel(_("Healthy"))
 
         self.lblMessages.SetLabel("\n".join(messages))

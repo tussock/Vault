@@ -146,7 +146,7 @@ class OverviewPanel ( wx.Panel ):
 		statusSizer.SetFlexibleDirection( wx.BOTH )
 		statusSizer.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 		
-		self.imgStatus = wx.StaticBitmap( self, wx.ID_ANY, wx.Bitmap( u"images/status-ok.png", wx.BITMAP_TYPE_ANY ), wx.DefaultPosition, wx.Size( -1,-1 ), 0 )
+		self.imgStatus = wx.StaticBitmap( self, wx.ID_ANY, wx.Bitmap( u"../../pixmaps/status-ok.png", wx.BITMAP_TYPE_ANY ), wx.DefaultPosition, wx.Size( -1,-1 ), 0 )
 		statusSizer.Add( self.imgStatus, 0, wx.ALL, 3 )
 		
 		self.lblStatus = wx.StaticText( self, wx.ID_ANY, _("Status: Healthy"), wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -406,7 +406,7 @@ class BackupPanel ( wx.Panel ):
 		
 		bSizer95.Add( self.txtFolders, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL|wx.EXPAND, 3 )
 		
-		self.btnAddFolder = wx.BitmapButton( self.pnlGeneralTab, wx.ID_ANY, wx.Bitmap( u"images/add.png", wx.BITMAP_TYPE_ANY ), wx.DefaultPosition, wx.DefaultSize, wx.BU_AUTODRAW )
+		self.btnAddFolder = wx.BitmapButton( self.pnlGeneralTab, wx.ID_ANY, wx.Bitmap( u"../../pixmaps/add.png", wx.BITMAP_TYPE_ANY ), wx.DefaultPosition, wx.DefaultSize, wx.BU_AUTODRAW )
 		bSizer95.Add( self.btnAddFolder, 0, wx.ALL, 5 )
 		
 		bSizer412.Add( bSizer95, 1, wx.EXPAND, 3 )
@@ -434,7 +434,7 @@ class BackupPanel ( wx.Panel ):
 		self.pnlGeneralTab.SetSizer( bSizer42 )
 		self.pnlGeneralTab.Layout()
 		bSizer42.Fit( self.pnlGeneralTab )
-		self.nbBackup.AddPage( self.pnlGeneralTab, _("General"), False )
+		self.nbBackup.AddPage( self.pnlGeneralTab, _("General"), True )
 		self.pnlExcludeTab = wx.Panel( self.nbBackup, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer43 = wx.BoxSizer( wx.VERTICAL )
 		
@@ -484,7 +484,7 @@ class BackupPanel ( wx.Panel ):
 		self.pnlExcludeTab.SetSizer( bSizer43 )
 		self.pnlExcludeTab.Layout()
 		bSizer43.Fit( self.pnlExcludeTab )
-		self.nbBackup.AddPage( self.pnlExcludeTab, _("Exclude"), True )
+		self.nbBackup.AddPage( self.pnlExcludeTab, _("Exclude"), False )
 		self.pnlStoreTab = wx.Panel( self.nbBackup, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer75 = wx.BoxSizer( wx.VERTICAL )
 		
@@ -1111,7 +1111,7 @@ class RestorePanel ( wx.Panel ):
 		self.m_panel27.SetSizer( bSizer93 )
 		self.m_panel27.Layout()
 		bSizer93.Fit( self.m_panel27 )
-		self.nb_restore.AddPage( self.m_panel27, _("Disaster Recovery"), False )
+		self.nb_restore.AddPage( self.m_panel27, _("Disaster Recovery"), True )
 		self.m_panel29 = wx.Panel( self.nb_restore, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer951 = wx.BoxSizer( wx.VERTICAL )
 		
@@ -1161,7 +1161,7 @@ class RestorePanel ( wx.Panel ):
 		self.m_panel29.SetSizer( bSizer951 )
 		self.m_panel29.Layout()
 		bSizer951.Fit( self.m_panel29 )
-		self.nb_restore.AddPage( self.m_panel29, _("Restore Packages"), True )
+		self.nb_restore.AddPage( self.m_panel29, _("Restore Packages"), False )
 		
 		bSizer50.Add( self.nb_restore, 1, wx.EXPAND |wx.ALL, 3 )
 		
@@ -2418,8 +2418,8 @@ class AboutWindow ( wx.Frame ):
 		
 		bSizer91.AddSpacer( ( 0, 0), 1, wx.EXPAND, 5 )
 		
-		self.m_bitmap2 = wx.StaticBitmap( self, wx.ID_ANY, wx.Bitmap( u"images/vault.png", wx.BITMAP_TYPE_ANY ), wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer91.Add( self.m_bitmap2, 0, wx.ALL|wx.EXPAND, 3 )
+		self.imgStatus = wx.StaticBitmap( self, wx.ID_ANY, wx.Bitmap( u"../../pixmaps/vault.png", wx.BITMAP_TYPE_ANY ), wx.DefaultPosition, wx.Size( -1,-1 ), 0 )
+		bSizer91.Add( self.imgStatus, 0, wx.ALL, 5 )
 		
 		
 		bSizer91.AddSpacer( ( 0, 0), 1, wx.EXPAND, 5 )
@@ -2456,7 +2456,6 @@ class AboutWindow ( wx.Frame ):
 		
 		# Connect Events
 		self.Bind( wx.EVT_LEFT_UP, self.onLeftUp )
-		self.m_bitmap2.Bind( wx.EVT_LEFT_UP, self.onLeftUp )
 		self.lblTitle.Bind( wx.EVT_LEFT_UP, self.onLeftUp )
 		self.lblSubTitle.Bind( wx.EVT_LEFT_UP, self.onLeftUp )
 		self.lblVersion.Bind( wx.EVT_LEFT_UP, self.onLeftUp )
@@ -2469,7 +2468,6 @@ class AboutWindow ( wx.Frame ):
 	# Virtual event handlers, overide them in your derived class
 	def onLeftUp( self, event ):
 		event.Skip()
-	
 	
 	
 	

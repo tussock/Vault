@@ -215,7 +215,8 @@ def do_recover(parent):
                     "You need to provide details to a recently used store.\n"
                     "The wizard will fetch your old configuration from the latest backup\n"
                     "run in that store."),
-                 _("We are now ready to recover your backup configuration."), wiz_execute, icon="images/storage.png")
+                 _("We are now ready to recover your backup configuration."), wiz_execute, 
+                 icon=os.path.join(const.PixmapDir, "storage.png"))
 
     #    Type of storage
     page = wizard.Page(wiz, _("Type Of Storage"))

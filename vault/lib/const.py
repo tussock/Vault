@@ -81,6 +81,11 @@ LOFFile = "lof"
 LogName = "logger.conf"
 LogFile = os.path.join(AppDir, LogName)
 
+if Debug:
+    PixmapDir = os.path.join(os.path.dirname(AppDir), "pixmaps")
+else:
+    PixMapDir = os.path.join("/", "usr", "share", "vault", "pixmaps")
+
 
 ####################################################################
 #

@@ -72,7 +72,7 @@ def do_backup_wizard(parent):
                     "The first time you use The Vault, you need to define\n"
                     "what you want backed up and where to. This wizard will guide you\n"
                     "through the creation of your backup."),
-                 _("We are now ready to create the backup."), wiz_execute, icon="images/storage.png")
+                 _("We are now ready to create the backup."), wiz_execute, icon=os.path.join(const.PixmapDir, "storage.png"))
 
     #    Name
     page = wizard.Page(wiz, _("Backup Name"))

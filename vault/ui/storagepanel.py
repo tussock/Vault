@@ -7,6 +7,7 @@
 
 import wx
 import locale
+import os
 
 import gui
 from lib.db import DB
@@ -55,7 +56,7 @@ class StoragePanel(EditPanel, gui.StoragePanel):
             self.onItemSelected(None)
 
         self.onAutoManage(None)
-        self.image = wx.Bitmap("images/storage.png")
+        self.image = wx.Bitmap(os.path.join(const.PixmapDir, "storage.png"))
         self.title = _("Storage")
 
         self.ftp_hidden = True

@@ -48,14 +48,20 @@ class RestorePanel(gui.RestorePanel):
         self.db = DB()
         self.config = Config.get_config()
         self.images = wx.ImageList(16, 16)
-        self.images.Add(wx.Bitmap("images/folder.png", wx.BITMAP_TYPE_PNG))
-        self.images.Add(wx.Bitmap("images/document.png", wx.BITMAP_TYPE_PNG))
+        self.images.Add(
+                        wx.Bitmap(os.path.join(const.PixmapDir, "folder.png"), 
+                                  wx.BITMAP_TYPE_PNG)
+                        )
+        self.images.Add(
+                        wx.Bitmap(os.path.join(const.PixmapDir, "document.png"), 
+                                  wx.BITMAP_TYPE_PNG)
+                        )
         self.fs_tree.SetImageList(self.images)
         #    Looks better if this is blank.
         self.lblSelectedFile.SetLabel("")
         self.force_rebuild()
 
-        self.image = wx.Bitmap("images/review.png")
+        self.image = wx.Bitmap(os.path.join(const.PixmapDir, "review.png"))
         self.title = _("Restore")
 
         #    Ensure the right page is showing

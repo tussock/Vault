@@ -33,7 +33,7 @@ class RunRestoreWindow(gui.RunRestoreWindow):
 
         self.Show()
 
-        icon = wx.Icon("images/storage.png", wx.BITMAP_TYPE_ANY)
+        icon = wx.Icon(os.path.join(const.PixmapDir, "storage.png"), wx.BITMAP_TYPE_ANY)
         self.SetIcon(icon)
         
 

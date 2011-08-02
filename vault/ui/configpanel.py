@@ -6,6 +6,7 @@
 
 
 import wx
+import os
 
 import gui
 import app
@@ -41,7 +42,7 @@ class ConfigPanel(gui.ConfigPanel):
         self.state = ViewState
         self.update_filetype_list()
         self.clear_filetype()
-        self.image = wx.Bitmap("images/configure.png")
+        self.image = wx.Bitmap(os.path.join(const.PixmapDir, "configure.png"))
         self.title = _("Configuration")
         if self.lstFileTypes.GetCount() > 0:
             self.lstFileTypes.SetSelection(0)
