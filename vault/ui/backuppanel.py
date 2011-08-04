@@ -408,7 +408,8 @@ class BackupPanel(EditPanel, gui.BackupPanel):
     def delete_backup(self, name, delete_offsite_data):
         #    Delete the database runs.
         backup = self.config.backups[name]
-        runs = self.db.runs(name)
+        #    Read the runs
+        _ = self.db.runs(name)
         success = True
         try:
             if delete_offsite_data:

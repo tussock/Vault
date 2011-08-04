@@ -66,7 +66,7 @@ def wiz_execute(wiz):
                     db.start_run(backup.name, store.name, type, date)
                     db.save_message(_("Database rebuild started"))
                     try:
-                        store_size, file_sizes, nfiles, nfolders = recover_run(db, backup, store, run)
+                        store_size, _file_sizes, nfiles, nfolders = recover_run(db, backup, store, run)
 
                         db.save_message(_("Database rebuild complete"))
                         db.update_run_stats(store_size, nfiles, nfolders, backup.include_packages, "")

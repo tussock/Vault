@@ -19,7 +19,6 @@ from store.ftpstore import FTPStore
 from store.sharestore import ShareStore
 from store.dropboxstore import DropBoxStore
 from lib import cryptor               #@UnresolvedImport
-from lib import utils
 import app
 from progressdialog import ProgressDialog
 
