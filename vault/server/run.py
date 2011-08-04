@@ -343,7 +343,7 @@ class Run():
     def copy_file(self, path, name=None):
         log.debug("CopyFile: ", path, name)
         if not name:
-            name = basename(path)
+            name = os.path.basename(path)
         if self.dry_run:
             print(utils.escape(name))
             sys.stdout.flush()

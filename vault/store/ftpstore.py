@@ -10,7 +10,6 @@ Created on Nov 10, 2010
 '''
 
 import os
-import ssl
 from threading import Thread, RLock
 import time 
 
