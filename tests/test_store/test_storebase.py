@@ -189,7 +189,6 @@ class StoreBaseTests:
         self.assertEqual(teststring, remote_data)
 
     def testBadOpen(self):
-
         self.assertRaises(IOError, self.store.open, "bad", "r")
 
     def testQueuedWrite(self):

@@ -88,10 +88,10 @@ class ServerTestCase(unittest.TestCase):
         runs = self.db.runs(self.backup.name)
         self.assertEqual(len(runs), 1)
         run = runs[0]
-        folder = run.folder()
-        self.assertTrue(self.store.exists(os.path.join(folder, PackageFile + EncryptionSuffix)))
-        self.assertTrue(self.store.exists(os.path.join(folder, LOFFile + EncryptionSuffix)))
-        self.assertTrue(self.store.exists(os.path.join(folder, ConfigName + EncryptionSuffix)))
+        folder = run.folder
+        self.assertTrue(self.store.exists(os.path.join(folder, const.PackageFile + const.EncryptionSuffix)))
+        self.assertTrue(self.store.exists(os.path.join(folder, const.LOFFile + const.EncryptionSuffix)))
+        self.assertTrue(self.store.exists(os.path.join(folder, const.ConfigName + const.EncryptionSuffix)))
 
         self.assertTrue(self.store.exists)
 

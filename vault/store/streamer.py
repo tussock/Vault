@@ -35,9 +35,10 @@ class StreamBase():
 class StreamOut(Thread, StreamBase):
     def __init__(self, stream, store, folder, basename="data"):
         '''
-        Stream data to a store.
+        Stream data t a store.
         The datastream will be split into chunks for reliable
         transmission.
+        At the end, the stream will not be closed (unless there was an error)
         
         @param store: the store object to be used
         @param folder: The folder where these files will be stored
@@ -117,6 +118,8 @@ class StreamIn(Thread, StreamBase):
     def __init__(self, stream, store, folder, basename="data"):
         '''
         Streaming data from a distant location (the store)
+        This class will close the stream when the remote location is fully 
+        streamed.
         '''
         Thread.__init__(self, name="StreamIn")
         StreamBase.__init__(self, folder, basename)

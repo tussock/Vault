@@ -10,25 +10,37 @@ Created on Nov 10, 2010
 '''
 
 import os
-from threading import Thread, RLock
-from ftplib import FTP, FTP_TLS
-import time
 import ssl
+from threading import Thread, RLock
+import time 
+
+
+#    Import FTP. Figure out where TLS is coming from
+import ftplib
+use_paramiko = not hasattr(ftplib, "FTP_TLS")
+if use_paramiko:
+    from ftplib import FTP
+    import paramiko
+else:
+    from ftplib import FTP, FTP_TLS
+
 
 from storebase import *
 from lib import utils
-from lib import const
+from lib import const 
 from lib import passphrase
 from lib.cryptor import decrypt_string_base64, encrypt_string_base64
 
 
 #    Do this last!
-from lib.logger import Logger
-log = Logger("io")
+from lib.logger import Logger 
+log = Logger("io") 
+
+log.debug("Use Paramiko: ", "yes" if use_paramiko else "no")
 
 
 
-class FTPStreamer(Thread):
+class FTPStreamer(Thread): 
     def __init__(self, ftp, path, mode):
         Thread.__init__(self, name="FTPWorker")
         log.trace("FTPStreamer init", ftp, path, mode)
@@ -129,6 +141,53 @@ class FTPStreamer(Thread):
         finally:
             self.lock.release()
 
+if use_paramiko:
+    class ParamikoFTPStreamer(FTPStreamer):
+        def run(self):
+            '''
+            This is an encrypted file-like threaded object.
+            It performs a single file transfer.
+            
+            It assumes the FTP object is already connected.
+            1) Start up a storbinary call
+            2) the FTP object then reads from self. We block that read if there
+                is no data available
+            3) At the same time, the backup producer (TAR'd, ZIP'd, (possibly) ENCRYPTED 
+                stream of data is written to this object. As this data becomes
+                available, this object hands it to the FTP Server.
+                I dont allow the write to get too far ahead, so I can block
+                the write.
+    
+            '''
+            try:
+                if self.mode == ioWriting:
+                    log.info("Starting sftp put call for", self.path)
+                    fd = self.ftp.open(self.path, "w+")
+                    try:
+                        data = self.read(const.BufferSize)
+                        while data:
+                            log.debug("FTP read %d bytes", len(data))
+                            fd.write(data)
+                            data = self.read(const.BufferSize)
+                    finally:
+                        fd.close()
+                else:
+                    log.info("Starting sftp get call for", self.path)
+                    fd = self.ftp.open(self.path, "r")
+                    try:
+                        data = fd.read(const.BufferSize)
+                        while data:
+                            log.debug("FTP read %d bytes", len(data))
+                            self.write(data)
+                            data = fd.read(const.BufferSize)
+                    finally:
+                        fd.close()
+            except Exception as e:
+                self.error = IOError(str(e))
+                log.debug("Exception in ParamikoFTPStreamer", self.error)
+            self.done = True
+            log.trace("ParamikoFTPStreamer.run complete")
+                 
 
 
 class FTPStore(StoreBase):
@@ -196,8 +255,12 @@ class FTPStore(StoreBase):
             self.io_state = ioReading
 
         self.io_path = os.path.join(self.root, path)
-
-        self.io_fd = FTPStreamer(self.ftp, self.io_path, self.io_state)
+        
+        if self.sftp and use_paramiko:
+            #    We dont have FTP_TLS AND we need the encryption. We will be using paramiko
+            self.io_fd = ParamikoFTPStreamer(self.ftp, self.io_path, self.io_state)
+        else:
+            self.io_fd = FTPStreamer(self.ftp, self.io_path, self.io_state)
         self.io_fd.start()
         #    Now we wait for some data, or an error
         if self.io_state == ioReading:
@@ -238,53 +301,78 @@ class FTPStore(StoreBase):
         '''
         try:
             self.ftp = None
+            self.transport = None
             if self.sftp:
-                log.debug("Connect SFTP")
-                self.ftp = FTP_TLS()
-                #self.ftp.ssl_version = ssl.PROTOCOL_SSLv23
+                if use_paramiko:
+                    log.debug("Connect SFTP (paramiko)")
+                    self.transport = paramiko.Transport((self.ip, 22))
+                    self.transport.connect(username=self.login, password=self.password)
+                    self.ftp = paramiko.SFTPClient.from_transport(self.transport)
+                else:
+                    log.debug("Connect SFTP")
+                    self.ftp = FTP_TLS()
+                    self.ftp.connect(self.ip, timeout=const.FTPTimeout)
+                    self.ftp.login(self.login, self.password, secure=True)
+                    self.ftp.prot_p()
             else:
                 log.debug("Connect FTP")
                 self.ftp = FTP()
-            self.ftp.connect(self.ip, timeout=const.FTPTimeout)
-            if self.sftp:
-                self.ftp.login(self.login, self.password, secure=True)
-                self.ftp.prot_p()
-            else:
+                self.ftp.connect(self.ip, timeout=const.FTPTimeout)
                 self.ftp.login(self.login, self.password)
         except Exception as e:
             #    We failed connection and/or login, so FORCE close
             log.debug("Exception during connect and login")
-            if self.ftp:
-                self.ftp.close()
-            self.ftp = None
+            self._disconnect
             raise Exception("Failed to connect or log in (%s)" % str(e))
 
 
     def _disconnect(self):
         if self.ftp:
             self.ftp.close()
+            self.ftp = None
+        if self.transport:
+            self.transport.close()
+            self.transport = None
 
     def _send(self, src, dest):
         dest = utils.join_paths(self.root, dest)
-        fd = open(src, "rb")
-        try:
-            self.ftp.storbinary("STOR " + dest, fd)
-        finally:
-            fd.close()
+        with open(src, "rb") as ifd:
+            if self.sftp and use_paramiko:
+                log.info("Starting sftp.paramiko put call src", src, "dest", dest)
+                ofd = self.ftp.open(dest, "w+")
+                try:
+                    data = ifd.read(const.BufferSize)
+                    while data:
+                        log.debug("FTP read %d bytes", len(data))
+                        ofd.write(data)
+                        data = ifd.read(const.BufferSize)
+                finally:
+                    ofd.close()
+            else:
+                self.ftp.storbinary("STOR " + dest, ifd)
 
 
     def _get(self, src, dest):
         src = utils.join_paths(self.root, src)
 
-        fd = open(dest, "wb")
-        try:
-            self.ftp.retrbinary("RETR " + src, fd.write)
-        finally:
-            fd.close()
+        with open(dest, "wb") as ofd:
+            if self.sftp and use_paramiko:
+        
+                ifd = self.ftp.open(src, "r")
+                try:
+                    data = ifd.read(const.BufferSize)
+                    while data:
+                        log.debug("FTP read %d bytes", len(data))
+                        ofd.write(data)
+                        data = ifd.read(const.BufferSize)
+                finally:
+                    ifd.close()
+            else:
+                self.ftp.retrbinary("RETR " + src, ofd.write)
 
     def _make_dir(self, folder):
         '''
-        Create a folder on the FTP service.
+        Create a folder on thel FTP service.
         If its relative, the folder is made relative to cwd.
         Otherwise its absolute.
         
@@ -304,14 +392,21 @@ class FTPStore(StoreBase):
                         self._popd()
                     except:
                         #    If we fail to build - we fail 
-                        self.ftp.mkd(path)
+                        if self.sftp and use_paramiko:
+                            self.ftp.mkdir(path)
+                        else:
+                            self.ftp.mkd(path)
         finally:
             self._popd()
 
 
     def _remove_file(self, path):
         path = utils.join_paths(self.root, path)
-        self.ftp.delete(path)
+        if self.sftp and use_paramiko:
+            self.ftp.remove(path)
+        else:
+            self.ftp.delete(path)
+            
 
     def _remove_dir(self, path):
         if path in ["", ".", "/"]:
@@ -326,15 +421,22 @@ class FTPStore(StoreBase):
         #    Save the folder
         self._pushd(path)
         try:
-            contents = self.ftp.nlst()
+            if self.sftp and use_paramiko:
+                contents = self.ftp.listdir()
+            else:
+                contents = self.ftp.nlst()
         finally:
             self._popd()    #    Restore the working folder
         return contents
 
     def _size(self, path):
         path = utils.join_paths(self.root, path)
-        self.ftp.sendcmd("TYPE i")
-        size = self.ftp.size(path)
+        if self.sftp and use_paramiko:
+            stat = self.ftp.stat(path)
+            size = stat.st_size
+        else:
+            self.ftp.sendcmd("TYPE i")
+            size = self.ftp.size(path)
         return size
 
 ###################################################################################
@@ -344,15 +446,24 @@ class FTPStore(StoreBase):
 ###################################################################################
 
     def _pushd(self, folder):
-        wd = self.ftp.pwd()
+        if self.sftp and use_paramiko:
+            wd = self.ftp.getcwd()
+        else:
+            wd = self.ftp.pwd()
         self.folder_stack.append(wd)
-        self.ftp.cwd(folder)
-
+        if self.sftp and use_paramiko:
+            self.ftp.chdir(folder)
+        else:
+            self.ftp.cwd(folder)
+                    
     def _popd(self):
         if len(self.folder_stack) == 0:
             raise Exception("Folder stack is empty in popd")
         wd = self.folder_stack.pop()
-        self.ftp.cwd(wd)
+        if self.sftp and use_paramiko:
+            self.ftp.chdir(wd)
+        else:
+            self.ftp.cwd(wd)
 
     def _recurse_delete(self, folder):
         '''
@@ -365,10 +476,16 @@ class FTPStore(StoreBase):
         #    Get a list of files
         self._pushd(folder)
         try:
-            files = self.ftp.nlst()
+            if self.sftp and use_paramiko:
+                files = self.ftp.listdir()
+            else:
+                files = self.ftp.nlst()
             for d in files:
                 try:
-                    self.ftp.delete(d)
+                    if self.sftp and use_paramiko:
+                        self.ftp.remove(d)
+                    else:
+                        self.ftp.delete(d)
                 except:
                     #    Probably a folder, so lets recurse
                     #    If the failure had another cause - the exception will bubble up.
@@ -381,7 +498,9 @@ class FTPStore(StoreBase):
         finally:
             self._popd()
         #    Attempt to delete the folder itself
-        self.ftp.rmd(folder)
-
+        if self.sftp and use_paramiko:
+            self.ftp.rmdir(folder)
+        else:
+            self.ftp.rmd(folder)
 
 

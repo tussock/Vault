@@ -12,6 +12,7 @@ import gui
 from lib.config import Config
 from lib import utils
 from lib.db import DB
+from lib import const
 from progressdialog import ProgressDialog
 #    Do last!
 from lib.logger import Logger
