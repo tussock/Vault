@@ -40,6 +40,8 @@ class BackupPanel(EditPanel, gui.BackupPanel):
         '''
         log.info("***BackupPanel.init")
         gui.BackupPanel.__init__(self, parent)
+        self.btnAddFolder.SetBitmapLabel(wx.Bitmap(os.path.join(const.PixmapDir, "add.png")))
+        
         self.db = DB()
         self.config = Config.get_config()
 

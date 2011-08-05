@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/python
 
 # Copyright 2010, 2011 Paul Reddy <paul@kereru.org>
 #
@@ -6,8 +6,11 @@
 # it under the terms of the GNU General Public License version 3 as
 # published by the Free Software Foundation.
 
-#	Execution for the vault UI.
-#	This will be installed in an appropriate bin directory
-#	Vault will be installed in cd /usr/lib/vault/vault.
-cd /usr/lib/vault/vault
-python ./vault.py "$@"
+import sys, os
+import vault
+folder = os.path.dirname(vault.__file__)
+sys.path.insert(0, folder)
+
+#	Now run the vault
+import vault.vault
+

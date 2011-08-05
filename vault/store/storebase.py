@@ -16,6 +16,7 @@ import random
 import string
 from Queue import Queue
 from threading import Thread
+import re
 
 from lib import const
 from lib import utils
@@ -286,10 +287,17 @@ class StoreBase(Serializer):
             copy_recovery = True
             try:
                 if self.exists(const.RecoveryFolder):
-                    version_file = os.path.join(const.RecoveryFolder, const.RecoveryVersion)
-                    if self.exists(version_file):
-                        remote_version = self.get_contents(version_file).strip()
-                        local_version = open(os.path.join(const.AppDir, "recovery", const.RecoveryVersion)).read().strip()
+                    remote_version_file = os.path.join(const.RecoveryFolder, const.RecoveryVersionFile)
+                    local_version_file = os.path.join(const.AppDir, "recovery", const.RecoveryVersionFile)
+                    if self.exists(remote_version_file):
+                        #    A regex to find the version line
+                        test = re.compile("^__version__=.*")          
+                        lines = self.get_contents(remote_version_file).splitlines() 
+                        #    Find the first line that matches the above filter, then return whats
+                        #    after the '='
+                        remote_version = filter(test.search, lines)[0].split("=")[1].strip()
+                        lines = open(local_version_file).read().splitlines()
+                        local_version = filter(test.search, lines)[0].split("=")[1].strip()
                         log.debug("Recovery Version Check: Remote version: '%s' Local Version: '%s'" % (remote_version, local_version))
                         if int(remote_version) >= int(local_version):
                             copy_recovery = False

@@ -4,17 +4,17 @@ Priority: optional
 Maintainer: Paul Reddy <paul@kereru.org>
 Build-Depends: debhelper (>=8.0.0~), 
 			   python-support (>= 1.0.9),
-			   python2.7
+			   python
 Standards-Version: 3.9.1
 
 Package: vault
 Architecture: all
 Homepage: http://kereru.org/vault
-Depends: python-setuptools (>= 0.6.4),
-		 python-wxgtk2.8 (>= 2.8.11),
+Depends: python-wxgtk2.8 (>= 2.8.11),
 		 gettext (>= 0.18.1),
 		 menu (>= 2.1.44),
 		 python-boto (>= 1.9),
+		 python-setuptools (>= 0.6.4),		 
 		 ${misc:Depends}, 		 
          ${python:Depends}		 
 Description: Backups For The Rest Of Us
@@ -22,6 +22,7 @@ Description: Backups For The Rest Of Us
  .
  It backups up files to a variety of media, and includes support for
  encryption out of the box, splitting, automatic storage management, 
+ cloud based storage (DropBox, AmazonS3, with more to come),
  hash validation and more. It also includes a simple to use GUI to get
  you started right away.
  .
@@ -30,5 +31,5 @@ Description: Backups For The Rest Of Us
  disaster recovery systems are available in case the worst happens:
  - all storage media gets a copy of the recovery program so you can 
  recover your files to any computer straight from the backups without
- needing to install the software.
+ needing to reinstall the software.
  - the GUI also includes more powerful restore and recovery software. 

@@ -67,24 +67,27 @@ DataName = "vault.db"
 DataFile = os.path.join(DataDir, DataName)
 EncryptionSuffix = ".enc"
 PackageFile = "packages"
-UIProgram = "vault.py"
-UIPath = os.path.join(AppDir, UIProgram)
-ServerProgram = "vault_svr.py"
-ServerPath = os.path.join(AppDir, ServerProgram)
-
+UIProgram = ["vault"]
+ServerProgram = ["vault_svr"]
+if Debug:
+    #    We actually run using python.
+    UIProgram = ["python", os.path.join(AppDir, "vault.py")]
+    ServerProgram = ["python", os.path.join(AppDir, "vault_svr.py")]
+    
 StoreMarkerFile = "_store_"
-RecoveryFolder = "_Recovery_"
-RecoveryVersion = 'version'
-RecoveryFiles = ["recovery.py", "recoveryui.py", RecoveryVersion]
+RecoveryFolder = "_recovery_"
+#    The first file holds the version
+RecoveryFiles = ["recovery.py", "recoveryui.py"]
+RecoveryVersionFile = "recovery.py"
 LOFFile = "lof"
 
 LogName = "logger.conf"
-LogFile = os.path.join(AppDir, LogName)
+LogFile = os.path.join(ConfigDir, LogName)
 
 if Debug:
     PixmapDir = os.path.join(os.path.dirname(AppDir), "pixmaps")
 else:
-    PixMapDir = os.path.join("/", "usr", "share", "vault", "pixmaps")
+    PixmapDir = os.path.join("/", "usr", "share", "vault", "pixmaps")
 
 
 ####################################################################

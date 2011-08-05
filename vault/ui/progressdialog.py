@@ -10,6 +10,7 @@ import wx.animate
 import gui
 import os
 
+from lib import const
 #    Do last!
 from lib.logger import Logger
 log = Logger('ui')

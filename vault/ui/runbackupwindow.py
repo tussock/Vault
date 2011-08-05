@@ -59,7 +59,8 @@ class RunBackupWindow(gui.RunBackupWindow):
         if not bname:
             dlg.Info(self, _("Please select a backup"))
             return
-        options = ["python", const.ServerPath]
+        #    Get a copy of the list
+        options = list(const.ServerProgram)
         if self.chkMessage.GetValue():
             options.append("--message")
         if self.chkEmail.GetValue():
@@ -89,6 +90,7 @@ class RunBackupWindow(gui.RunBackupWindow):
             self.btnStart.Enable(False)
             self.btnStop.Enable(True)
         else:
+            log.debug("Starting", options)
             subprocess.Popen(options)
             wx.CallLater(2000, app.broadcast_update)
             dlg.Info(self, _("Backup '{backup}' has been started\nYou can view it's progress in the History Window").format(backup=bname))

@@ -42,10 +42,10 @@ if not const.Debug:
 
 log.info("Loading application")
 try:
-    #    Need to change into the right folder, so that
-    #    images will load
-    import os
-    os.chdir(os.path.join(const.AppDir, "ui"))
+#    #    Need to change into the right folder, so that
+#    #    images will load
+#    import os
+#    os.chdir(os.path.join(const.AppDir, "ui"))
     #    Now build the app object
     appl = App()
 

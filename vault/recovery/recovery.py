@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
-#    The following line must be left untouched.
-#__version__: 1
+#    Version of this file. Increment this number if you make any changes
+#    to either this file or recoveryui.*
+__version__=4
 
 # Copyright 2010, 2011 Paul Reddy <paul@kereru.org>
 #

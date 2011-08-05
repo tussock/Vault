@@ -34,6 +34,7 @@ class OverviewPanel(gui.OverviewPanel):
         log.info("***OverviewPanel.init")
         
         gui.OverviewPanel.__init__(self, parent)
+        self.imgStatus.SetBitmap(wx.Bitmap(os.path.join(const.PixmapDir, "status-ok.png")))
         self.db = DB()
         self.config = Config.get_config()
 

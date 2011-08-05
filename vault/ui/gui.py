@@ -146,7 +146,7 @@ class OverviewPanel ( wx.Panel ):
 		statusSizer.SetFlexibleDirection( wx.BOTH )
 		statusSizer.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 		
-		self.imgStatus = wx.StaticBitmap( self, wx.ID_ANY, wx.Bitmap( u"../../pixmaps/status-ok.png", wx.BITMAP_TYPE_ANY ), wx.DefaultPosition, wx.Size( -1,-1 ), 0 )
+		self.imgStatus = wx.StaticBitmap( self, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.Size( -1,-1 ), 0 )
 		statusSizer.Add( self.imgStatus, 0, wx.ALL, 3 )
 		
 		self.lblStatus = wx.StaticText( self, wx.ID_ANY, _("Status: Healthy"), wx.DefaultPosition, wx.DefaultSize, 0 )
@@ -406,7 +406,7 @@ class BackupPanel ( wx.Panel ):
 		
 		bSizer95.Add( self.txtFolders, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL|wx.EXPAND, 3 )
 		
-		self.btnAddFolder = wx.BitmapButton( self.pnlGeneralTab, wx.ID_ANY, wx.Bitmap( u"../../pixmaps/add.png", wx.BITMAP_TYPE_ANY ), wx.DefaultPosition, wx.DefaultSize, wx.BU_AUTODRAW )
+		self.btnAddFolder = wx.BitmapButton( self.pnlGeneralTab, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.DefaultSize, wx.BU_AUTODRAW )
 		bSizer95.Add( self.btnAddFolder, 0, wx.ALL, 5 )
 		
 		bSizer412.Add( bSizer95, 1, wx.EXPAND, 3 )

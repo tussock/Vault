@@ -73,6 +73,13 @@ OS_FILES = [
      
      ("share/omf/vault", ["help/vault.omf"]),
 ]
+# Find all the translations
+locale_files = []
+for filepath in glob.glob("vault/i18n/*/LC_MESSAGES/*"):
+    filepath = filepath.replace('vault/', '')
+    locale_files.append(filepath)
+    
+
 setup(
     name = const.PackageName,
     version = const.Version,
@@ -86,6 +93,10 @@ setup(
     keywords = ["backup", "encryption", "archive", "recovery"],
     url = 'http://www.kereru.org/vault',
     packages = PACKAGES,
+    package_data = { 'vault': ["recovery/recoveryui.fbp", 
+                               "ui/gui.fbp",
+                               "lib/wizui.fbp"
+                               ] + locale_files },
                       
     data_files = OS_FILES,
     

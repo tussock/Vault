@@ -133,8 +133,8 @@ def wiz_execute(wiz):
         dlg.Info(wiz, _("Your configuration has been restored. Restarting the UI..."), _("Restore"))
 
         python = sys.executable
-        log.debug("Starting:", [python, const.UIPath])
-        subprocess.Popen([python, const.UIPath])
+        log.debug("Starting:", const.UIProgram)
+        subprocess.Popen(const.UIProgram)
         app.quit()
 
     except Exception as e:

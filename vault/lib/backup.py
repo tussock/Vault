@@ -175,11 +175,11 @@ class Backup(Serializer):
 
         entry = ""
         if incr_entry:
-            entry += incr_entry + " " + "python \"%s\" backup --incremental \"%s\"\n" % \
-                    (const.ServerPath, self.name)
+            entry += incr_entry + " " + "%s backup --incremental \"%s\"\n" % \
+                    (" ".join(const.ServerProgram), self.name)
         if full_entry:
-            entry += full_entry + " " + "python \"%s\" backup --full \"%s\"\n" % \
-                    (const.ServerPath, self.name)
+            entry += full_entry + " " + "%s backup --full \"%s\"\n" % \
+                    (" ".join(const.ServerProgram), self.name)
         return entry
 
     def exclusive_cron_string(self, start, end, excl):

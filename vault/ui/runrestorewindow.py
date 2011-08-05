@@ -38,7 +38,8 @@ class RunRestoreWindow(gui.RunRestoreWindow):
         
 
     def onStart(self, event):
-        options = ['python', const.ServerPath]
+        #    Get a copy of the ServerProgram list (else we will modify the original)
+        options = list(const.ServerProgram)
         if self.chkNoRecurse.GetValue():
             options.append("--norecurse")
         if self.chkNotify.GetValue():

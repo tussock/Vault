@@ -11,11 +11,24 @@ from datetime import datetime
 import argparse
 import os
 import sys
+
+#    Need const for languages.
+#    Since we have const - lets check root.
+from lib import const
+#    Check that the runner is root (unless debugging)
+#    We need to do this early, because we may not have
+#    access to any config files further down.
+if not const.Debug:
+    if not os.geteuid() == 0:
+        #    We are going to crash
+        sys.exit("The Vault must be run as root")
+
+
+#    Set up translations
 import locale
 locale.setlocale(locale.LC_ALL, os.environ["LANG"])
-#    Set up translations
+
 import gettext
-from lib import const
 gettext.bindtextdomain(const.AppTitle, const.LocaleDir)
 gettext.textdomain(const.AppTitle)
 _ = gettext.gettext
@@ -40,11 +53,6 @@ from lib.logger import Logger
 log = Logger("server")
 
 
-#    Check that the runner is root (unless debugging)
-if not const.Debug:
-    if not os.geteuid() == 0:
-        #    We are going to crash
-        sys.exit("The Vault must be run as root")
 
 
 
@@ -149,16 +157,14 @@ def do_test(options):
     r.run()
 
 
-if __name__ == '__main__':
-    #    If we are not debugging, nice any backup or restore.
-    if not const.Debug:
-        os.nice(const.Niceness)
-    if const.Profiling:
-        import cProfile
-        import pstats
-        cProfile.run("run()", "BackupProfile")
+if not const.Debug:
+    os.nice(const.Niceness)
+if const.Profiling:
+    import cProfile
+    import pstats
+    cProfile.run("run()", "BackupProfile")
 
-        p = pstats.Stats('BackupProfile')
-        p.strip_dirs().sort_stats("cumulative").print_stats()
-    else:
-        run()
+    p = pstats.Stats('BackupProfile')
+    p.strip_dirs().sort_stats("cumulative").print_stats()
+else:
+    run()
