@@ -4226,8 +4226,8 @@
 						<option>0</option>
 						<flag>wxALL</flag>
 						<border>5</border>
-						<object class="wxStaticBitmap" name="imgStatus">
-							<bitmap>../../pixmaps/vault.png</bitmap>
+						<object class="wxStaticBitmap" name="imgAbout">
+							<bitmap />
 						</object>
 					</object>
 					<object class="spacer">

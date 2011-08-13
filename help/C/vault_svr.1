@@ -1,0 +1,84 @@
+.TH vault_svr 1  "August 13, 2011" "version 1.0.2" "USER COMMANDS"
+.SH NAME
+vault_svr \- backup your computer
+.SH SYNOPSIS
+.B vault_svr
+[\-h] 
+
+.B vault_svr
+[\-d] [\-m] [\-e] [\-s] backup [\-h] [\-f] [\-i] name 
+
+.B vault_svr
+[\-d] [\-m] [\-e] [\-s] restore [\-h] [\-w datetime] [\-n] destfolder file file...
+
+.SH DESCRIPTION
+The vault_svr program is responsible for actually executing
+backup and restore operations. It is not usually called
+from the command line, but instead either started by the
+vault GUI application, or more often by the cron daemon
+(scheduled backups).
+.PP
+It generally has two modes of operation - either backup
+(in which cased it is passed the name of a backup description)
+or restore (in which case it is passed files/folders, a
+destination, and a date at which to restore the files to.
+.PP
+
+.SH OPTIONS
+.TP
+\-h \--help
+display a short help text
+.TP
+\-d \--dry-run
+do a dry-run, showing what would have been done rather than actually doing it
+.TP
+\-m \--message
+place a notification message on the desktop at the completion of 
+the operation. This will override the message value in the backup definition
+.TP
+\-e \--email
+send an email at the completion of the operation. The email address 
+used is configured in the vault application. This will override the email value in the backup definition
+.TP
+\-s \--shutdown
+shutdown the computer at the end of the operation. A message is displayed
+giving the user 2 minutes to cancel the shutdown. This will override the email value in the backup definition
+.TP
+\-w \--when
+enter a date as to restore the file to. If this is not supplied,
+then the latest version of the file will be restored. The date must
+be in the following format YYYY-MM-DDTHH:MM:SS. See examples below.
+.TP
+\-i \--incremental
+run an incremental backup (changes only since last backup)
+.TP
+\-f \--full
+run a full backup (all files and folders)
+
+.SH EXAMPLES
+.TP
+Get general help
+.B vault_svr
+\-h
+.PP
+.TP
+Get help on running backups manually
+.B vault_svr
+backup \-h
+.PP
+.TP
+Run the backup Home in full backup mode. Place a message on the desktop when complete.
+.B vault_svr
+\-m backup \-f Home
+.PP
+.TP
+Restore a folder "/etc" as it was at 10pm on the 3rd July 2011, then shutdown the computer. The restored files are placed in /tmp
+.B vault_svr
+restore \-w 2011-07-03T10:00:00 /tmp /etc
+.PP
+.SH EXIT STATUS
+vault_svr always returns 0
+.SH AUTHOR
+Paul Reddy (paul (at) kereru (dot) org)
+.SH SEE ALSO
+vault(1)

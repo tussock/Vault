@@ -2418,8 +2418,8 @@ class AboutWindow ( wx.Frame ):
 		
 		bSizer91.AddSpacer( ( 0, 0), 1, wx.EXPAND, 5 )
 		
-		self.imgStatus = wx.StaticBitmap( self, wx.ID_ANY, wx.Bitmap( u"../../pixmaps/vault.png", wx.BITMAP_TYPE_ANY ), wx.DefaultPosition, wx.Size( -1,-1 ), 0 )
-		bSizer91.Add( self.imgStatus, 0, wx.ALL, 5 )
+		self.imgAbout = wx.StaticBitmap( self, wx.ID_ANY, wx.NullBitmap, wx.DefaultPosition, wx.Size( -1,-1 ), 0 )
+		bSizer91.Add( self.imgAbout, 0, wx.ALL, 5 )
 		
 		
 		bSizer91.AddSpacer( ( 0, 0), 1, wx.EXPAND, 5 )
@@ -2456,6 +2456,7 @@ class AboutWindow ( wx.Frame ):
 		
 		# Connect Events
 		self.Bind( wx.EVT_LEFT_UP, self.onLeftUp )
+		self.imgAbout.Bind( wx.EVT_LEFT_UP, self.onLeftUp )
 		self.lblTitle.Bind( wx.EVT_LEFT_UP, self.onLeftUp )
 		self.lblSubTitle.Bind( wx.EVT_LEFT_UP, self.onLeftUp )
 		self.lblVersion.Bind( wx.EVT_LEFT_UP, self.onLeftUp )
@@ -2468,6 +2469,7 @@ class AboutWindow ( wx.Frame ):
 	# Virtual event handlers, overide them in your derived class
 	def onLeftUp( self, event ):
 		event.Skip()
+	
 	
 	
 	

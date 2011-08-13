@@ -1,0 +1,25 @@
+.TH vault 1  "August 13, 2011" "version 1.0.2" "USER COMMANDS"
+.SH NAME
+vault \- backup your computer
+.SH SYNOPSIS
+.B vault
+
+.SH DESCRIPTION
+The Vault provides a simple set-and-forget backup management system.
+.PP  
+It backups up files to a variety of media, and includes support for
+encryption out of the box, splitting, automatic storage management,
+hash validation and more. It also includes a simple to use GUI to get
+you started right away.
+.PP  
+All data is stored in industry standard TAR/GZIP compatible files,
+and encrypted with OpenSSL encryption (AES-256). A variety of
+disaster recovery systems are available in case the worst happens:
+- all storage media gets a copy of the recovery program so you can
+recover your files to any computer straight from the backups without
+needing to install the software.
+- the GUI also includes more powerful restore and recovery software.
+.SH AUTHOR
+Paul Reddy (paul (at) kereru.org)
+.SH SEE ALSO
+vault_svr(1)

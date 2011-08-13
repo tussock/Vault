@@ -81,8 +81,18 @@ class RunBackupWindow(gui.RunBackupWindow):
             self.done = False
             self.lines = []
 
-            thread.start_new_thread(self.do_dry_run, (options,))
+            #    Start the dry run process...
+            log.debug("Starting subprocess", options)
+            self.proc = subprocess.Popen(options,
+                                         stdout=subprocess.PIPE
+                                         )
+            #    We need a thread to collect the (possibly large)
+            #    data streamed from this sub-process.
+            thread.start_new_thread(self.do_dry_run, (self.proc,))
+            #    This process takes the streamed data and displays it.
+            #    Must run in this thread.
             wx.CallLater(250, self.do_display_output)
+            #    Now set up the display.
             self.status(_("Running..."))
             self.pnlDryRun.Show()
             self.Layout()
@@ -109,20 +119,26 @@ class RunBackupWindow(gui.RunBackupWindow):
 #
 ##################################################################
 
-    def do_dry_run(self, options):
-        log.debug("Dry Run. Options: ", " ".join(options))
-        self.proc = subprocess.Popen(options,
-                       stdout=subprocess.PIPE,
-                       )
-        while self.proc.poll() is None:
+    def do_dry_run(self, proc):
+        """Threaded routine to capture output from the subprocess.
+        Since this can only be done safely in a blocking mode... we 
+        use a thread.
+        
+        Places the data in a list (with a lock for protection).
+        It gets picked up by the timed callback (running in the 
+        UI thread) for placing in the display list.
+        """
+        log.debug("Dry Run.")
+        while proc.poll() is None:
             #    This can block
-            output = self.proc.stdout.readline()
+            output = proc.stdout.readline()
             if len(output) > 0:
                 with self.lock:
                     self.lines.append(output)
                     log.trace("Pushing ", output)
         #    Capture anything left over
-        output = self.proc.communicate()[0]
+        log.debug("Capturing left over")
+        output = proc.communicate()[0]
         if len(output) > 0:
             with self.lock:
                 self.lines.append(output)
@@ -136,7 +152,7 @@ class RunBackupWindow(gui.RunBackupWindow):
                     log.trace("Popping ", line)
                     self.txtFiles.AppendText(line)
                 self.lines = []
-                self.txtFiles.Refresh()
+        self.txtFiles.Refresh()
         if not self.done:
             wx.CallLater(250, self.do_display_output)
         else:

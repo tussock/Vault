@@ -44,6 +44,9 @@ class AboutWindow(gui.AboutWindow):
         self.timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.update, self.timer)
         self.timer.Start(50)
+        
+        bmp = wx.Bitmap(os.path.join(const.PixmapDir, "vault.png"), wx.BITMAP_TYPE_ANY)
+        self.imgAbout.SetBitmap(bmp)
 
         icon = wx.Icon(os.path.join(const.PixmapDir, "storage.png"), wx.BITMAP_TYPE_ANY)
         self.SetIcon(icon)

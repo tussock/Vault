@@ -26,7 +26,7 @@ PackageName = "vault"
 Description = "Backups for the rest of us!"
 Author = "Paul Reddy"
 Copyright = "(c) 2011 Paul Reddy <paul@kereru.org>"
-Version = "1.0.1"
+Version = "1.0.2"
 
 
 ####################################################################
@@ -38,9 +38,12 @@ Version = "1.0.1"
 #    App is installed one folder above this file's folder
 AppDir = os.path.dirname(os.path.dirname(__file__))
 RunDir = AppDir
+
 #    If we are running in the home folder, then debugging will be enabled.
 if AppDir.startswith("/home"):
     Debug = True
+    
+
 #    Config directory. MUST BE A FIXED LOCATION
 ConfigDir = os.path.join("/etc", PackageName)
 #    Database directory. MUST BE A FIXED LOCATION
@@ -51,10 +54,11 @@ HelpDir = os.path.join("/usr/share/gnome/help", PackageName, "C")
 LocaleDir = os.path.join(AppDir, "i18n")
 
 if Debug:
-    RunDir = os.path.join(os.path.dirname(AppDir), "run")
+    VaultDir = os.path.dirname(AppDir)    
+    RunDir = os.path.join(VaultDir, "run")
     ConfigDir = os.path.join(RunDir, "config")
     DataDir = os.path.join(RunDir, "data")
-    HelpDir = os.path.join(AppDir, "help/C")
+    HelpDir = os.path.join(VaultDir, "help/C")
 
 
 HelpFile = "vault.xml"
@@ -71,8 +75,10 @@ UIProgram = ["vault"]
 ServerProgram = ["vault_svr"]
 if Debug:
     #    We actually run using python.
-    UIProgram = ["python", os.path.join(AppDir, "vault.py")]
-    ServerProgram = ["python", os.path.join(AppDir, "vault_svr.py")]
+    #UIProgram = ["python", os.path.join(AppDir, "vault.py")]
+    #ServerProgram = ["python", os.path.join(AppDir, "vault_svr.py")]
+    UIProgram = ["python", os.path.join("/home/paul/Dev/Vault/bin", "vault")]
+    ServerProgram = ["python", os.path.join("/home/paul/Dev/Vault/bin", "vault_svr")]
     
 StoreMarkerFile = "_store_"
 RecoveryFolder = "_recovery_"
@@ -85,7 +91,8 @@ LogName = "logger.conf"
 LogFile = os.path.join(ConfigDir, LogName)
 
 if Debug:
-    PixmapDir = os.path.join(os.path.dirname(AppDir), "pixmaps")
+    VaultDir = os.path.dirname(AppDir) 
+    PixmapDir = os.path.join(VaultDir, "pixmaps")
 else:
     PixmapDir = os.path.join("/", "usr", "share", "vault", "pixmaps")
 

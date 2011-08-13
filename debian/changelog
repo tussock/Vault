@@ -1,12 +1,17 @@
+vault (1.0.2) maverick; urgency=low
+
+  * First public release. (Closes: #000003) 
+
+ -- Paul Reddy <paul@kereru.org>  Sat, 13 August 2011 21:45:15 +1200
+
 vault (1.0.1) maverick; urgency=low
 
-  * Internal release #2. (Closes: #000001) 
+  * Internal release #2. (Closes: #000002) 
 
  -- Paul Reddy <paul@kereru.org>  Wed, 20 Apr 2011 16:51:15 +1200
 
 vault (1.0.0) maverick; urgency=low
 
-  * Internal release. (Closes: #000002)
-   
+  * Internal release. (Closes: #000001)   
 
  -- Paul Reddy <paul@kereru.org>  Wed, 01 Apr 2011 16:18:51 +1200
