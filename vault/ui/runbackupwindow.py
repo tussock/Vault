@@ -139,10 +139,12 @@ class RunBackupWindow(gui.RunBackupWindow):
         #    Capture anything left over
         log.debug("Capturing left over")
         output = proc.communicate()[0]
+        proc.wait()
         if len(output) > 0:
             with self.lock:
                 self.lines.append(output)
                 log.trace("Pushing ", output)
+        log.debug("Done do_dry_run")
         self.done = True
 
     def do_display_output(self):

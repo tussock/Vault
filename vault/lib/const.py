@@ -71,14 +71,14 @@ DataName = "vault.db"
 DataFile = os.path.join(DataDir, DataName)
 EncryptionSuffix = ".enc"
 PackageFile = "packages"
-UIProgram = ["vault"]
+UIProgram = ["vault_ui"]
 ServerProgram = ["vault_svr"]
 if Debug:
     #    We actually run using python.
     #UIProgram = ["python", os.path.join(AppDir, "vault.py")]
     #ServerProgram = ["python", os.path.join(AppDir, "vault_svr.py")]
-    UIProgram = ["python", os.path.join("/home/paul/Dev/Vault/bin", "vault")]
-    ServerProgram = ["python", os.path.join("/home/paul/Dev/Vault/bin", "vault_svr")]
+    UIProgram = ["python", os.path.join("/home/paul/Dev/Vault/vault", "vault_ui.py")]
+    ServerProgram = ["python", os.path.join("/home/paul/Dev/Vault/vault", "vault_svr.py")]
     
 StoreMarkerFile = "_store_"
 RecoveryFolder = "_recovery_"

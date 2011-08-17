@@ -12,5 +12,6 @@ folder = os.path.dirname(vault.__file__)
 sys.path.insert(0, folder)
 
 #	Now run the vault
-import vault.vault_svr
+import vault_svr
+vault_svr.run()
 

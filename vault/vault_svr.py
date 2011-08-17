@@ -38,6 +38,8 @@ gettext.install(const.AppTitle)
 from lib.logger import LogManager
 LogManager(const.LogFile)
 
+
+
 #    This next line sets up defaults
 from lib.config import Config
 Config.get_config()
@@ -156,15 +158,15 @@ def do_test(options):
     r = Tester(options.testfolder, options)
     r.run()
 
-
-if not const.Debug:
-    os.nice(const.Niceness)
-if const.Profiling:
-    import cProfile
-    import pstats
-    cProfile.run("run()", "BackupProfile")
-
-    p = pstats.Stats('BackupProfile')
-    p.strip_dirs().sort_stats("cumulative").print_stats()
-else:
-    run()
+if __name__ == "__main__":
+    if not const.Debug:
+        os.nice(const.Niceness)
+    if const.Profiling:
+        import cProfile
+        import pstats
+        cProfile.run("run()", "BackupProfile")
+    
+        p = pstats.Stats('BackupProfile')
+        p.strip_dirs().sort_stats("cumulative").print_stats()
+    else:
+        run()
