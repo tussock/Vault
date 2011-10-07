@@ -802,7 +802,7 @@
 
                       <itemizedlist>
                         <listitem>
-                          <para>data00000</para>
+                          <para>00000</para>
 
                           <itemizedlist>
                             <listitem>
@@ -820,7 +820,7 @@
                         </listitem>
 
                         <listitem>
-                          <para>data00001</para>
+                          <para>00001</para>
 
                           <itemizedlist>
                             <listitem>
@@ -993,46 +993,36 @@
 
     <sect2>
       <title>Storage Actions</title>
-      <sect3>
-        <para>
-          <emphasis role="bold">Delete</emphasis>
-        </para>
 
-        <para>Delete the currently selected store. This will remove all
-        knowledge of the store from Vault, including knowledge of any backups
-        held on that store.</para>
+      <para>The following actions are available on stores:</para>
 
-        <para>Note that you have an option to also clear all data held on the
-        store. If you do not do this, the backup data will be kept on the
-        store, and you can recover it at any time (see Disaster
-        Recovery).</para>
-      </sect3>
+      <para><emphasis role="bold">Delete</emphasis></para>
 
-      <sect3>
-        <para>
-          <emphasis role="bold">Add New</emphasis>
-        </para>
+      <para>Delete the currently selected store. This will remove all
+      knowledge of the store from Vault, including knowledge of any backups
+      held on that store.</para>
 
-        <para>Create a new store. Note that the store name cannot be changed
-        once the store is created.</para>
-      </sect3>
+      <para>Note that you have an option to also clear all data held on the
+      store. If you do not do this, the backup data will be kept on the store,
+      and you can recover it at any time (see Disaster Recovery).</para>
 
-      <sect3>
-        <para>
-          <emphasis role="bold">Test</emphasis>
-        </para>
+      <para><emphasis role="bold">Add New</emphasis></para>
 
-        <para>Run a series of tests on the currently selected store to confirm
-        that communications with the store are working, and that you can
-        correctly make folders and save files.</para>
+      <para>Create a new store. Note that the store name cannot be changed
+      once the store is created.</para>
 
-        <para>This should be done any time you create or modify a store to
-        ensure any store permissions or passwords are correctly set.</para>
+      <para><emphasis role="bold">Test</emphasis></para>
 
-        <para>A test is performed before every backup run to ensure the backup
-        server has access to the store. If that fails, the backup run is
-        aborted (and you are notified if notifications are enabled).</para>
-      </sect3>
+      <para>Run a series of tests on the currently selected store to confirm
+      that communications with the store are working, and that you can
+      correctly make folders and save files.</para>
+
+      <para>This should be done any time you create or modify a store to
+      ensure any store permissions or passwords are correctly set.</para>
+
+      <para>A test is performed before every backup run to ensure the backup
+      server has access to the store. If that fails, the backup run is aborted
+      (and you are notified if notifications are enabled).</para>
     </sect2>
 
     <sect2>

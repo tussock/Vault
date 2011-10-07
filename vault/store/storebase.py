@@ -73,7 +73,7 @@ class IOWorker(Thread):
                     self.store.send(path, dest_path)
                     log.debug("Success sending work")
                 except Exception as e:
-                    log.error("Failed to send a file!")
+                    log.debug("Failed to send a file!")
                     self.error = e
                     #    If we can't sent it... fail. 
                     #    Send will retry (usually - can be overridden).

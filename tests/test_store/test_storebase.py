@@ -171,7 +171,7 @@ class StoreBaseTests:
     def testSpeed(self):
         tempf = utils.maketempfile(128000)
         try:
-            with Timer(self.store.__class__.__name__ + " 128k Copy"):
+            with Timer("\n" + self.store.__class__.__name__ + " 128k Copy"):
                 self.store.send(tempf, "test/")
         finally:
             os.remove(tempf)
@@ -207,7 +207,6 @@ class StoreBaseTests:
         fd.close()
         self.assertTrue(self.store.queue.qsize() > 0)
         self.store.flush()
-        print("Flushed")
         remote_data = self.store.get_contents("test/blah")
         self.assertEqual(len(teststring), len(remote_data))
         self.assertEqual(teststring, remote_data)

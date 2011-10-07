@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
 	<object class="wxFrame" name="Wizard">
-		<style>wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL</style>
+		<style>wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL</style>
 		<size>640,401</size>
 		<title>Wizard Title</title>
 		<centered>1</centered>

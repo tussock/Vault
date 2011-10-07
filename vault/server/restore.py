@@ -153,12 +153,12 @@ class Restore():
         @param error_message:
         '''
         log.debug("send_email: ", result, error_message)
+        message_text = _("Restore of\n    %s\nto folder\n    %s\n%s") % \
+                ("\n    ".join(self.files), self.destfolder, _("succeeded") if result else _("failed"))
         if result:
-            message_text = _("Restore to folder %s completed.") % (self.destfolder)
-
             subject = _("Restore Completed")
         else:
-            message_text = _("Restore FAILED\n\nERROR: %s") % (error_message)
+            message_text += _("Error was %s") % (error_message)
             subject = _("Restore FAILED")
 
         log.debug("Starting mail send")

@@ -15,21 +15,21 @@ locale.setlocale(locale.LC_ALL, os.environ["LANG"])
 #    Set up translations
 import gettext
 gettext.bindtextdomain(const.AppTitle, const.LocaleDir)
-gettext.textdomain(const.AppTitle)
+gettext.textdomain(const.AppTitle) 
 _ = gettext.gettext
 gettext.install(const.AppTitle)
 
 #    APPLICATION IMPORTS. ONLY IN ONE PLACE
 from lib.logger import LogManager
 LogManager(const.LogFile)
-
+ 
 
 from ui.app import App  
 from lib import dlg
 #    Do this last!
 from lib.logger import Logger
 log = Logger("ui")
-
+ 
 
 def run():
     #    Check that the runner is root (unless debugging)
@@ -37,16 +37,13 @@ def run():
         if not os.geteuid()==0:
             #    We are going to crash, get wx up enough to show a dialog.
             import wx
-            app = wx.PySimpleApp()
+            _ = wx.PySimpleApp()
             dlg.Error(None, _("The Vault must be run as root"))
             sys.exit("The Vault must be run as root")
-
+ 
     log.info("Loading application")
     try:
-    #    #    Need to change into the right folder, so that
-    #    #    images will load
-    #    import os
-    #    os.chdir(os.path.join(const.AppDir, "ui"))
+
         #    Now build the app object
         appl = App()
     

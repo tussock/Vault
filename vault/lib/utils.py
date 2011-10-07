@@ -9,12 +9,12 @@ import tempfile
 import stat
 import os
 import re
+import socket
 
 from subprocess import Popen, PIPE
 import binascii
 import filecmp
 import commands
-from timer import Timer
 
 
 class PipeWrap():
@@ -410,6 +410,19 @@ def du(path):
     #    One line, "size path"
     size = output.split("\t")[0]
     return int(size)
+
+def get_hostname():
+    """Get the current machine hostname. 
+    
+    We try a couple of methods to be sure of returning something useful.
+    """ 
+    try:
+        return socket.gethostname()
+    except:
+        try:
+            return os.uname()[1]
+        except:
+            return "Unknown"
 
 def get_packages():
     '''

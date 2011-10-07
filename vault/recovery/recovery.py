@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
+from __future__ import print_function
 #    Version of this file. Increment this number if you make any changes
 #    to either this file or recoveryui.*
-__version__=4
+__version__=11
 
 # Copyright 2010, 2011 Paul Reddy <paul@kereru.org>
 #
@@ -25,7 +26,6 @@ were in at the last backup.
 
 It presents a UI via wx.
 '''
-from __future__ import print_function
 
 import wx
 import os
@@ -52,11 +52,20 @@ _ = gettext.gettext
 
 import recoveryui
 
-Debug = True
+StoreMarker = "_store_"
+RecoveryFolder = "_recovery_"
+
+#    If the parent folder is called '_recovery_', then we
+#    are in the running environment (Debug=False)
+#    Lets get the abs path of this module, then the name of the folder.
+cur_dir = os.path.basename(os.path.dirname(os.path.abspath(__file__)))
+print(cur_dir)
+Debug = cur_dir != RecoveryFolder
+print(Debug)
 if Debug:
     RootDir = "../../run/store"
 else:
-    RootDir = "."
+    RootDir = ".."
 
 def log(*args):
     if Debug:
@@ -102,11 +111,11 @@ class RecoveryWindow(recoveryui.RecoveryWindow):
         list.sort(reverse=False)
         for name in list:
             log("Found backup name:", name)
-            if name == "__store__":
+            if name == StoreMarker:
                 is_store = True
                 continue
             path = os.path.join(RootDir, name)
-            if os.path.isdir(path):
+            if os.path.isdir(path) and name != RecoveryFolder:
                 self.cboBackup.Append(name)
             #    Everything else we ignore
         return is_store and self.cboBackup.GetCount() > 0
@@ -275,7 +284,7 @@ class RecoveryWindow(recoveryui.RecoveryWindow):
                     name = parts[0].decode("quopri_codec")
                     type = parts[1]
                     if type != "X":
-                        print("Not a delete")
+                        log("Not a delete")
                         continue
 
                     if folder[0] == os.sep:

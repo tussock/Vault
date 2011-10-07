@@ -219,7 +219,10 @@ class Run():
             #    Otherwise both the command line AND backup spec do.
             if not self.dry_run:
                 self.db.update_run_status(const.StatusSuccess)
-            message = _("Backup {backup}/{type} completed").format(backup=self.backup.name, type=self.type)
+            message = _("Backup {server}/{backup}/{type} completed").format(
+                                                            server=utils.get_hostname(), 
+                                                            backup=self.backup.name, 
+                                                            type=self.type)
             if self.dry_run:
                 message += " " + _("(Dry Run)")
             success = True
@@ -228,7 +231,11 @@ class Run():
 
         except Exception as e:
             log.error("Exception in backup. Recording. ", e)
-            message = _("Backup {backup}/{type} failed. {error}").format(backup=self.backup.name, type=self.type, error=str(e))
+            message = _("Backup {server}/{backup}/{type} failed. {error}").format(
+                                                            server=utils.get_hostname(), 
+                                                            backup=self.backup.name, 
+                                                            type=self.type, 
+                                                            error=str(e))
             success = False
             if not self.dry_run:
                 self.db.update_run_status(const.StatusFailed)
@@ -301,10 +308,10 @@ class Run():
                       "{folders} folders backed up.\n    {size} copied.\n"
                       ).format(files=self.nfiles, folders=self.nfolders, size=utils.readable_form(self.bytes))
 
-            subject = _("Backup {backup}/{type} completed").format(backup=self.backup.name, type=self.type)
+            subject = _("Backup {server}/{backup}/{type} completed").format(server=utils.get_hostname(), backup=self.backup.name, type=self.type)
         else:
             message_text = head
-            subject = _("Backup {backup}/{type} failed").format(backup=self.backup.name, type=self.type)
+            subject = _("Backup {server}/{backup}/{type} failed").format(server=utils.get_hostname(), backup=self.backup.name, type=self.type)
 
         if not self.options.dry_run:
             messages = "    " + "\n    ".join([message.time + " " + message.message for message in self.db.run_messages(self.run_id)])

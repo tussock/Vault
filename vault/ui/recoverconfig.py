@@ -69,12 +69,14 @@ def wiz_execute(wiz):
         #    List all backups
         backups = store.list(".")
         for backup in backups:
-            try:
-                runs = store.list(backup + "/")
-                for run in runs:
-                    folders.append((backup, run))
-            except:
-                pass
+            #    Make sure its not a system folder
+            if backup[0] != "_":
+                try:
+                    runs = store.list(backup + "/")
+                    for run in runs:
+                        folders.append((backup, run))
+                except:
+                    pass
 
         log.debug("Folders", folders)
         if len(folders) == 0:
@@ -96,12 +98,12 @@ def wiz_execute(wiz):
             raise Exception(_("The backup runs are missing or corrupt (no config files)"))
 
         if not encrypted:
-            store.copy_from(src, const.ConfigDir)
+            store.get(src, const.ConfigDir+os.pathsep)
         else:
             #    Fetch the file.
             enc_file = const.ConfigFile + const.EncryptionSuffix
             clear_file = const.ConfigFile
-            store.copy_from(src, const.ConfigDir)
+            store.get(src, const.ConfigDir+os.pathsep)
 
             #    ENCRYPTED
             bad = True  #    keep going until we get a good password
