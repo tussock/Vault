@@ -58,7 +58,7 @@ class XMLSettings:
         node.text = str(obj)
 
     def outputnone(self, name, parent):
-        _ = et.SubElement(parent, name, {"type": "none"})
+        dummy = et.SubElement(parent, name, {"type": "none"})
 
     def outputdict(self, obj, name, parent):
         node = et.SubElement(parent, name, {"type": obj.__class__.__name__})

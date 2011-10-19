@@ -13,7 +13,6 @@ import gui
 from lib import utils
 from lib.config import Config
 from lib import const
-from lib import passphrase
 from lib.backup import Backup, update_crontab
 from lib import dlg
 from lib.db import DB
@@ -258,7 +257,7 @@ class BackupPanel(EditPanel, gui.BackupPanel):
             self.txtCronIncr.SetValue(incr)
             self.txtCronFull.SetValue(full)
         else:
-#            itime, _ = incr.split("/")       # iday not used
+#            itime, dummy = incr.split("/")       # iday not used
 #            ftime, fday = full.split("/")
             time, day = b.sched_times.split("/")
             if b.sched_type == "daily/weekly":
@@ -324,7 +323,7 @@ class BackupPanel(EditPanel, gui.BackupPanel):
         #    BUILD THE BACKUP
         if len(self.txtName.GetValue()) == 0:
             raise Exception(_("Backup name cannot be blank"))
-        if self.chkEncrypt.GetValue() and not passphrase.passphrase:
+        if self.chkEncrypt.GetValue() and not self.config.data_passphrase:
             raise Exception(_("You cannot select encryption when the passphrase is blank (see Configuration page)."))
         try:
             #    Create the new backup object
@@ -411,7 +410,7 @@ class BackupPanel(EditPanel, gui.BackupPanel):
         #    Delete the database runs.
         backup = self.config.backups[name]
         #    Read the runs
-        _ = self.db.runs(name)
+        dummy = self.db.runs(name)
         success = True
         try:
             if delete_offsite_data:

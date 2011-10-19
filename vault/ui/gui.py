@@ -969,14 +969,14 @@ class RestorePanel ( wx.Panel ):
 		bSizer50 = wx.BoxSizer( wx.VERTICAL )
 		
 		self.nb_restore = wx.Notebook( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_panel26 = wx.Panel( self.nb_restore, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		self.pnlRestore = wx.Panel( self.nb_restore, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer51 = wx.BoxSizer( wx.HORIZONTAL )
 		
 		bSizer53 = wx.BoxSizer( wx.VERTICAL )
 		
 		bSizer95 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.lblTreeTitle = wx.StaticText( self.m_panel26, wx.ID_ANY, _("File System"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.lblTreeTitle = wx.StaticText( self.pnlRestore, wx.ID_ANY, _("File System"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.lblTreeTitle.Wrap( -1 )
 		self.lblTreeTitle.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), 70, 90, 92, False, wx.EmptyString ) )
 		
@@ -987,18 +987,18 @@ class RestorePanel ( wx.Panel ):
 		
 		bSizer53.Add( bSizer95, 0, wx.EXPAND, 3 )
 		
-		self.fs_tree = wx.TreeCtrl( self.m_panel26, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TR_DEFAULT_STYLE|wx.TR_FULL_ROW_HIGHLIGHT )
+		self.fs_tree = wx.TreeCtrl( self.pnlRestore, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TR_DEFAULT_STYLE|wx.TR_FULL_ROW_HIGHLIGHT )
 		bSizer53.Add( self.fs_tree, 1, wx.ALL|wx.EXPAND, 3 )
 		
 		bSizer94 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.m_button40 = wx.Button( self.m_panel26, wx.ID_ANY, _("Refresh"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button40 = wx.Button( self.pnlRestore, wx.ID_ANY, _("Refresh"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer94.Add( self.m_button40, 0, wx.ALL, 3 )
 		
-		self.btnRestore = wx.Button( self.m_panel26, wx.ID_ANY, _("Restore File/Folder..."), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btnRestore = wx.Button( self.pnlRestore, wx.ID_ANY, _("Restore File/Folder..."), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer94.Add( self.btnRestore, 0, wx.ALL, 3 )
 		
-		self.lblSelectedFile = wx.StaticText( self.m_panel26, wx.ID_ANY, _("<selected file>"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.lblSelectedFile = wx.StaticText( self.pnlRestore, wx.ID_ANY, _("<selected file>"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.lblSelectedFile.Wrap( -1 )
 		bSizer94.Add( self.lblSelectedFile, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 3 )
 		
@@ -1008,48 +1008,48 @@ class RestorePanel ( wx.Panel ):
 		
 		bSizer52 = wx.BoxSizer( wx.VERTICAL )
 		
-		self.date_label = wx.StaticText( self.m_panel26, wx.ID_ANY, _("Selected Date"), wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTRE )
+		self.date_label = wx.StaticText( self.pnlRestore, wx.ID_ANY, _("Selected Date"), wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTRE )
 		self.date_label.Wrap( -1 )
 		bSizer52.Add( self.date_label, 0, wx.ALIGN_CENTER_HORIZONTAL|wx.ALL, 0 )
 		
-		self.time_label = wx.StaticText( self.m_panel26, wx.ID_ANY, _("MyLabel"), wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTRE )
+		self.time_label = wx.StaticText( self.pnlRestore, wx.ID_ANY, _("MyLabel"), wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_CENTRE )
 		self.time_label.Wrap( -1 )
 		bSizer52.Add( self.time_label, 0, wx.ALIGN_CENTER_HORIZONTAL|wx.ALL, 0 )
 		
-		self.m_staticline3 = wx.StaticLine( self.m_panel26, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+		self.m_staticline3 = wx.StaticLine( self.pnlRestore, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
 		bSizer52.Add( self.m_staticline3, 0, wx.EXPAND |wx.ALL, 5 )
 		
-		self.m_staticText56 = wx.StaticText( self.m_panel26, wx.ID_ANY, _("Oldest"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText56 = wx.StaticText( self.pnlRestore, wx.ID_ANY, _("Oldest"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText56.Wrap( -1 )
 		self.m_staticText56.SetFont( wx.Font( 8, 70, 93, 90, False, wx.EmptyString ) )
 		
 		bSizer52.Add( self.m_staticText56, 0, wx.ALIGN_CENTER_HORIZONTAL, 3 )
 		
-		self.date_slider = wx.Slider( self.m_panel26, wx.ID_ANY, 50, 0, 100, wx.DefaultPosition, wx.DefaultSize, wx.SL_VERTICAL )
+		self.date_slider = wx.Slider( self.pnlRestore, wx.ID_ANY, 50, 0, 100, wx.DefaultPosition, wx.DefaultSize, wx.SL_VERTICAL )
 		bSizer52.Add( self.date_slider, 1, wx.ALL|wx.EXPAND, 3 )
 		
-		self.m_staticText55 = wx.StaticText( self.m_panel26, wx.ID_ANY, _("Latest"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText55 = wx.StaticText( self.pnlRestore, wx.ID_ANY, _("Latest"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText55.Wrap( -1 )
 		self.m_staticText55.SetFont( wx.Font( 8, 70, 93, 90, False, wx.EmptyString ) )
 		
 		bSizer52.Add( self.m_staticText55, 0, wx.ALIGN_CENTER_HORIZONTAL, 3 )
 		
-		self.m_staticline4 = wx.StaticLine( self.m_panel26, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+		self.m_staticline4 = wx.StaticLine( self.pnlRestore, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
 		bSizer52.Add( self.m_staticline4, 0, wx.EXPAND |wx.ALL, 5 )
 		
-		self.btnRunDetails = wx.Button( self.m_panel26, wx.ID_ANY, _("Run Details"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btnRunDetails = wx.Button( self.pnlRestore, wx.ID_ANY, _("Run Details"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer52.Add( self.btnRunDetails, 0, wx.ALL, 5 )
 		
 		bSizer51.Add( bSizer52, 0, wx.EXPAND, 3 )
 		
-		self.m_panel26.SetSizer( bSizer51 )
-		self.m_panel26.Layout()
-		bSizer51.Fit( self.m_panel26 )
-		self.nb_restore.AddPage( self.m_panel26, _("Restore Files/Folders"), False )
-		self.m_panel27 = wx.Panel( self.nb_restore, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		self.pnlRestore.SetSizer( bSizer51 )
+		self.pnlRestore.Layout()
+		bSizer51.Fit( self.pnlRestore )
+		self.nb_restore.AddPage( self.pnlRestore, _("Restore Files/Folders"), True )
+		self.pnlRecovery = wx.Panel( self.nb_restore, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer93 = wx.BoxSizer( wx.VERTICAL )
 		
-		self.lblTreeTitle1 = wx.StaticText( self.m_panel27, wx.ID_ANY, _("Method 1: Rebuild Local Database"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.lblTreeTitle1 = wx.StaticText( self.pnlRecovery, wx.ID_ANY, _("Method 1: Rebuild Local Database"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.lblTreeTitle1.Wrap( -1 )
 		self.lblTreeTitle1.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), 70, 90, 92, False, wx.EmptyString ) )
 		
@@ -1057,42 +1057,42 @@ class RestorePanel ( wx.Panel ):
 		
 		bSizer931 = wx.BoxSizer( wx.VERTICAL )
 		
-		self.m_staticText104 = wx.StaticText( self.m_panel27, wx.ID_ANY, _("Step 1: Retrieve a copy of the backup configuration from *any* recently used store."), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText104 = wx.StaticText( self.pnlRecovery, wx.ID_ANY, _("Step 1: Retrieve a copy of the backup configuration from *any* recently used store."), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText104.Wrap( -1 )
 		self.m_staticText104.SetFont( wx.Font( 8, 70, 93, 90, False, wx.EmptyString ) )
 		
 		bSizer931.Add( self.m_staticText104, 0, wx.ALL, 3 )
 		
-		self.btnReload = wx.Button( self.m_panel27, wx.ID_ANY, _("Step 1: Fetch Configuration"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btnReload = wx.Button( self.pnlRecovery, wx.ID_ANY, _("Step 1: Fetch Configuration"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer931.Add( self.btnReload, 0, wx.ALL, 3 )
 		
-		self.m_staticline9 = wx.StaticLine( self.m_panel27, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+		self.m_staticline9 = wx.StaticLine( self.pnlRecovery, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
 		bSizer931.Add( self.m_staticline9, 0, wx.EXPAND |wx.ALL, 3 )
 		
-		self.m_staticText94 = wx.StaticText( self.m_panel27, wx.ID_ANY, _("Step 2: Once the configuration has been fetched, The Vault can rebuild a complete\ncopy of the backup database, which includes information about all backed up files."), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText94 = wx.StaticText( self.pnlRecovery, wx.ID_ANY, _("Step 2: Once the configuration has been fetched, The Vault can rebuild a complete\ncopy of the backup database, which includes information about all backed up files."), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText94.Wrap( -1 )
 		self.m_staticText94.SetFont( wx.Font( 8, 70, 93, 90, False, wx.EmptyString ) )
 		
 		bSizer931.Add( self.m_staticText94, 0, wx.ALL, 3 )
 		
-		self.btnRebuild = wx.Button( self.m_panel27, wx.ID_ANY, _("Step 2: Rebuild Database"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btnRebuild = wx.Button( self.pnlRecovery, wx.ID_ANY, _("Step 2: Rebuild Database"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer931.Add( self.btnRebuild, 0, wx.ALL, 3 )
 		
-		self.m_staticline10 = wx.StaticLine( self.m_panel27, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+		self.m_staticline10 = wx.StaticLine( self.pnlRecovery, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
 		bSizer931.Add( self.m_staticline10, 0, wx.EXPAND |wx.ALL, 3 )
 		
-		self.m_staticText941 = wx.StaticText( self.m_panel27, wx.ID_ANY, _("Step 3: Use the \"Restore Flies/Folders\" tab to recover your files and folders."), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText941 = wx.StaticText( self.pnlRecovery, wx.ID_ANY, _("Step 3: Use the \"Restore Flies/Folders\" tab to recover your files and folders."), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText941.Wrap( -1 )
 		self.m_staticText941.SetFont( wx.Font( 8, 70, 93, 90, False, wx.EmptyString ) )
 		
 		bSizer931.Add( self.m_staticText941, 0, wx.ALL, 3 )
 		
-		self.btnRestoreTab = wx.Button( self.m_panel27, wx.ID_ANY, _("Step 3: Switch To Restore Tab"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btnRestoreTab = wx.Button( self.pnlRecovery, wx.ID_ANY, _("Step 3: Switch To Restore Tab"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer931.Add( self.btnRestoreTab, 0, wx.ALL, 3 )
 		
 		bSizer93.Add( bSizer931, 0, wx.EXPAND|wx.LEFT, 20 )
 		
-		self.lblTreeTitle11 = wx.StaticText( self.m_panel27, wx.ID_ANY, _("Method 2: Run Recover Application"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.lblTreeTitle11 = wx.StaticText( self.pnlRecovery, wx.ID_ANY, _("Method 2: Run Recover Application"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.lblTreeTitle11.Wrap( -1 )
 		self.lblTreeTitle11.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), 70, 90, 92, False, wx.EmptyString ) )
 		
@@ -1100,7 +1100,7 @@ class RestorePanel ( wx.Panel ):
 		
 		bSizer9311 = wx.BoxSizer( wx.VERTICAL )
 		
-		self.m_staticText901 = wx.StaticText( self.m_panel27, wx.ID_ANY, _("Every store has an emergency recovery application inside its root folder. \nRun that program (recover.py) to restore all backup data from that store. \nThis is better suited to local stores (e.g. USB drives) that can be easily mounted."), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText901 = wx.StaticText( self.pnlRecovery, wx.ID_ANY, _("Every store has an emergency recovery application inside its root folder. \nRun that program (recover.py) to restore all backup data from that store. \nThis is better suited to local stores (e.g. USB drives) that can be easily mounted."), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText901.Wrap( -1 )
 		self.m_staticText901.SetFont( wx.Font( 8, 70, 93, 90, False, wx.EmptyString ) )
 		
@@ -1108,14 +1108,14 @@ class RestorePanel ( wx.Panel ):
 		
 		bSizer93.Add( bSizer9311, 1, wx.EXPAND|wx.LEFT, 20 )
 		
-		self.m_panel27.SetSizer( bSizer93 )
-		self.m_panel27.Layout()
-		bSizer93.Fit( self.m_panel27 )
-		self.nb_restore.AddPage( self.m_panel27, _("Disaster Recovery"), True )
-		self.m_panel29 = wx.Panel( self.nb_restore, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		self.pnlRecovery.SetSizer( bSizer93 )
+		self.pnlRecovery.Layout()
+		bSizer93.Fit( self.pnlRecovery )
+		self.nb_restore.AddPage( self.pnlRecovery, _("Disaster Recovery"), False )
+		self.pnlPackages = wx.Panel( self.nb_restore, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer951 = wx.BoxSizer( wx.VERTICAL )
 		
-		self.lblTreeTitle12 = wx.StaticText( self.m_panel29, wx.ID_ANY, _("Restore All Packages/Software"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.lblTreeTitle12 = wx.StaticText( self.pnlPackages, wx.ID_ANY, _("Restore All Packages/Software"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.lblTreeTitle12.Wrap( -1 )
 		self.lblTreeTitle12.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), 70, 90, 92, False, wx.EmptyString ) )
 		
@@ -1123,7 +1123,7 @@ class RestorePanel ( wx.Panel ):
 		
 		bSizer9312 = wx.BoxSizer( wx.VERTICAL )
 		
-		self.m_staticText1041 = wx.StaticText( self.m_panel29, wx.ID_ANY, _("If one of your backups includes \"Backup Packages\", then\nthe vault can automatically restore all software (packages)\nin one go.\n\nPlease choose a Backup to fetch the package list from."), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText1041 = wx.StaticText( self.pnlPackages, wx.ID_ANY, _("If one of your backups includes \"Backup Packages\", then\nthe vault can automatically restore all software (packages)\nin one go.\n\nPlease choose a Backup to fetch the package list from."), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText1041.Wrap( -1 )
 		self.m_staticText1041.SetFont( wx.Font( 8, 70, 93, 90, False, wx.EmptyString ) )
 		
@@ -1131,12 +1131,12 @@ class RestorePanel ( wx.Panel ):
 		
 		bSizer99 = wx.BoxSizer( wx.HORIZONTAL )
 		
-		self.m_staticText120 = wx.StaticText( self.m_panel29, wx.ID_ANY, _("Backup:"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText120 = wx.StaticText( self.pnlPackages, wx.ID_ANY, _("Backup:"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText120.Wrap( -1 )
 		bSizer99.Add( self.m_staticText120, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 3 )
 		
 		cboBackupChoices = [ _("asdf"), _("asdfasdf") ]
-		self.cboBackup = wx.Choice( self.m_panel29, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, cboBackupChoices, 0 )
+		self.cboBackup = wx.Choice( self.pnlPackages, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, cboBackupChoices, 0 )
 		self.cboBackup.SetSelection( 0 )
 		self.cboBackup.SetMinSize( wx.Size( 150,-1 ) )
 		
@@ -1144,24 +1144,24 @@ class RestorePanel ( wx.Panel ):
 		
 		bSizer9312.Add( bSizer99, 0, wx.EXPAND, 3 )
 		
-		self.m_staticline91 = wx.StaticLine( self.m_panel29, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+		self.m_staticline91 = wx.StaticLine( self.pnlPackages, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
 		bSizer9312.Add( self.m_staticline91, 0, wx.EXPAND |wx.ALL, 5 )
 		
-		self.m_staticText942 = wx.StaticText( self.m_panel29, wx.ID_ANY, _("Click the \"Show Missing Packages\" button to fetch the backed\nup package list and to compare it will the currently installed list."), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText942 = wx.StaticText( self.pnlPackages, wx.ID_ANY, _("Click the \"Show Missing Packages\" button to fetch the backed\nup package list and to compare it will the currently installed list."), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText942.Wrap( -1 )
 		self.m_staticText942.SetFont( wx.Font( 8, 70, 93, 90, False, wx.EmptyString ) )
 		
 		bSizer9312.Add( self.m_staticText942, 0, wx.ALL, 3 )
 		
-		self.btnShowPackages = wx.Button( self.m_panel29, wx.ID_ANY, _("Show Missing Packages"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btnShowPackages = wx.Button( self.pnlPackages, wx.ID_ANY, _("Show Missing Packages"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer9312.Add( self.btnShowPackages, 0, wx.ALL, 3 )
 		
 		bSizer951.Add( bSizer9312, 1, wx.EXPAND|wx.LEFT, 20 )
 		
-		self.m_panel29.SetSizer( bSizer951 )
-		self.m_panel29.Layout()
-		bSizer951.Fit( self.m_panel29 )
-		self.nb_restore.AddPage( self.m_panel29, _("Restore Packages"), False )
+		self.pnlPackages.SetSizer( bSizer951 )
+		self.pnlPackages.Layout()
+		bSizer951.Fit( self.pnlPackages )
+		self.nb_restore.AddPage( self.pnlPackages, _("Restore Packages"), False )
 		
 		bSizer50.Add( self.nb_restore, 1, wx.EXPAND |wx.ALL, 3 )
 		
@@ -1960,7 +1960,21 @@ class ConfigPanel ( wx.Panel ):
 		
 		fgSizer142.AddSpacer( ( 0, 0), 1, wx.EXPAND, 5 )
 		
-		self.m_staticText134 = wx.StaticText( self.pnlSecurity, wx.ID_ANY, _("This master password is used to encrypt all passwords\n(such as FTP, DropBox etc) and to encrypt all remote\ndata (if you enable data encryption).\n\nThis is the only password to *really* need to remember.\n\nWarning: If you change the master password, then all\nexisting backup data and saved passwords will no longer \nbe usable."), wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer103 = wx.BoxSizer( wx.HORIZONTAL )
+		
+		self.m_staticText132 = wx.StaticText( self.pnlSecurity, wx.ID_ANY, _("Strength:"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText132.Wrap( -1 )
+		bSizer103.Add( self.m_staticText132, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 3 )
+		
+		self.strength = wx.Gauge( self.pnlSecurity, wx.ID_ANY, 100, wx.DefaultPosition, wx.Size( -1,10 ), wx.GA_HORIZONTAL|wx.GA_SMOOTH )
+		bSizer103.Add( self.strength, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 3 )
+		
+		fgSizer142.Add( bSizer103, 1, wx.EXPAND, 5 )
+		
+		
+		fgSizer142.AddSpacer( ( 0, 0), 1, wx.EXPAND, 5 )
+		
+		self.m_staticText134 = wx.StaticText( self.pnlSecurity, wx.ID_ANY, _("This master password is used to encrypt all remotely\nstored backup data, *if* you enable data encryption.\n\nWhatever you do... remember this password.\n\nWarning: If you change the master password, then\nall existing backup data will need to be deleted\n(i.e. you need to restart your backups)."), wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText134.Wrap( -1 )
 		self.m_staticText134.SetFont( wx.Font( 8, 70, 93, 90, False, wx.EmptyString ) )
 		
@@ -2228,6 +2242,7 @@ class ConfigPanel ( wx.Panel ):
 		self.Layout()
 		
 		# Connect Events
+		self.txtMasterPassword.Bind( wx.EVT_CHAR, self.onMasterPasswordChar )
 		self.btnHidePassword.Bind( wx.EVT_BUTTON, self.onHidePassword )
 		self.btnSavePassword.Bind( wx.EVT_BUTTON, self.onSavePassword )
 		self.chkMailSSL.Bind( wx.EVT_CHECKBOX, self.onSSL )
@@ -2246,6 +2261,9 @@ class ConfigPanel ( wx.Panel ):
 	
 	
 	# Virtual event handlers, overide them in your derived class
+	def onMasterPasswordChar( self, event ):
+		event.Skip()
+	
 	def onHidePassword( self, event ):
 		event.Skip()
 	

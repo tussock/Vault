@@ -119,7 +119,7 @@ class Tester():
 #                store = self.config.storage[self.options.store]
 #            else:
 #                #    Make the store about 3x the options size
-#                s, _, _ = utils.from_readable_form(self.options.size)
+#                s, dummy, dummy = utils.from_readable_form(self.options.size)
 #                store_size = utils.readable_form(s * 3)
 #                store = FolderStore("teststore1", store_size, True, os.path.join(self.store_folder, "teststore1"))
 #                self.config.storage[store.name] = store
@@ -271,7 +271,7 @@ class Tester():
             store2 = store1
         else:
             #    Make the store about 3x the options size
-            s, _, _ = utils.from_readable_form(self.options.size)
+            s, dummy, dummy = utils.from_readable_form(self.options.size)
             store_size = utils.readable_form(s * 3)
             store1 = FolderStore("teststore1", store_size, True, os.path.join(self.store_folder, "teststore1"))
             store2 = FolderStore("teststore2", store_size, True, os.path.join(self.store_folder, "teststore2"))
@@ -300,7 +300,7 @@ class Tester():
         log.trace("fill_files")
         if not remaining:
             #    First time in...
-            remaining, _, _ = utils.from_readable_form(self.options.size)
+            remaining, dummy, dummy = utils.from_readable_form(self.options.size)
             root = self.files_folder
             
         list = [root]

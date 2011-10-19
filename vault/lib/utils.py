@@ -355,7 +355,7 @@ def from_readable_form(size_str):
         raise Exception("Invalid units")
     units_idx = SUFFIXES.index(units)
     total = float(num) * 1024
-    for _ in xrange(units_idx):
+    for dummy in xrange(units_idx):
         total = total * 1024
     total = int(total)
     return (total, num, units)

@@ -13,7 +13,6 @@ from collections import namedtuple
 
 
 from lib import const
-from lib import passphrase
 from lib.config import Config
 from lib.db import DB
 from store.streamer import StreamIn
@@ -261,7 +260,7 @@ class Restore():
         #    Set up the encryptor 
         if backup.encrypt:
             log.debug("Creating crypto object")
-            self.crypto = cryptor.DecryptStream(passphrase.passphrase)
+            self.crypto = cryptor.DecryptStream(self.config.data_passphrase)
         else:
             self.crypto = cryptor.Buffer()
 

@@ -18,7 +18,7 @@ class OptionDialog(gui.OptionDialog):
     '''
 
 
-    def __init__(self, parent, message, caption, option):
+    def __init__(self, parent, message, caption, option, default=False):
         '''
         Constructor
         '''
@@ -26,6 +26,7 @@ class OptionDialog(gui.OptionDialog):
         self.SetTitle(caption)
         self.lblMessage.SetLabel(message)
         self.chkOption.SetLabel(option)
+        self.chkOption.SetValue(default)
         self.Fit()
 
 

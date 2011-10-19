@@ -14,7 +14,6 @@ _ = gettext.gettext
 
 from lib import const
 from lib.config import Config
-from lib import passphrase
 from lib.db import DB
 from store.streamer import StreamIn
 from lib import cryptor                #@UnresolvedImport
@@ -116,7 +115,7 @@ class Verify():
         self.crypt_proc = None
         if backup.encrypt:
             log.debug("Creating crypt objects")
-            self.crypto = cryptor.DecryptStream(passphrase.passphrase)
+            self.crypto = cryptor.DecryptStream(self.config.data_passphrase)
         else:
             self.crypto = cryptor.Buffer()
 

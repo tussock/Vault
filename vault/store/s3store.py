@@ -10,8 +10,6 @@
 
 from storebase import StoreBase
 from lib import const
-from lib import passphrase
-from lib.cryptor import decrypt_string_base64, encrypt_string_base64
 import boto
 
 #    Do this last!
@@ -36,37 +34,10 @@ class S3Store(StoreBase):
 
         self.bucket = bucket
         self.bucket = bucket
-        self._key = key
-        self._secret_key = secret_key
-        self.pre_save()
-        for attr in ["bucket", "key_c", "secret_key_c"]:
+        self.key = key
+        self.secret_key = secret_key
+        for attr in ["bucket", "key", "secret_key"]:
             self._persistent.append(attr)
-
-
-
-    def pre_save(self):
-        self.key_c = encrypt_string_base64(passphrase.passphrase, self._key)
-        self.secret_key_c = encrypt_string_base64(passphrase.passphrase, self._secret_key)
-    def post_load(self):
-        self._key = decrypt_string_base64(passphrase.passphrase, self.key_c)
-        self._secret_key = decrypt_string_base64(passphrase.passphrase, self.secret_key_c)
-
-    @property
-    def key(self):
-        return self._key
-
-    @key.setter
-    def key(self, value):
-        self._key = value
-
-    @property
-    def secret_key(self):
-        return self._secret_key
-
-    @secret_key.setter
-    def secret_key(self, value):
-        self._secret_key = value
-
 
 
     def copy(self):

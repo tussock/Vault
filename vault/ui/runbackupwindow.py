@@ -101,7 +101,8 @@ class RunBackupWindow(gui.RunBackupWindow):
             self.btnStop.Enable(True)
         else:
             log.debug("Starting", options)
-            subprocess.Popen(options)
+            p = subprocess.Popen(options)
+            log.debug("Start result", p.returncode, " pid ", p.pid)
             wx.CallLater(2000, app.broadcast_update)
             dlg.Info(self, _("Backup '{backup}' has been started\nYou can view it's progress in the History Window").format(backup=bname))
             self.Close()

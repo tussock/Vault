@@ -19,8 +19,6 @@ import const
 
 import utils
 import serializer
-import passphrase
-from cryptor import encrypt_string_base64, decrypt_string_base64
 
 #    Do last!
 from lib.logger import Logger
@@ -68,7 +66,6 @@ class Config(serializer.Serializer):
                 _appconfig = Config()
                 import appconfig
                 appconfig.build_config(_appconfig)
-                _appconfig.post_load()
                 _appconfig.save()
                 const.FirstTime = True
         log.trace("Returning", _appconfig)
@@ -91,35 +88,12 @@ class Config(serializer.Serializer):
         import appconfig
         appconfig.check_version(obj)
         
-        obj.post_load()
         return obj
-    
-    @property
-    def mail_password(self):
-        return self._mail_password
-    
-    @mail_password.setter
-    def mail_password(self, value):
-        self._mail_password = value
-    
-
-    def post_load(self):
-        self.mail_password = decrypt_string_base64(passphrase.passphrase, self.mail_password_c)
-        for store in self.storage.itervalues():
-            if hasattr(store, "post_load"):
-                store.post_load()
-        
-    def pre_save(self):
-        self.mail_password_c = encrypt_string_base64(passphrase.passphrase, self.mail_password)
-        for store in self.storage.itervalues():
-            if hasattr(store, "pre_save"):
-                store.pre_save()
 
     def save(self):
         global _appconfig
         try:
             utils.makedirs(const.ConfigDir)
-            self.pre_save()
             serializer.save(const.ConfigFile, _appconfig)
 
             log.debug("Saved configuration")

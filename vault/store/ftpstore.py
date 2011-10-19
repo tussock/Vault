@@ -10,6 +10,7 @@ Created on Nov 10, 2010
 '''
 
 import os
+import sys
 from threading import Thread, RLock
 import time 
 
@@ -27,8 +28,6 @@ else:
 from storebase import *
 from lib import utils
 from lib import const 
-from lib import passphrase
-from lib.cryptor import decrypt_string_base64, encrypt_string_base64
 
 
 #    Do this last!
@@ -205,28 +204,11 @@ class FTPStore(StoreBase):
         self.ip = ip
         self.root = root
         self.login = login
-        self._password = password
+        self.password = password
         self.sftp = sftp
         self.folder_stack = []
-        self._password = password
-        self.pre_save()
-        for attr in ["ip", "root", "login", "password_c", "sftp"]:
+        for attr in ["ip", "root", "login", "password", "sftp"]:
             self._persistent.append(attr)
-
-
-    def pre_save(self):
-        self.password_c = encrypt_string_base64(passphrase.passphrase, self._password)
-    def post_load(self):
-        self._password = decrypt_string_base64(passphrase.passphrase, self.password_c)
-
-    @property
-    def password(self):
-        return self._password
-
-    @password.setter
-    def password(self, value):
-        self._password = value
-
 
     def __str__(self):
         return "FTP: %s@%s/%s %s" % (self.login, self.ip, self.root, str(self.sftp))
@@ -248,7 +230,7 @@ class FTPStore(StoreBase):
         if "w" in mode:
             self.io_state = ioWriting
             #    Make sure the dest folder exists
-            dir, _ = os.path.split(path)
+            dir, dummy = os.path.split(path)
             self.make_dir(dir)
         else:
             self.io_state = ioReading
@@ -303,10 +285,25 @@ class FTPStore(StoreBase):
             self.transport = None
             if self.sftp:
                 if use_paramiko:
-                    log.debug("Connect SFTP (paramiko)")
+                    log.debug("Connect SFTP paramiko version=", paramiko.__version__,
+                              "id", self.login, 
+                              "addr", self.ip, 
+                              "python version", sys.version)
+#                    paramiko.common.logging.basicConfig(level=paramiko.common.DEBUG)                    
+#                    self.transport = paramiko.SSHClient()
+#                    log.debug("Have transport")
+#                    self.transport.connect(str(self.ip), 
+#                                           username=str(self.login), 
+#                                           password=str(self.password))
+#                    log.debug("Connected")
+#                    self.ftp = self.transport.open_sftp()
                     self.transport = paramiko.Transport((self.ip, 22))
+                    log.debug("Have transport")
                     self.transport.connect(username=self.login, password=self.password)
+                    log.debug("Connected")
                     self.ftp = paramiko.SFTPClient.from_transport(self.transport)
+                    
+                    log.debug("Connected and ready to go")
                 else:
                     log.debug("Connect SFTP")
                     self.ftp = FTP_TLS()
@@ -320,7 +317,7 @@ class FTPStore(StoreBase):
                 self.ftp.login(self.login, self.password)
         except Exception as e:
             #    We failed connection and/or login, so FORCE close
-            log.debug("Exception during connect and login")
+            log.debug("Exception during connect and login: ", str(e))
             self._disconnect
             raise Exception("Failed to connect or log in (%s)" % str(e))
 

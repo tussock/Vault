@@ -89,7 +89,7 @@ class IOWorker(Thread):
         while not self.queue.empty():
             try:
                 work = self.queue.get(True, 0)
-                path, _ = work
+                path, dummy = work
                 os.remove(path)
             except:
                 pass
@@ -197,7 +197,7 @@ class StoreBase(Serializer):
         if not self.auto_manage:
             ret = (None, use.size, None)
         else:
-            size, _, _ = self.limit_details()
+            size, dummy, dummy = self.limit_details()
             if size == 0:
                 avail = None
             else:
@@ -225,7 +225,7 @@ class StoreBase(Serializer):
         #    So we can't juts use locks. We use a large random number,
         #    and watch for anyone else using it.
         remotedir = "__test%s" % \
-            ''.join(random.choice(string.letters + string.digits) for _ in xrange(10))
+            ''.join(random.choice(string.letters + string.digits) for dummy in xrange(10))
 
         if self.exists(remotedir):
             #    Uh oh... very unlikely but possible.

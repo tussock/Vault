@@ -11,7 +11,6 @@ import re
 import os
 
 import const
-import passphrase
 from serializer import Serializer
 
 #    Do last!
@@ -124,9 +123,6 @@ class Backup(Serializer):
         if self.name == const.RecoveryFolder:
             raise Exception(_("The name %s is reserved and cannot used used for a backup") %
                             const.RecoveryFolder)
-        if self.encrypt and not passphrase.passphrase:
-            raise Exception(_("Cannot enable encryption when the passphrase is blank"))
-
 
     def __str__(self):
         return("Backup: name=%s active=%s include_folders=%s include_packages=%s exclude_types=%s exclude_patterns=%s store=%s encrypt=%s verify=%s sched_type=%s sched_times=%s" %

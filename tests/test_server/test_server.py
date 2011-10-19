@@ -10,7 +10,6 @@ from datetime import datetime, timedelta
 
 from lib import const
 from lib import utils
-from lib import passphrase
 from store.folderstore import FolderStore
 from lib.backup import Backup
 from lib.config import Config
@@ -55,8 +54,8 @@ class ServerTestCase(unittest.TestCase):
         self.backup.include_folders = [self.files_folder]
         self.backup.store = self.store.name
         self.backup.notify_msg = False
-        self.old_pass = passphrase.passphrase
-        passphrase.set_passphrase("goofy")
+        self.old_pass = self.config.data_passphrase
+        self.config.data_passphrase = "goofy"
         self.backup.encrypt = True
         self.config.backups[self.backup.name] = self.backup
 
@@ -70,7 +69,7 @@ class ServerTestCase(unittest.TestCase):
 
 
     def tearDown(self):
-        passphrase.set_passphrase(self.old_pass)
+        self.config.data_passphrase = self.old_pass
         #    Remove all DB records created during this test
         self.clean_db()
         shutil.rmtree(self.test_folder)
@@ -100,7 +99,7 @@ class ServerTestCase(unittest.TestCase):
         #    The automanaged store should continue to archive old backups as required.
         #    Store space reclaimation happens across all backups (i.e. any run).
         #    We should see older runs from the first backup disappear.
-        max_size, _, _ = self.store.limit_details()
+        max_size, dummy, dummy = self.store.limit_details()
 
         filesize = utils.du(self.backup.include_folders[0])
 
@@ -145,7 +144,7 @@ class ServerTestCase(unittest.TestCase):
 
     def testAutoManagementOfStore2(self):
         #    Run one backup multiple times to overload a store
-        max_size, _, _ = self.store.limit_details()
+        max_size, dummy, dummy = self.store.limit_details()
 
         filesize = utils.du(self.backup.include_folders[0])
 

@@ -1678,8 +1678,8 @@
 				<object class="wxNotebook" name="nb_restore">
 					<object class="notebookpage">
 						<label>Restore Files/Folders</label>
-						<selected>0</selected>
-						<object class="wxPanel" name="m_panel26">
+						<selected>1</selected>
+						<object class="wxPanel" name="pnlRestore">
 							<style>wxTAB_TRAVERSAL</style>
 							<object class="wxBoxSizer">
 								<orient>wxHORIZONTAL</orient>
@@ -1864,8 +1864,8 @@
 					</object>
 					<object class="notebookpage">
 						<label>Disaster Recovery</label>
-						<selected>1</selected>
-						<object class="wxPanel" name="m_panel27">
+						<selected>0</selected>
+						<object class="wxPanel" name="pnlRecovery">
 							<style>wxTAB_TRAVERSAL</style>
 							<object class="wxBoxSizer">
 								<orient>wxVERTICAL</orient>
@@ -2028,7 +2028,7 @@
 					<object class="notebookpage">
 						<label>Restore Packages</label>
 						<selected>0</selected>
-						<object class="wxPanel" name="m_panel29">
+						<object class="wxPanel" name="pnlPackages">
 							<style>wxTAB_TRAVERSAL</style>
 							<object class="wxBoxSizer">
 								<orient>wxVERTICAL</orient>
@@ -3484,6 +3484,40 @@
 													<size>0,0</size>
 												</object>
 												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<object class="wxBoxSizer">
+														<orient>wxHORIZONTAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxStaticText" name="m_staticText132">
+																<label>Strength:</label>
+																<wrap>-1</wrap>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>1</option>
+															<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+															<border>3</border>
+															<object class="wxGauge" name="strength">
+																<style>wxGA_HORIZONTAL|wxGA_SMOOTH</style>
+																<size>-1,10</size>
+																<range>100</range>
+																<value>0</value>
+															</object>
+														</object>
+													</object>
+												</object>
+												<object class="spacer">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<size>0,0</size>
+												</object>
+												<object class="sizeritem">
 													<option>0</option>
 													<flag>wxALL</flag>
 													<border>5</border>
@@ -3495,7 +3529,7 @@
 															<weight>normal</weight>
 															<underlined>0</underlined>
 														</font>
-														<label>This master password is used to encrypt all passwords\n(such as FTP, DropBox etc) and to encrypt all remote\ndata (if you enable data encryption).\n\nThis is the only password to *really* need to remember.\n\nWarning: If you change the master password, then all\nexisting backup data and saved passwords will no longer \nbe usable.</label>
+														<label>This master password is used to encrypt all remotely\nstored backup data, *if* you enable data encryption.\n\nWhatever you do... remember this password.\n\nWarning: If you change the master password, then\nall existing backup data will need to be deleted\n(i.e. you need to restart your backups).</label>
 														<wrap>-1</wrap>
 													</object>
 												</object>

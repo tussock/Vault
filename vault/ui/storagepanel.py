@@ -13,7 +13,6 @@ import gui
 from lib.db import DB
 from lib import const
 from lib.config import Config
-from lib import passphrase
 from lib import utils
 from lib import dlg
 

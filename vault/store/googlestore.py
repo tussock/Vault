@@ -12,8 +12,6 @@ import os
 
 from storebase import StoreBase
 from lib import const
-from lib import passphrase
-from lib.cryptor import decrypt_string_base64, encrypt_string_base64
 import gdata.docs.data
 import gdata.docs.client
 
@@ -40,25 +38,10 @@ class GoogleStore(StoreBase):
             raise Exception("Name and password cannot be blank")
         self.collection = collection
         self.login = login
-        self._password = password
-        self.pre_save()
-        for attr in ["collection", "login", "password_c"]:
+        self.password = password
+        for attr in ["collection", "login", "password"]:
             self._persistent.append(attr)
 
-
-
-    def pre_save(self):
-        self.password_c = encrypt_string_base64(passphrase.passphrase, self._password)
-    def post_load(self):
-        self._password = decrypt_string_base64(passphrase.passphrase, self.password_c)
-
-    @property
-    def password(self):
-        return self._password
-
-    @password.setter
-    def password(self, value):
-        self._password = value
 
     def copy(self):
         '''

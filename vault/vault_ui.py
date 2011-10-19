@@ -37,7 +37,7 @@ def run():
         if not os.geteuid()==0:
             #    We are going to crash, get wx up enough to show a dialog.
             import wx
-            _ = wx.PySimpleApp()
+            __ = wx.PySimpleApp()
             dlg.Error(None, _("The Vault must be run as root"))
             sys.exit("The Vault must be run as root")
  

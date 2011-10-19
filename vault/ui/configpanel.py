@@ -12,11 +12,13 @@ import gui
 import app
 from lib import const
 from lib.config import Config
-from lib import passphrase
 from lib import dlg
+from lib.db import DB
 from lib import sendemail
-from lib.cryptor import encrypt_string_base64, decrypt_string_base64
+from lib import utils
+from lib import cryptor
 from progressdialog import ProgressDialog
+from optiondialog import OptionDialog
 #    Do last!
 from lib.logger import Logger
 log = Logger('ui')
@@ -38,6 +40,7 @@ class ConfigPanel(gui.ConfigPanel):
 
         gui.ConfigPanel.__init__(self, parent)
         self.config = Config.get_config()
+        self.db = DB()        
 
         self.state = ViewState
         self.update_filetype_list()
@@ -215,20 +218,88 @@ class ConfigPanel(gui.ConfigPanel):
             self.btnHidePassword.SetLabel("Show")
 
     def show_security(self):
-        if not passphrase.passphrase:
+        if not self.config.data_passphrase:
             self.txtMasterPassword.SetValue("")
         else:
-            self.txtMasterPassword.SetValue(passphrase.passphrase)
+            self.txtMasterPassword.SetValue(self.config.data_passphrase)
+        self.onMasterPasswordChar(None)
+
+    def onMasterPasswordChar(self, event):
+        """Recalculate entropy any time the password changes."""
+        pwd = self.txtMasterPassword.GetValue()
+        e = int(cryptor.entropy(pwd))
+        if e < 0:
+            e = 0
+        if e > 100:
+            e = 100
+        self.strength.SetValue(e)
+        if event:
+            event.Skip()
 
     def onSavePassword(self, event):
         pwd = self.txtMasterPassword.GetValue()
+        if pwd != self.config.data_passphrase:
+            #    Password has changed. Do we have any stored backups? 
+            #    If so, they should be deleted.
+            runs = self.db.runs()
+            num_runs = len(runs)
+            if num_runs > 0:
+                size = 0
+                for run in runs:
+                    size += run.size                
+                #    Check with the user.
+                msg = _("You current have {numruns} backup runs stored, " \
+                        "totalling {size} of remote data.\n" \
+                        "Changing the Master Password means old encrypted backups cannot be used.\n" \
+                        "Note that they can be kept for disaster recovery if needed,\n" \
+                        "but we suggest you simply start fresh.").format(\
+                        numruns=num_runs, size=utils.readable_form(size))
+                mbox = OptionDialog(self, msg, _("Delete Backup Runs"),
+                                    _("Also delete all encrypted backup data stored remotely."), 
+                                    default=True)
+                if mbox.ShowModal() != wx.ID_OK:
+                    return
+                delete_offsite_data = mbox.chkOption.GetValue()
+
+                #    TODO skip if no runs
+                #    We keep track of all errors
+                errors = ""
+                with ProgressDialog(self, _("Deleting"), _("Deleting old encrypted backup data.\nPlease wait...")):
+                    for backup in self.config.backups.itervalues():
+                        #    If its encrypted
+                        if backup.encrypt:
+                            #    If the option set - delete all offline data at the store
+                            if delete_offsite_data:
+                                try:
+                                    #    Get the list of unique stores used by runs of this backup
+                                    runs = self.db.runs(backup.name)
+                                    stores = set([r.store for r in runs]) 
+                                    #    Get the store and delete all data.
+                                    for storename in stores:
+                                        store = self.config.storage[storename].copy()
+                                        store.delete_backup_data(backup.name)
+                                except Exception as e:
+                                    errors += "\nDelete offline data for %s failed: %s" % (backup.name, str(e))
+                            #    Now delete the database records of the run abd backup
+                            try:
+                                self.db.delete_backup(backup.name)
+                            except Exception as e:
+                                errors += "\nDelete local backup information for %s failed: " % (backup.name, str(e))
+                
+                if len(errors) > 0:
+                    dlg.Error(self, errors)
+                
         if not pwd:
-            passphrase.delete_passphrase()
+            self.config.data_passphrase = None
             app.show_message('Password cleared')
         else:
-            passphrase.set_passphrase(pwd)
+            self.config.data_passphrase = pwd
             app.show_message('Password set')
         self.config.save()
+        #    Now delete all the backups and offsite data.
+        
+        
+        
 
 ######################################################################
 #

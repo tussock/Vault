@@ -21,12 +21,3 @@ class StoreManagerX(Serializer, dict):
         self.__setitem__(store.name, store)
         
 
-    def pre_save(self):
-        for store in self.itervalues():
-            if hasattr(store, "pre_save"):
-                store.pre_save()
-                
-    def post_load(self):
-        for store in self.itervalues():
-            if hasattr(store, "post_load"):
-                store.post_load()

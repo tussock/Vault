@@ -13,6 +13,8 @@ import ctypes
 import os
 import threading
 import base64
+import re
+import math
 
 import evp
 from buffer import Buffer
@@ -20,6 +22,30 @@ from buffer import Buffer
 BufferSize=102400
     
 
+ 
+def entropy(password=''):
+    #    Prepare the character sets
+    numeric=re.compile('\d')
+    loweralpha=re.compile('[a-z]')
+    upperalpha=re.compile('[A-Z]')
+    symbols=re.compile('[-_.:,;&lt;&gt;?"#$%&amp;/()!@~]')
+    num_of_symbols=20 # adjust accordingly...
+
+    from math import log,pow
+    charset = 0
+    if numeric.search(password):
+        charset += 10
+    if loweralpha.search(password):
+        charset += 26
+    if upperalpha.search(password):
+        charset += 26
+    if symbols.search(password):
+        charset += num_of_symbols
+    entropy = log(pow(charset,len(password)),2)
+    return entropy
+
+
+    
 class CipherError(evp.SSLError):
     pass
 

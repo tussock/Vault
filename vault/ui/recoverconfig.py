@@ -13,7 +13,6 @@ import subprocess
 from lib import const
 from lib import wizard
 from lib import dlg
-from lib import passphrase
 from store.folderstore import FolderStore
 from store.ftpstore import FTPStore
 from store.sharestore import ShareStore
@@ -125,7 +124,9 @@ def wiz_execute(wiz):
                         os.remove(enc_file)
                     #    Looks like this password is a good one. 
                     #    We will save it.
-                    passphrase.set_passphrase(password)
+                    conf = Config.get_config()
+                    conf.data_passphrase = password
+                    conf.save()
                 except:
                     log.info("Invalid backup password")
                     dlg.Warn(wiz, _("Invalid password. Please enter the correct backup password."))

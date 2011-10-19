@@ -16,7 +16,6 @@ from lib.db import DB
 from lib import dlg
 from lib.config import Config
 from lib import const
-from lib import passphrase
 from rundetailswindow import RunDetailsWindow
 from runrestorewindow import RunRestoreWindow
 from packagewindow import PackageWindow
@@ -99,16 +98,14 @@ class RestorePanel(gui.RestorePanel):
         self.fs_tree.SetItemPyData(self.root_node, node_info(0, 0, "D", False, "/"))
         self.expand_node(self.root_node)
         self.onSliderScroll(None)
-        self.date_label.Fit()
-        self.time_label.Fit()
+        self.pnlRestore.Layout()
 
     def update_data(self):
         # TODO! This could be dangerously time consuming!
         self.prepare_static_data()
         self.onSliderScroll(None)
         self.rebuild_tree()
-        self.date_label.Fit()
-        self.time_label.Fit()
+        self.pnlRestore.Layout()
 
     def get_current_run(self):
         if len(self.runs) == 0:
@@ -191,16 +188,14 @@ class RestorePanel(gui.RestorePanel):
         if not run:
             self.date_label.SetLabel("")
             self.time_label.SetLabel("")
-            self.date_label.Fit()
-            self.time_label.Fit()
+            self.pnlRestore.Layout()
             self.lblTreeTitle.SetLabel("No backups have run yet.")
             return
 
         date = run.start_time
         self.date_label.SetLabel(date.strftime(const.ShortDateFormat))
         self.time_label.SetLabel(date.strftime(const.ShortTimeFormat))
-        self.date_label.Fit()
-        self.time_label.Fit()
+        self.pnlRestore.Layout()
         self.date_slider.SetToolTipString(date.strftime(const.ShortDateTimeFormat))
         self.lblTreeTitle.SetLabel("File System as at " + date.strftime(const.ShortDateTimeFormat))
 
@@ -210,12 +205,12 @@ class RestorePanel(gui.RestorePanel):
         run = self.get_current_run()
         if not run:
             return
-        _ = RunDetailsWindow(self, run)
+        dummy = RunDetailsWindow(self, run)
 
     def onRestore(self, event):
         sel = self.fs_tree.GetSelection()
         data = self.fs_tree.GetItemPyData(sel)
-        _ = RunRestoreWindow(self, data.path)
+        dummy = RunRestoreWindow(self, data.path)
 
     def onReload(self, event):
         #    Reload the configuration
@@ -259,7 +254,7 @@ class RestorePanel(gui.RestorePanel):
         package_path = os.path.join(workfolder, const.PackageFile)
         if backup.encrypt:
             crypt_path = package_path + const.EncryptionSuffix
-            cryptor.decrypt_file(passphrase.passphrase, crypt_path, package_path)
+            cryptor.decrypt_file(self.config.data_passphrase, crypt_path, package_path)
 
         package_list = open(package_path).read().split('\n')
         #    Cleanup

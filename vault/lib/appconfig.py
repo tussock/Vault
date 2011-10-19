@@ -41,8 +41,11 @@ def build_config(conf):
     store = FolderStore(_("System Backup Folder"), "", False, os.path.join(const.DataDir, "vault-store"))
     conf.storage[store.name] = store
 
-    conf.backups = {}
+    #    By default, the data passphrase is blank.
+    conf.data_passphrase = None
 
+    conf.backups = {}
+    
     b = Backup(_("Home"))
     b.include_folders = ["/home"]
     b.active = False
@@ -56,7 +59,7 @@ def build_config(conf):
     conf.mail_ssl = False
     conf.mail_auth = False
     conf.mail_login = ""
-    conf.mail_password_c = ""
+    conf.mail_password = ""
     conf.mail_from = ""
     conf.mail_to = ""
 

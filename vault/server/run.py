@@ -22,7 +22,6 @@ _ = gettext.gettext
 
 from lib import const
 from lib.config import Config
-from lib import passphrase
 from lib.db import DB
 from store.streamer import StreamOut
 from store.storebase import StoreFullException
@@ -359,7 +358,7 @@ class Run():
                 if name:
                     name = name + ".enc"    #    Otherwise left as None
                 enc_path = path + ".enc"
-                cryptor.encrypt_file(passphrase.passphrase, path, enc_path)
+                cryptor.encrypt_file(self.config.data_passphrase, path, enc_path)
                 self.store.send(enc_path, os.path.join(self.backup_folder, name))
                 os.remove(enc_path)
             else:
@@ -685,7 +684,7 @@ class Run():
         if self.backup.encrypt:
             log.debug("Creating crypto stream")
 
-            self.crypto = cryptor.EncryptStream(passphrase.passphrase)
+            self.crypto = cryptor.EncryptStream(self.config.data_passphrase)
 
         else:
             self.crypto = cryptor.Buffer()

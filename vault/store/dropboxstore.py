@@ -16,9 +16,6 @@ from threading import Thread
 from storebase import *
 from lib import const
 from lib import utils
-from lib.buffer import Buffer
-from lib import passphrase
-from lib.cryptor import decrypt_string_base64, encrypt_string_base64
 from dropbox import auth, client
 
 #    Do this last!
@@ -59,48 +56,11 @@ class DropBoxStore(StoreBase):
         if len(self.root) == 0 or self.root[0] != "/":
             self.root = "/" + self.root
         self.login = login
-        self._password = password
-        self._app_key = app_key
-        self._app_secret_key = app_secret_key
-        self.pre_save()
-        for attr in ["root", "login", "password_c", "app_key_c", "app_secret_key_c"]:
+        self.password = password
+        self.app_key = app_key
+        self.app_secret_key = app_secret_key
+        for attr in ["root", "login", "password", "app_key", "app_secret_key"]:
             self._persistent.append(attr)
-
-
-
-    def pre_save(self):
-        self.password_c = encrypt_string_base64(passphrase.passphrase, self._password)
-        self.app_key_c = encrypt_string_base64(passphrase.passphrase, self._app_key)
-        self.app_secret_key_c = encrypt_string_base64(passphrase.passphrase, self._app_secret_key)
-    def post_load(self):
-        self._password = decrypt_string_base64(passphrase.passphrase, self.password_c)
-        self._app_key = decrypt_string_base64(passphrase.passphrase, self.app_key_c)
-        self._app_secret_key = decrypt_string_base64(passphrase.passphrase, self.app_secret_key_c)
-
-    @property
-    def password(self):
-        return self._password
-
-    @password.setter
-    def password(self, value):
-        self._password = value
-
-    @property
-    def app_key(self):
-        return self._app_key
-
-    @app_key.setter
-    def app_key(self, value):
-        self._app_key = value
-
-    @property
-    def app_secret_key(self):
-        return self._app_secret_key
-
-    @app_secret_key.setter
-    def app_secret_key(self, value):
-        self._app_secret_key = value
-
 
 
     def copy(self):

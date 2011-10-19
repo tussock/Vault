@@ -9,7 +9,7 @@ import tempfile
 import time
 
 from lib import utils
-from lib.cryptor import encrypt_string, decrypt_string, encrypt_file, \
+from lib.cryptor import entropy, encrypt_string, decrypt_string, encrypt_file, \
         decrypt_file, EncryptStream, DecryptStream, CopyThread, Buffer, CipherError
 
 class CrypterTestCase(unittest.TestCase):
@@ -70,7 +70,7 @@ class CrypterTestCase(unittest.TestCase):
     def testStreamers(self):
         crypt = EncryptStream(self.password)
         clear = ""
-        for _ in xrange(64):
+        for dummy in xrange(64):
             data = os.urandom(1024)
             crypt.write(data)
             clear += data
@@ -208,6 +208,11 @@ class CrypterTestCase(unittest.TestCase):
         fname = utils.maketempfile(1024)
         self.assertRaises(CipherError, decrypt_file, self.password, fname)
         
+    def testEntropy(self):
+        passlist = ["a", "hello", "hellob", "(*&^KJHGjkhgrtoiua123"]
+        for i in xrange(len(passlist)-1):
+            self.assertTrue(entropy(passlist[i]) < entropy(passlist[i+1]))
+    
         
         
 if __name__ == "__main__":

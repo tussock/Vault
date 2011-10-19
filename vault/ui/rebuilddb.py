@@ -14,7 +14,6 @@ import wx
 
 from lib.db import DB
 from lib import const
-from lib import passphrase
 from lib import wizard
 from lib import dlg
 from lib.cryptor import decrypt_file               #@UnresolvedImport
@@ -66,7 +65,7 @@ def wiz_execute(wiz):
                     db.start_run(backup.name, store.name, type, date)
                     db.save_message(_("Database rebuild started"))
                     try:
-                        store_size, _file_sizes, nfiles, nfolders = recover_run(db, backup, store, run)
+                        store_size, _file_sizes, nfiles, nfolders = recover_run(config, db, backup, store, run)
 
                         db.save_message(_("Database rebuild complete"))
                         db.update_run_stats(store_size, nfiles, nfolders, backup.include_packages, "")
@@ -89,8 +88,9 @@ def wiz_execute(wiz):
     dlg.Info(wiz, _("Your backup files database has been rebuilt.\nYou can now view your file and backup history."), _("Rebuild"))
 
 
-def recover_run(db, backup, store, run):
+def recover_run(config, db, backup, store, run):
     wx.Yield()
+    
     #    Grab the LOF
     tmp_dir = tempfile.mkdtemp()
     try:
@@ -112,7 +112,7 @@ def recover_run(db, backup, store, run):
         lof_file = os.path.join(tmp_dir, const.LOFFile)
         #    Decrypt if required.
         if encrypted:
-            decrypt_file(passphrase.passphrase, lof_file + const.EncryptionSuffix, lof_file)
+            decrypt_file(config.data_passphrase, lof_file + const.EncryptionSuffix, lof_file)
 
         #    Now we open and walk through the ZIP file.
         lof = gzip.GzipFile(lof_file, "rb")

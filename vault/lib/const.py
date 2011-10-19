@@ -11,7 +11,7 @@ This is loaded first off all application imports
 Must not depend on anything else (apart from os and sys).
 '''
 from __future__ import division, with_statement, print_function
-import os
+import os, sys
 
 #    Are we debugging. NOTE: this is changed below after the appdir
 #    is calculated.
@@ -77,8 +77,8 @@ if Debug:
     #    We actually run using python.
     #UIProgram = ["python", os.path.join(AppDir, "vault.py")]
     #ServerProgram = ["python", os.path.join(AppDir, "vault_svr.py")]
-    UIProgram = ["python", os.path.join("/home/paul/Dev/Vault/vault", "vault_ui.py")]
-    ServerProgram = ["python", os.path.join("/home/paul/Dev/Vault/vault", "vault_svr.py")]
+    UIProgram = [sys.executable, os.path.join("/home/paul/Dev/Vault/vault", "vault_ui.py")]
+    ServerProgram = [sys.executable, os.path.join("/home/paul/Dev/Vault/vault", "vault_svr.py")]
     
 StoreMarkerFile = "_store_"
 RecoveryFolder = "_recovery_"

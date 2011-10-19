@@ -8,7 +8,6 @@ import tempfile
 
 from lib import const
 from lib import utils
-from lib import passphrase
 from store.folderstore import FolderStore
 from lib.backup import Backup
 from store.streamer import StreamOut
@@ -66,12 +65,12 @@ class VerifyTestCase(unittest.TestCase):
         self.options.shutdown = False
         self.options.norecurse = False
 
-        self.old_pass = passphrase.passphrase
-        passphrase.set_passphrase("banana")
+        self.old_pass = self.config.data_passphrase
+        self.config.data_passphrase = "banana"
 
 
     def tearDown(self):
-        passphrase.set_passphrase(self.old_pass)
+        self.config.data_passphrase = self.old_pass
         #    Remove all DB records created during this test
         self.clean_db()
         shutil.rmtree(self.test_folder)
