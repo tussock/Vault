@@ -23,6 +23,8 @@ from editpanel import EditPanel, ViewState, NewState
 from progressdialog import ProgressDialog
 import app
 
+EmptyName = _("<blank>")
+
 #    Do last!
 from lib.logger import Logger
 log = Logger('ui')
@@ -174,7 +176,7 @@ class BackupPanel(EditPanel, gui.BackupPanel):
         self.Refresh()
 
     def clear(self):
-        b = Backup("<blank>")
+        b = Backup(EmptyName)
         self.show_backup(b)
         self.nbBackup.SetSelection(0)
 
@@ -206,8 +208,12 @@ class BackupPanel(EditPanel, gui.BackupPanel):
             delete_offsite_data = False
 
 
-        with ProgressDialog(self, _("Deleting"), _("Deleting backup %s.\nPlease wait...") % name):
+        with ProgressDialog(self, _("Deleting"), 
+                            _("Deleting backup %s%s.\nPlease wait...") % 
+                            (name, " and all offsite data" if delete_offsite_data else "")):
             self.delete_backup(name, delete_offsite_data)
+            import time
+            time.sleep(3)
         self.clear()
         self.state = ViewState
         app.broadcast_update()
@@ -325,6 +331,8 @@ class BackupPanel(EditPanel, gui.BackupPanel):
             raise Exception(_("Backup name cannot be blank"))
         if self.chkEncrypt.GetValue() and not self.config.data_passphrase:
             raise Exception(_("You cannot select encryption when the passphrase is blank (see Configuration page)."))
+        if self.txtName.GetValue() == EmptyName:
+            raise Exception(_("You need to provide a proper backup name"))
         try:
             #    Create the new backup object
             b = Backup(self.txtName.GetValue())

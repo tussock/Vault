@@ -5,7 +5,7 @@ PYTHON=`which python`
 DESTDIR=/
 BUILDIR=$(CURDIR)/debian/vault
 PROJECT=Vault
-VERSION=1.0.2
+VERSION=1.0.3
 
 all:
 	@echo "make source - Create source package"

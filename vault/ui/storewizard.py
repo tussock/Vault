@@ -128,6 +128,13 @@ def do_test(wizard, store):
     except Exception as e:
         dlg.Warn(wizard, _("Store Test Failed: {error}").format(error=str(e)))
 
+def check_store(wiz):
+    config = Config.get_config()
+    store_name = wiz.fields["name"].value
+    if store_name in config.storage:
+        dlg.Warn(wiz, "That name is already in use", "Duplicate Store")
+        return False
+    return True
 
 def do_store_wizard(parent):
     wiz = wizard.Wizard(parent, _("Store Creation Wizard"),
@@ -140,8 +147,8 @@ def do_store_wizard(parent):
                  icon=os.path.join(const.PixmapDir, "storage.png"))
 
     #    Name
-    page = wizard.Page(wiz, _("Store Name"))
-    wizard.TextField(page, "name", _("What shall we call this store?"),
+    page = wizard.Page(wiz, _("Store Name"), check_cb = check_store)
+    wizard.TextField(page, "name", _("What shall we call this store?"), 
                  default=None if not const.Debug else "TestName")
     #    Type of storage
     page = wizard.Page(wiz, _("Type Of Storage"))

@@ -231,7 +231,7 @@ class StoragePanel(EditPanel, gui.StoragePanel):
     def show(self, name):
         #    Load it
         try:
-            store = self.config.storage[name]
+            store = self.config.storage[name].copy()
             self.state = ViewState
             self.show_store(store)
         except :
@@ -370,7 +370,7 @@ class StoragePanel(EditPanel, gui.StoragePanel):
 #
 ######################################################################3
     def delete_store(self, name, delete_store_data):
-        store = self.config.storage[name]
+        store = self.config.storage[name].copy()
         self.db.delete_store(name)
         if delete_store_data:
             store.delete_store_data()

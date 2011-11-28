@@ -74,8 +74,8 @@ class run():
         self.packages = packages
         self.status = status
     def __str__(self):
-        return "Run(run_id %d backup %s store %s type %s start_time %s status %s)" % \
-                (self.run_id, self.name, self.store, self.type, str(self.start_time), self.status)
+        return "Run(run_id %d backup %s store %s type %s start_time %s status %s hash %s)" % \
+                (self.run_id, self.name, self.store, self.type, str(self.start_time), self.status, self.hash)
     
     @property
     def folder(self):

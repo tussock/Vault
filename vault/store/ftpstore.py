@@ -319,7 +319,7 @@ class FTPStore(StoreBase):
             #    We failed connection and/or login, so FORCE close
             log.debug("Exception during connect and login: ", str(e))
             self._disconnect
-            raise Exception("Failed to connect or log in (%s)" % str(e))
+            raise Exception("Failed to connect or log in: %s" % str(e))
 
 
     def _disconnect(self):

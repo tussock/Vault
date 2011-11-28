@@ -26,7 +26,7 @@ PackageName = "vault"
 Description = "Backups for the rest of us!"
 Author = "Paul Reddy"
 Copyright = "(c) 2011 Paul Reddy <paul@kereru.org>"
-Version = "1.0.2"
+Version = "1.0.3"
 
 
 ####################################################################

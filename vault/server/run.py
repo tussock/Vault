@@ -167,7 +167,10 @@ class Run():
         self.backup_folder = os.path.join(self.backup.name, self.start_time.strftime(const.DateTimeFormat) + " " + self.type)
         if not self.dry_run:
             self.run_id = self.db.start_run(self.backup.name, self.backup.store, self.type, self.start_time)
-            msg = _("Backup {backup}/{type} begins").format(backup=self.backup.name, type=self.type)
+            msg = _("Backup {server}/{backup}/{type} beginning").format(
+                                                            server=utils.get_hostname(), 
+                                                            backup=self.backup.name, 
+                                                            type=self.type)
             if self.dry_run:
                 msg += _(" (Dry Run)")
             log.info(msg)
@@ -179,6 +182,10 @@ class Run():
 
         #    After here we have a run set up in the database, and can begin logging errors.
         try:
+            #    Check that if ENCRYPTION is enabled, that there is a password defined.
+            if self.backup.encrypt and not self.config.data_passphrase:
+                raise Exception("Backup encryption required, but no passphrase has been configured. Backup cancelled.")
+            
             self.prepare_store()
 
             #    Prepare output/destinations/encryption
@@ -207,10 +214,19 @@ class Run():
 
             if self.backup.verify and not self.dry_run:
                 log.info("Starting verify phase")
-                self.db.save_message(_("Backup verification started"))
+                msg = _("Backup {server}/{backup}/{type} verification starting").format(
+                                                            server=utils.get_hostname(), 
+                                                            backup=self.backup.name, 
+                                                            type=self.type)
+                
+                self.db.save_message(msg)
                 v = Verify(self.backup.name, self.start_time)
                 v.run()
-                self.db.save_message(_("Backup verification succeeded"))
+                msg = _("Backup {server}/{backup}/{type} verification succeeded").format(
+                                                            server=utils.get_hostname(), 
+                                                            backup=self.backup.name, 
+                                                            type=self.type)
+                self.db.save_message(msg)
 #                self.do_verify()
 
             #    Messaging...
@@ -283,7 +299,9 @@ class Run():
                 status = subprocess.call(cmd)
                 log.debug("Shutdown query. status=%d" % status)
                 if status == 0 or status == 5:
-                    subprocess.Popen("shutdown -P now")
+                    print("Running shutdown")
+                    subprocess.Popen(["shutdown", "-P", "now"])
+                    print("Done running shutdown")
             except Exception as e:
                 msg = _("Unable to shutdown PC: {error}").format(
                                                 error=str(e))

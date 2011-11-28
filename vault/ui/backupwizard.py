@@ -61,6 +61,14 @@ def wiz_execute(wiz):
     app.broadcast_update()
         
 
+def check_backup(wiz):
+    config = Config.get_config()
+    backup_name = wiz.fields["name"].value
+    if backup_name in config.backups:
+        dlg.Warn(wiz, "That name is already in use", "Duplicate Backup")
+        return False
+    return True
+
 
 
 
@@ -75,7 +83,7 @@ def do_backup_wizard(parent):
                  _("We are now ready to create the backup."), wiz_execute, icon=os.path.join(const.PixmapDir, "storage.png"))
 
     #    Name
-    page = wizard.Page(wiz, _("Backup Name"))
+    page = wizard.Page(wiz, _("Backup Name"), check_cb = check_backup)
     wizard.TextField(page, "name", _("What shall we call this backup?"),
                  default=None if not const.Debug else "TestName")
     #    Type of Folder

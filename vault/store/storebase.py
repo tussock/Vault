@@ -145,6 +145,7 @@ class StoreBase(Serializer):
             pass
 
     def copy(self):
+        '''If the store is to be connected to, IT MUST be created using copy()'''
         return StoreBase(self.name, self.limit, self.auto_manage)
 
     def get_hash(self):

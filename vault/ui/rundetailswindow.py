@@ -82,6 +82,7 @@ class RunDetailsWindow(gui.RunDetailsWindow):
         self.lstDetails.Append([_("Folders Backed Up"), str(self.run.nfolders)])
         self.lstDetails.Append([_("Installed Software List"), _("Included") if self.run.packages else _("Not included")])
         self.lstDetails.Append([_("Total Size"), utils.readable_form(self.run.size)])
+        self.lstDetails.Append([_("Hash"), self.run.hash])
 
         self.lstDetails.SetColumnWidth(0, wx.LIST_AUTOSIZE)
         self.lstDetails.SetColumnWidth(1, wx.LIST_AUTOSIZE)

@@ -1751,10 +1751,11 @@
 													</object>
 												</object>
 												<object class="sizeritem">
-													<option>0</option>
+													<option>1</option>
 													<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
 													<border>3</border>
 													<object class="wxStaticText" name="lblSelectedFile">
+														<style>wxST_NO_AUTORESIZE</style>
 														<label>&lt;selected file&gt;</label>
 														<wrap>-1</wrap>
 													</object>

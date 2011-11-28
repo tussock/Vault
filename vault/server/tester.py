@@ -267,7 +267,7 @@ class Tester():
         #store1 = FTPStore("teststore1", "4MB", True, "localhost", "store1", "ftpuser", "ftpuserX9", False)
         #store2 = FTPStore("teststore2", "4MB", True, "localhost", "store2", "ftpuser", "ftpuserX9", False)
         if self.options.store:
-            store1 = self.config.storage[self.options.store]
+            store1 = self.config.storage[self.options.store].copy()
             store2 = store1
         else:
             #    Make the store about 3x the options size

@@ -44,7 +44,7 @@ def wiz_execute(wiz):
         if wiz.fields[name].value:
             #    Get the backup object and store
             backup = config.backups[name]
-            store = config.storage[backup.store]
+            store = config.storage[backup.store].copy()
 
             #    For each run on the store
             with ProgressDialog(wiz, _("Connecting"), _("Connecting to the store.\nPlease wait...")):

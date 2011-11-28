@@ -51,14 +51,14 @@ class ShareStore(FolderStore):
         out, err = proc.communicate()
         ret = proc.returncode
         if ret != 0:
-            raise Exception("Mount command failed. Return code (%d), output (%s), error (%s)" % (ret, out, err)) 
+            raise Exception("Mount command failed: %s" % err) 
             
     def _disconnect(self):
         proc = Popen(self.umount, stdout=PIPE, stderr=PIPE, shell=True)
         out, err = proc.communicate()
         ret = proc.returncode
         if ret != 0:
-            raise Exception("Unmount command failed. Return code (%d), output (%s), error (%s)" % (ret, out, err))
+            raise Exception("Unmount command failed: %s" % err)
 
     def _remove_dir(self, path):
         log.info("Share Removing dir", path)

@@ -57,7 +57,7 @@ class RestorePanel(gui.RestorePanel):
                         )
         self.fs_tree.SetImageList(self.images)
         #    Looks better if this is blank.
-        self.lblSelectedFile.SetLabel("")
+        self.set_selected_file("")
         self.force_rebuild()
 
         self.image = wx.Bitmap(os.path.join(const.PixmapDir, "review.png"))
@@ -179,7 +179,7 @@ class RestorePanel(gui.RestorePanel):
         item = event.GetItem()
         print(item)
         info = self.fs_tree.GetItemPyData(item)
-        self.lblSelectedFile.SetLabel(info.path)
+        self.set_selected_file(info.path)
 
     def onSliderScroll(self, event):
         #    Get the run
@@ -262,11 +262,68 @@ class RestorePanel(gui.RestorePanel):
 
         win = PackageWindow(self, package_list)
 
+    def onSelectedFileSize(self, event):
+        self.update_truncated_text(self.lblSelectedFile)
 ##################################################################
 #
 #    Utilities
 #
 ##################################################################
+
+    def set_selected_file(self, text):
+        """
+        We dont want the SelectedFile expanding, nor do we want it resizing.
+        
+        We save the full text in the HelpText field.
+        We set the text to a reduced text field that will fit.
+        """
+        self.lblSelectedFile.SetToolTipString(text)
+        self.update_truncated_text(self.lblSelectedFile)
+        
+    def update_truncated_text(self, field):
+        dc = wx.ClientDC(field)
+        maxWidth = self.lblSelectedFile.GetSize().x
+        tt = field.GetToolTip()
+        text = tt.GetTip() if tt else ""
+        newText = self.truncate_text(dc, text, maxWidth)
+        if newText == None:
+            newText = ""
+        self.lblSelectedFile.SetLabel(newText)
+        
+    def truncate_text(self, dc, text, maxWidth):
+        """
+        Truncates a given string to fit given width size. if the text does not fit
+        into the given width it is truncated to fit. the format of the fixed text
+        is <truncate text ..>.
+        """
+    
+        textLen = len(text)
+        tempText = text
+        rectSize = maxWidth
+    
+        fixedText = ""
+    
+        textW, textH = dc.GetTextExtent(text)
+    
+        if rectSize >= textW:
+            return text
+    
+        # The text does not fit in the designated area,
+        # so we need to truncate it a bit
+        suffix = "..."
+        border = 5
+        w, h = dc.GetTextExtent(suffix)
+        rectSize -= w
+    
+        for i in xrange(textLen, -1, -1):
+    
+            textW, textH = dc.GetTextExtent(tempText)
+            if rectSize >= textW + border:
+                fixedText = tempText
+                fixedText += suffix
+                return fixedText
+    
+            tempText = tempText[:-1]         
 
     def rebuild_tree(self):
         #    The date has changed.

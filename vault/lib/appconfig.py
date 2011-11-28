@@ -19,6 +19,7 @@ from lib import const
 from lib.backup import Backup
 from store.folderstore import FolderStore
 
+
 #    Do last!
 from lib.logger import Logger
 log = Logger('library')

@@ -50,6 +50,12 @@ class Test_ShareStore(StoreBaseTests, unittest.TestCase):
     def tearDown(self):
         StoreBaseTests.tearDown(self)
 
+#    def testFail(self):
+#        self.store2 = ShareStore("storetest2", 0, False, "/tmp/badfolder", "badcmd", "badcmd")
+#        self.store2.test()
+#        self.store2.connect()
+        
+        
 
 if __name__ == "__main__":
     unittest.main()

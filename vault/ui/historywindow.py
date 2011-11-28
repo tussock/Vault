@@ -38,9 +38,7 @@ class HistoryWindow(gui.HistoryWindow):
 
         self.order = const.ASC
         
-        if default_name:
-            self.cboBackup.SetStringSelection(default_name)
-        self.update_data()
+        self.update_data(default_name)
 
 #        self.imgList = wx.ImageList(16, 16)
 #        self.img_up = self.imgList.Add(wx.Bitmap("images/go-up.png", wx.BITMAP_TYPE_PNG))
@@ -60,9 +58,12 @@ class HistoryWindow(gui.HistoryWindow):
         self.Show()
 
 
-    def update_data(self):
+    def update_data(self, default_name = None):
         all = _("***All Backups***")
-        old_sel = self.cboBackup.GetStringSelection()
+        if default_name:
+            old_sel = default_name
+        else:
+            old_sel = self.cboBackup.GetStringSelection()
         if not old_sel:
             old_sel = all
         self.cboBackup.Clear()

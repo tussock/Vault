@@ -12,7 +12,8 @@ Created on Dec 2, 2009
 '''
 
 import wx
-
+import gettext
+_ = gettext.gettext
 import wizui
 
 #    Do last!
@@ -103,6 +104,9 @@ class Wizard(wizui.Wizard):
         
         
     def onForward(self, event):
+        page = self.pages[self.page_no]
+        if page.check_cb and not page.check_cb(self):
+            return
         self.page_no += 1
         page = self.pages[self.page_no]
         while page.show_cb and not page.show_cb(self) and self.page_no < len(self.pages)-1:
@@ -131,7 +135,14 @@ class Wizard(wizui.Wizard):
         self.Close()
         
 class Page(wx.Panel):
-    def __init__(self, wizard, title, show_cb=None):
+    def __init__(self, wizard, title, show_cb=None, check_cb=None):
+        '''
+        
+        @param wizard:
+        @param title:
+        @param show_cb: A function that must return true, otherwise FORWARD and BACKWARD will skip this page
+        @param check_cb: A function that must return true before you can move FORWARD off this page
+        '''
         wx.Panel.__init__(self, wizard.pnlPages)
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.SetSizer(self.sizer)
@@ -141,6 +152,7 @@ class Page(wx.Panel):
         self.wizard.add_page(self)
         self.Hide()
         self.show_cb = show_cb
+        self.check_cb = check_cb
 
     def add_control(self, control):
         self.sizer.Add(control, proportion=0, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=1)
@@ -361,6 +373,13 @@ def run_test(wizard):
 
 def change_cb(widget, field, page, wizard):
     print("got cb from field %s: value = %s" % (field.name, str(field.get_value())))
+    
+def check_cb(wiz):
+    if wiz.fields["checkcb"].value == "option 3":
+        return True
+    import dlg
+    dlg.Warn(wiz, "You must choose option 3", "Choice")
+    return False
 
 if __name__ == "__main__":
     app = wx.App()
@@ -376,6 +395,12 @@ if __name__ == "__main__":
     #    Type of storage
     page = Page(wiz, "Wizard page 1b")
     OptionsField(page, "manyoptionsfield", "Which of these options",
+                 ["option 1", "option 2", "option 3", "option 4",
+                   "option 5", "option 6", "option 7"])    
+    
+    #    Check the check callback
+    page = Page(wiz, "You can only move forward if you select option 3", check_cb=check_cb)
+    OptionsField(page, "checkcb", "Pick an option",
                  ["option 1", "option 2", "option 3", "option 4",
                    "option 5", "option 6", "option 7"])    
     

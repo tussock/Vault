@@ -13,6 +13,7 @@ import subprocess
 from lib import const
 from lib import wizard
 from lib import dlg
+from lib.config import Config
 from store.folderstore import FolderStore
 from store.ftpstore import FTPStore
 from store.sharestore import ShareStore
@@ -61,6 +62,9 @@ def wiz_execute(wiz):
     else:
         raise Exception("Internal error: bad store type")
     log.debug("Store = ", store)
+    
+    #    In case we need to revert our config later
+    orig_config = Config.get_config()
     try:
         store.connect()
 
@@ -97,12 +101,12 @@ def wiz_execute(wiz):
             raise Exception(_("The backup runs are missing or corrupt (no config files)"))
 
         if not encrypted:
-            store.get(src, const.ConfigDir+os.pathsep)
+            store.get(src, const.ConfigDir+os.sep)
         else:
             #    Fetch the file.
             enc_file = const.ConfigFile + const.EncryptionSuffix
             clear_file = const.ConfigFile
-            store.get(src, const.ConfigDir+os.pathsep)
+            store.get(src, const.ConfigDir+os.sep)
 
             #    ENCRYPTED
             bad = True  #    keep going until we get a good password
@@ -123,17 +127,15 @@ def wiz_execute(wiz):
                     if os.path.exists(enc_file):
                         os.remove(enc_file)
                     #    Looks like this password is a good one. 
-                    #    We will save it.
-                    conf = Config.get_config()
-                    conf.data_passphrase = password
-                    conf.save()
                 except:
                     log.info("Invalid backup password")
                     dlg.Warn(wiz, _("Invalid password. Please enter the correct backup password."))
                     os.remove(clear_file)
+                    #    Revert the old config
+                    orig_config.save()
 
 
-        dlg.Info(wiz, _("Your configuration has been restored. Restarting the UI..."), _("Restore"))
+        dlg.Info(wiz, _("Your configuration has been restored.\nClick OK to restart the UI..."), _("Restore"))
 
         python = sys.executable
         log.debug("Starting:", const.UIProgram)

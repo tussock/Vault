@@ -998,9 +998,9 @@ class RestorePanel ( wx.Panel ):
 		self.btnRestore = wx.Button( self.pnlRestore, wx.ID_ANY, _("Restore File/Folder..."), wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer94.Add( self.btnRestore, 0, wx.ALL, 3 )
 		
-		self.lblSelectedFile = wx.StaticText( self.pnlRestore, wx.ID_ANY, _("<selected file>"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.lblSelectedFile = wx.StaticText( self.pnlRestore, wx.ID_ANY, _("<selected file>"), wx.DefaultPosition, wx.DefaultSize, wx.ST_NO_AUTORESIZE )
 		self.lblSelectedFile.Wrap( -1 )
-		bSizer94.Add( self.lblSelectedFile, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 3 )
+		bSizer94.Add( self.lblSelectedFile, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 3 )
 		
 		bSizer53.Add( bSizer94, 0, wx.EXPAND, 3 )
 		
@@ -1173,6 +1173,7 @@ class RestorePanel ( wx.Panel ):
 		self.fs_tree.Bind( wx.EVT_TREE_SEL_CHANGED, self.onTreeSelChanged )
 		self.m_button40.Bind( wx.EVT_BUTTON, self.onRefresh )
 		self.btnRestore.Bind( wx.EVT_BUTTON, self.onRestore )
+		self.lblSelectedFile.Bind( wx.EVT_SIZE, self.onSelectedFileSize )
 		self.date_slider.Bind( wx.EVT_SCROLL, self.onSliderScroll )
 		self.btnRunDetails.Bind( wx.EVT_BUTTON, self.onRunDetails )
 		self.btnReload.Bind( wx.EVT_BUTTON, self.onReload )
@@ -1195,6 +1196,9 @@ class RestorePanel ( wx.Panel ):
 		event.Skip()
 	
 	def onRestore( self, event ):
+		event.Skip()
+	
+	def onSelectedFileSize( self, event ):
 		event.Skip()
 	
 	def onSliderScroll( self, event ):
