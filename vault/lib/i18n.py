@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
  
-import os, sys
+import os
 import locale
 import gettext
 

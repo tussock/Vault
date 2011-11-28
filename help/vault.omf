@@ -4,8 +4,8 @@
     <creator>Paul Reddy (paul@kereru.org)</creator>
     <maintainer>Paul Reddy (paul@kereru.org)</maintainer>
     <title>The Vault Help Manual</title>
-    <date>2011-08-13</date>
-    <version identifier="1.0.2" date="2011-08-13" description="The Vault Help Manual"/>
+    <date>2011-11-28</date>
+    <version identifier="1.0.3" date="2011-11-28" description="The Vault Help Manual"/>
     <subject category="System|Administration|Backups"/>
     <description>The Vault - backups for the rest of us.</description>
     <type>manual</type>
