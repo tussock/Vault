@@ -1,0 +1,156 @@
+body
+{
+background:url(images/bg.gif) repeat #000000;
+padding:0; font-family:arial, sans-serif; font-size:12px;
+margin:0px auto auto auto;
+color:#36322b;
+}
+p{
+padding:0px;
+text-align:justify;
+margin:0px;
+line-height:20px;
+}
+p.text{
+line-height:14px;
+}
+p.intro{
+padding:30px 35px 0 35px;
+}
+
+.clear{
+clear:both;
+}
+a{
+text-decoration:underline;
+}
+
+#main_container{
+width:821px;
+height:auto;
+margin:auto;
+padding:0px;
+}
+#header{
+width:621px;
+height:135px;
+margin:0px;
+padding:0px;
+background:url(images/header_bg.gif) no-repeat center top;
+}
+.logo{
+padding:30px 0 0 0px;
+}
+.title{
+width: auto;
+padding:2px 0 10px 0;
+font-size:17px;
+color:#2e2721;
+font-weight:bold;
+}
+
+span.red{
+font-weight:bold;
+color:#da5b23;
+}
+span.orange{
+font-weight:bold;
+color:#da5b23;
+}
+
+/*---------------- menu tab----------------------*/
+.menu{
+width:621px;
+height:42px;
+margin:0px;
+background:url(images/menu_bg.gif) no-repeat left;
+}
+.menu ul{
+list-style:none;
+padding:0 0 0 15px;
+margin:0px;
+}
+.menu ul li{
+display:inline;
+}
+.menu ul li a{
+float:left;
+height:42px;
+border:none;
+padding:0 15px 0 15px;
+text-decoration:none;
+color:#fff;
+line-height:42px;
+font-size:14px;
+}
+.menu ul li.selected a{
+float:left;
+height:42px;
+border:none;
+padding:0 15px 0 15px;
+text-decoration:none;
+color:#fff;
+line-height:42px;
+font-size:14px;
+background:url(images/menu_bullet.gif) no-repeat bottom center;
+}
+.menu ul li a:hover{
+background:url(images/menu_bullet.gif) no-repeat bottom center;
+}
+
+/*---------------content-------*/
+.content{
+width:621px;
+height:auto;
+clear:both;
+padding:25px 0 30px 0;
+background-color:#e9e5e2;
+}
+.section{
+padding:10px 20px 0 30px;
+}
+/*---------------News-------*/
+.news_box{
+float:left;
+width:auto;
+border-bottom:1px #CCCCCC dashed;
+padding:10px 0 8px 0;
+}
+.news_icon{
+width:30px;
+height:33px;
+float:left;
+background:url(images/news_icon.gif) no-repeat center;
+}
+.news_content{
+width:400px;
+float:left;
+text-align:justify;
+/*line-height:20px;*/
+padding:0 0 0 10px;
+}
+/*----------------------list-------------------------*/
+ul.list{
+list-style:bullet;padding:0px 20px 0px 20px;margin:0px; 
+}
+
+/*-------------------footer------------------------*/
+#footer{
+width:621px;
+height:50px;
+clear:both;
+color:#837d7b;
+}
+.left_footer{
+float:left;
+padding:20px 0 0 0;
+}
+#footer a{
+color:#837d7b;
+padding:0 8px 0 8px;
+text-decoration:none;
+}
+.right_footer{
+float:right;
+padding:20px 0px 0 0 ;
+}

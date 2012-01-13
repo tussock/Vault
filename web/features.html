@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+<title>The Vault - Backups For The Rest Of Us</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+	<div id="main_container">
+
+		<div id="header">
+			<div class="logo"><img src="images/logo.png" border="0" alt="" title="" />
+			</div>
+		</div>
+		<div class="menu">
+			<ul>
+				<li><a href="index.html">home</a></li>
+				<li class="selected"><a href="features.html">features</a></li>
+				<li><a href="screenshots.html">screenshots</a></li>
+				<li><a href="download.html">download</a></li>
+				<li><a href="licence.html">licence</a></li>
+				<li><a href="contact.html">contact</a></li>
+			</ul>
+		</div>
+
+    	<div class="content">
+         
+         <div class="section">   
+            <div class="title">Main features</div>
+
+            <p><span class="red">Very Simple UI</span></p>
+				The UI is simple, intuitive and easy to grasp. There is comprehensive
+				documentation included.
+
+            <p><span class="red">Wizards</span></p>
+            The Vault's UI provides two wizards - one to configure the backup/files and the
+            other to connect to your backup drives or cloud stores.
+            You can dry-run the backup to see what will be saved, or you can run a comprehansive
+            test of your backup drives and cloud stores.
+
+            <p><span class="red">Support For Many Storage Types</span></p>
+            The Vault will backup to the following stores:
+            <ul>
+            <li>A Local Folder</li>
+            <li>A USB drive</li>
+            <li>A Remote Folder - which will be mounted and unmounted as required</li>
+            <li>An FTP Server - with full support for SFTP encryption (enabling encryption is strongly recommended)</li>
+            <li>Dropbox - you can get a free 2GB account and store your most important data "in the cloud"</li>
+            <li>Amazon S3 - Nothing is more reliable.</li>
+            </ul>
+            More cloud storage servers are being added.
+
+            <p><span class="red">Automatic Storage Management</span></p>
+            As time goes on, your backup stores will fill up. The Vault is smart 
+            enough to <i>automatically</i> remove old backups that are no longer
+            required.  
+
+            <p><span class="red">Encryption Out-Of-The-Box</span></p>
+            We know that your stuff is personal and private. So we've built in 
+            encryption out of the box. Simply set a Master Password, and all your 
+            data stored will be encrypted. All traffic is also encrypted (with the exception of
+            unencrypted FTP - which we strongly recommend you dont use).
+            <br /><br />
+            We use well respected, open standards for all encryption, and our implementation has been
+            peer reviewed. The end result is your data is secure.
+            <br /><br />
+            For the geeks out there we use 
+            <a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES-256</a>, 
+            selected by the
+            <a href="http://en.wikipedia.org/wiki/National_Institute_of_Standards_and_Technology">NIST</a>
+            as <a href="http://en.wikipedia.org/wiki/Federal_Information_Processing_Standard">FIPS</a> 197
+            after a long evaluation process, and now commonly used across the world. It is in 
+            CBC mode with SHA256 digest used to generate a key.
+            The hash is <a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">SHA-256</a>.
+            
+            <p><span class="red">Standards Based File Formats</span></p>
+            All data is managed using well publicized open standards.
+            Encryption uses OpenSSL libraries, data is compressed using gzip, 
+            files are stored in tar format. Configuration is stored in 
+            open JSON format.
+            <br /><br />
+            The upshot is that you can manually examine and unpack stored files
+            using openssl and tar, without Vault if necessary. 
+            The exact commands are provided in the manual. 
+
+            <p><span class="red">Comprehensive Data Recovery</span></p>
+            Firstly - you can simply run The Vault's UI to recover any file at
+            any time. In fact, you can see all backed up files as they were
+            at any time in the past - so if you want to "roll back" any change, its easy.
+            <br /><br />
+            But lets imagine that the worst happens and your HDD crashes, your PC explodes 
+            or (shudder) your house burns down. When your new Disk/PC/House is set up,
+            you have several options:
+            <ul>
+            <li>Reinstall The Vault - after install you can recover your backup status from 
+            your backed up files. Then you can then walk through the disaster recovery 
+            system inside The Vault's standard UI. You can even reinstall all your old software.</li>
+            <li>Run The Disaster Recovery Program - this doesn't even require The Vault! Every
+            backup storage location gets a complete disaster recovery program copied to it. Simply
+            connect to the drive and run it.</li>
+            <li>Use command line tools - because vault stores all data in industry standard
+            formats, you can recover your data using standard command line tools (if you are so
+            inclined)</li>
+            </ul>
+
+            <p><span class="red">Notifications</span></p>
+            You can elect to have The Vault place a message on the desktop and/or
+            email you after each backup run. The email will include details and statistics
+            from the backup run. A full history can also be reviewed using the UI.
+
+            <p><span class="red">Comprehensive Backup Options</span></p>
+            You can backup different sets of files in different ways.
+            For example, you could backup your important files every day (or hour!), 
+            but only backup your music weekly. Music usually doesn't change much.
+				<br /><br />
+				You can opt to backup everything, or just changes. And you can
+				include or exclude certain types of files.
+				<br /><br />
+				Every backup can (and probably should be) verified. That is, all the 
+				data written to the remote site is re-read to ensure it was saved correctly.
+				Also, the hash for each backup is saved - later corruption or malicious
+				modifications will be detected.              
+
+            <p><span class="red">Easy Scheduling</span></p>
+            The Vault includes a very simple way to schedule when your backups should run.
+            No more messing about with crontabs.
+
+            <p><span class="red">Multiple Active Backups</span></p>
+            The Vault allows you to define more than one backup, where a backup is a set
+            of files saved to a storage location according to a set of rules.
+            <br /><br />
+            For example - your important files (accounts, essays, classwork)
+            could be backed up to Dropbox every night.
+            Your music (probably very large) could be backed up to another computer
+            or a USB drive every week. You buy music only occasionally.
+                         
+         </div> 
+         
+        
+
+        
+			<div class="clear"></div>
+		</div>
+		<div id="footer">
+			<div class="left_footer"><a href="index.html">home</a> <a href="contact.html">contact</a>
+			</div>
+			<div class="right_footer"><a href="http://csstemplatesmarket.com">csstemplates</a></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
