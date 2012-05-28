@@ -33,7 +33,7 @@ class Test_FTPStore(StoreBaseTests, unittest.TestCase):
         try:
             self.server = self.config.get("FTP", "server")
             self.login = self.config.get("FTP", "login")
-            self.password = self.config.get("FTP", "password")+"x"
+            self.password = self.config.get("FTP", "password")
             self.folder = self.config.get("FTP", "folder")
 
         except Exception as e:
